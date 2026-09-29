@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/6.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
+import os
+import dj_database_url
 
 from pathlib import Path
 
@@ -20,7 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-rqwv=7tk-lt+z-2rzx9h_4t&#$v88veef288dn#zpq!@%&db!a'
+"""SECRET_KEY = 'django-insecure-rqwv=7tk-lt+z-2rzx9h_4t&#$v88veef288dn#zpq!@%&db!a' """
+SECRET_KEY = os.environ.get("SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,13 +82,20 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}
+} """
+
+DATABASES = {
+    "default": dj_database_url.config(
+        conn_max_age=600
+    )
+} 
+
 AUTH_USER_MODEL = "accounts.User"
 
 # Password validation
@@ -175,6 +186,7 @@ JAZZMIN_SETTINGS = {
 
 # Static files
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Media files
 MEDIA_URL = "/media/"
