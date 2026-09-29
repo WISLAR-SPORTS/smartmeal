@@ -83,6 +83,11 @@
     html {
     scroll-behavior: smooth;
     }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
     body {
    font-family: 'Times New Roman', Times, serif;
@@ -91,7 +96,7 @@
     color: var(--text);
 
     line-height: 1.6;
-
+min-height: 100vh;
     overflow-x: hidden;
 
     transition:
