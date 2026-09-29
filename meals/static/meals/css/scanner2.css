@@ -1,0 +1,401 @@
+css
+/* ==========================================
+   SCANNER SIDEBAR
+========================================== */
+
+.scanner-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+
+/* ==========================================
+   SIDE CARD
+========================================== */
+
+.scanner-sidebar .side-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+
+/* ==========================================
+   CURRENT MEAL
+========================================== */
+
+.current-meal {
+    border-top: 4px solid #16a34a !important;
+}
+
+
+.selected-meal-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+
+.meal-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f0fdf4;
+    border-radius: 12px;
+
+    font-size: 24px;
+}
+
+
+.meal-main h3 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+}
+
+
+.selected-meal-type {
+    display: block;
+    margin-top: 3px;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    color: #6b7280;
+}
+
+
+/* ==========================================
+   SERVICE TIME
+========================================== */
+
+.service-time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 18px;
+    padding-top: 15px;
+
+    border-top: 1px solid #f0f0f0;
+}
+
+
+.service-time span {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+
+.service-time strong {
+    color: #111827;
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   SERVICE STATUS
+========================================== */
+
+.service-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 15px;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.service-status.active {
+    color: #15803d;
+}
+
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+}
+
+
+/* ==========================================
+   STATISTICS
+========================================== */
+
+.meal-stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+
+.meal-stat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px;
+
+    background: #f9fafb;
+    border-radius: 10px;
+}
+
+
+.meal-stat strong {
+    display: block;
+
+    font-size: 20px;
+    line-height: 1;
+
+    color: #111827;
+}
+
+
+.meal-stat span:not(.stat-icon) {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 11px;
+    color: #6b7280;
+}
+
+
+.stat-icon {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    font-weight: 700;
+}
+
+
+.stat-icon.redeemed {
+    color: #15803d;
+    background: #dcfce7;
+}
+
+
+.stat-icon.remaining {
+    color: #2563eb;
+    background: #dbeafe;
+}
+
+
+/* ==========================================
+   SCHEDULE
+========================================== */
+
+.schedule-list {
+    margin-top: 8px;
+}
+
+
+.schedule-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #f0f0f0;
+}
+
+
+.schedule-item:last-child {
+    border-bottom: none;
+}
+
+
+.schedule-item.active {
+    margin-left: -8px;
+    margin-right: -8px;
+    padding-left: 8px;
+    padding-right: 8px;
+
+    background: #f0fdf4;
+    border-radius: 10px;
+}
+
+
+.schedule-icon {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f9fafb;
+    border-radius: 9px;
+}
+
+
+.schedule-details {
+    flex: 1;
+}
+
+
+.schedule-details strong {
+    display: block;
+
+    font-size: 13px;
+    color: #111827;
+}
+
+
+.schedule-details span {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 11px;
+    color: #6b7280;
+}
+
+
+.schedule-active {
+    font-size: 10px;
+    font-weight: 700;
+
+    color: #15803d;
+}
+
+
+/* ==========================================
+   SCANNER STATUS
+========================================== */
+
+.scanner-status-list {
+    margin-top: 8px;
+}
+
+
+.status-row {
+    display: grid;
+    grid-template-columns: 10px 1fr auto;
+    align-items: center;
+    gap: 9px;
+
+    padding: 9px 0;
+}
+
+
+.status-row span:not(.status-indicator) {
+    font-size: 13px;
+    color: #374151;
+}
+
+
+.status-row strong {
+    font-size: 12px;
+    color: #16a34a;
+}
+
+
+.status-indicator {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+}
+
+
+.status-indicator.ready,
+.status-indicator.online {
+    background: #22c55e;
+}
+
+
+/* ==========================================
+   STAFF
+========================================== */
+
+.sidebar-staff {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 10px;
+}
+
+
+.sidebar-staff-avatar {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #111827;
+    color: #ffffff;
+
+    font-weight: 700;
+}
+
+
+.sidebar-staff strong {
+    display: block;
+
+    font-size: 13px;
+    color: #111827;
+}
+
+
+.sidebar-staff span {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 11px;
+    color: #6b7280;
+}
+
+
+/* ==========================================
+   CARD HEADER
+========================================== */
+
+.side-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.side-card-header > span:first-child {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    color: #6b7280;
+}
+
+
+.card-date {
+    font-size: 11px;
+    color: #9ca3af;
+}
+

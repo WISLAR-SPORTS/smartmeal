@@ -1,0 +1,1114 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Student Dashboard | SmartMeal</title>
+    <script>
+    (function () {
+        const savedTheme = localStorage.getItem("smartmeal-theme");
+
+        if (savedTheme === "dark") {
+            document.documentElement.setAttribute(
+                "data-theme",
+                "dark"
+            );
+        }
+    })();
+</script>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'students/css/dashboard.css' %}"
+    >
+    <link
+    rel="stylesheet"
+    href="{% static 'students/css/student-navigation.css' %}"
+>
+    <link
+    rel="stylesheet"
+    href="{% static 'students/css/dashboardicon.css' %}"
+>
+</head>
+
+<body>
+
+<div class="student-app">
+
+    <!-- ==========================================
+         TOP BAR
+    =========================================== -->
+
+  <header class="topbar">
+
+    <!-- BRAND -->
+    <a href="{% url 'students:dashboard' %}" class="brand">
+
+        <div class="brand-icon">
+            SM
+        </div>
+
+        <div class="brand-text">
+            <h1>SmartMeal</h1>
+            <span>Student Portal</span>
+        </div>
+
+    </a>
+    
+
+
+    <!-- DESKTOP NAVIGATION -->
+    <nav class="desktop-nav">
+  <button
+    type="button"
+    id="theme-toggle"
+    class="theme-toggle"
+    aria-label="Switch to dark mode"
+    aria-pressed="false"
+>
+    <span class="theme-track">
+
+        <span class="theme-sky"></span>
+
+        <span class="theme-sun">
+            <i data-lucide="sun"></i>
+        </span>
+
+        <span class="theme-moon">
+            <i data-lucide="moon"></i>
+        </span>
+
+        <span class="theme-person">
+            <span class="person-head"></span>
+            <span class="person-body"></span>
+            <span class="person-leg leg-one"></span>
+            <span class="person-leg leg-two"></span>
+        </span>
+
+    </span>
+</button>
+
+        <a
+            href="{% url 'students:dashboard' %}"
+            class="nav-link"
+        >
+            <span class="nav-icon">
+                <i data-lucide="house"></i>
+            </span>
+            Dashboard
+        </a>
+
+
+        <a
+            href="{% url 'students:student_history' %}"
+            class="nav-link"
+        >
+            <span class="nav-icon">
+                <i data-lucide="clipboard-list"></i>
+            </span>
+            History
+        </a>
+
+
+        <a
+            href="{% url 'students:student_schedule' %}"
+            class="nav-link"
+        >
+            <span class="nav-icon">
+                <i data-lucide="utensils"></i>
+            </span>
+            Meals
+        </a>
+
+
+        <a
+            href="{% url 'students:student_notifications' %}"
+            class="nav-link notification-link"
+        >
+            <span class="nav-icon">
+                <i data-lucide="bell"></i>
+            </span>
+
+            Notifications
+
+            {% if unread_notifications %}
+                <span class="notification-count">
+                    {{ unread_notifications }}
+                </span>
+            {% endif %}
+        </a>
+
+    </nav>
+
+
+    <!-- USER MENU -->
+    <div class="user-menu-wrapper">
+
+        <button
+            type="button"
+            id="user-menu-button"
+            class="user-menu-button"
+            aria-expanded="false"
+        >
+
+            <div class="student-avatar">
+                {{ student.first_name|first|upper }}
+            </div>
+
+            <div class="student-details">
+
+                <strong>
+                    {{ student.first_name }} {{ student.last_name }}
+                </strong>
+
+                <span>
+                    Student
+                </span>
+
+            </div>
+
+            <span class="menu-chevron">
+                <i data-lucide="chevron-down"></i>
+            </span>
+
+        </button>
+
+
+        <!-- DROPDOWN -->
+        <div
+            id="user-dropdown"
+            class="user-dropdown"
+        >
+
+            <!-- DROPDOWN HEADER -->
+            <div class="dropdown-header">
+
+                <div class="dropdown-avatar">
+                    {{ student.first_name|first|upper }}
+                </div>
+
+                <div>
+
+                    <strong>
+                        {{ student.first_name }} {{ student.last_name }}
+                    </strong>
+
+                    <span>
+                        {{ student.student_id }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="dropdown-divider"></div>
+           
+
+            <!-- PROFILE -->
+            <a
+                href="{% url 'students:student_profile' %}"
+                class="dropdown-link"
+            >
+                <span class="dropdown-icon">
+                    <i data-lucide="user"></i>
+                </span>
+
+                <div>
+                    <strong>My Profile</strong>
+                    <small>View and edit your profile</small>
+                </div>
+            </a>
+
+
+            <!-- NOTIFICATIONS -->
+            <a
+                href="{% url 'students:student_notifications' %}"
+                class="dropdown-link"
+            >
+                <span class="dropdown-icon">
+                    <i data-lucide="bell"></i>
+                </span>
+
+                <div>
+                    <strong>Notifications</strong>
+                    <small>View your notifications</small>
+                </div>
+
+                {% if unread_notifications %}
+                    <span class="dropdown-badge">
+                        {{ unread_notifications }}
+                    </span>
+                {% endif %}
+            </a>
+
+
+            <!-- HISTORY -->
+            <a
+                href="{% url 'students:student_history' %}"
+                class="dropdown-link"
+            >
+                <span class="dropdown-icon">
+                    <i data-lucide="clipboard-list"></i>
+                </span>
+
+                <div>
+                    <strong>Meal History</strong>
+                    <small>View your meal redemptions</small>
+                </div>
+            </a>
+
+
+            <!-- MEAL SCHEDULE -->
+            <a
+                href="{% url 'students:student_schedule' %}"
+                class="dropdown-link"
+            >
+                <span class="dropdown-icon">
+                    <i data-lucide="calendar-days"></i>
+                </span>
+
+                <div>
+                    <strong>Meal Schedule</strong>
+                    <small>View available meals</small>
+                </div>
+            </a>
+
+
+            <!-- HELP -->
+            <a
+                href="{% url 'students:student_help' %}"
+                class="dropdown-link"
+            >
+                <span class="dropdown-icon">
+                    <i data-lucide="circle-help"></i>
+                </span>
+
+                <div>
+                    <strong>Help &amp; Support</strong>
+                    <small>Get help with SmartMeal</small>
+                </div>
+            </a>
+
+
+            <!-- SETTINGS -->
+            <a
+                href="{% url 'students:student_settings' %}"
+                class="dropdown-link"
+            >
+                <span class="dropdown-icon">
+                    <i data-lucide="settings"></i>
+                </span>
+
+                <div>
+                    <strong>Settings</strong>
+                    <small>Manage your account</small>
+                </div>
+            </a>
+
+
+            <div class="dropdown-divider"></div>
+
+
+            <!-- LOGOUT -->
+            <form
+                method="post"
+                action="{% url 'accounts:logout' %}"
+            >
+
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="dropdown-link logout-link"
+                >
+                    <span class="dropdown-icon">
+                        <i data-lucide="log-out"></i>
+                    </span>
+
+                    <div>
+                        <strong>Logout</strong>
+                        <small>Sign out of SmartMeal</small>
+                    </div>
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ==========================================
+     MOBILE BOTTOM NAVIGATION
+=========================================== -->
+
+<nav class="mobile-bottom-nav">
+
+<a
+    href="{% url 'students:dashboard' %}"
+    class="mobile-nav-item"
+>
+    <span>
+        <i data-lucide="house"></i>
+    </span>
+    <small>Home</small>
+</a>
+
+<a
+    href="{% url 'students:student_schedule' %}"
+    class="mobile-nav-item"
+>
+    <span>
+        <i data-lucide="utensils"></i>
+    </span>
+    <small>Meals</small>
+</a>
+
+    <a
+        href="{% url 'students:student_notifications' %}"
+        class="mobile-nav-item mobile-notification"
+    >
+
+    <span class="mobile-icon-wrapper">
+
+    <i data-lucide="bell"></i>
+
+    {% if unread_notifications %}
+        <b>
+            {{ unread_notifications }}
+        </b>
+    {% endif %}
+
+</span>
+
+        <small>Alerts</small>
+
+    </a>
+
+
+    <button
+        type="button"
+        id="mobile-profile-button"
+        class="mobile-nav-item"
+    >
+       <span>
+    <i data-lucide="user"></i>
+</span>
+        <small>Profile</small>
+    </button>
+
+</nav>
+
+
+<!-- MOBILE PROFILE SHEET -->
+
+<div
+    id="mobile-profile-sheet"
+    class="mobile-profile-sheet"
+>
+
+    <div class="mobile-sheet-overlay"></div>
+
+    <div class="mobile-sheet">
+
+        <div class="mobile-sheet-handle"></div>
+
+        <div class="mobile-sheet-header">
+
+            <div class="dropdown-avatar">
+                {{ student.first_name|first|upper }}
+            </div>
+
+            <div>
+                <strong>
+                    {{ student.first_name }}
+                    {{ student.last_name }}
+                </strong>
+
+                <span>
+                    {{ student.student_id }}
+                </span>
+            </div>
+
+        </div>
+
+
+        <div class="mobile-menu-list">
+
+        <a href="{% url 'students:student_profile' %}">
+    <i data-lucide="user"></i>
+    <span>My Profile</span>
+</a>
+
+<a href="{% url 'students:student_notifications' %}">
+    <i data-lucide="bell"></i>
+    <span>Notifications</span>
+</a>
+
+<a href="{% url 'students:student_history' %}">
+    <i data-lucide="clipboard-list"></i>
+    <span>Meal History</span>
+</a>
+
+<a href="{% url 'students:student_schedule' %}">
+    <i data-lucide="calendar-days"></i>
+    <span>Meal Schedule</span>
+</a>
+
+<a href="{% url 'students:student_help' %}">
+    <i data-lucide="circle-help"></i>
+    <span>Help & Support</span>
+</a>
+
+<a href="{% url 'students:student_settings' %}">
+    <i data-lucide="settings"></i>
+    <span>Settings</span>
+</a>
+
+
+          <form method="post" action="{% url 'accounts:logout' %}">
+    {% csrf_token %}
+
+   
+
+                {% csrf_token %}
+
+              <button type="submit" class="logout-btn">
+    <i data-lucide="log-out"></i>
+    <span>Logout</span>
+</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+    <!-- ==========================================
+         MAIN
+    =========================================== -->
+
+    <main class="dashboard-main">
+
+        <!-- ======================================
+             WELCOME
+        ======================================= -->
+
+        <section class="welcome-section">
+
+            <div>
+
+                <span class="eyebrow">
+                    STUDENT PORTAL
+                </span>
+
+                <h2>
+                    Welcome,
+                    {{ request.user.first_name|default:request.user.username }}
+                </h2>
+
+                <p>
+                    View your meal card, today's meals,
+                    and redemption history.
+                </p>
+
+            </div>
+
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                Account Active
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             DASHBOARD GRID
+        ======================================= -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- ==================================
+                 MEAL CARD
+            =================================== -->
+
+            <div class="dashboard-card meal-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="card-eyebrow">
+                            MEAL CARD
+                        </span>
+
+                        <h3>
+                            My SmartMeal Card
+                        </h3>
+
+                    </div>
+
+                    <span class="card-status">
+                        ACTIVE
+                    </span>
+
+                </div>
+
+
+                <div class="card-number">
+
+                    <span>
+                        Card Number
+                    </span>
+
+                    <strong>
+                        {{ meal_card.card_number|default:"Not assigned" }}
+                    </strong>
+
+                </div>
+
+
+                <div class="card-details">
+
+                    <div>
+                        <span>
+                            Student
+                        </span>
+
+                        <strong>
+                            {{ request.user.get_full_name|default:request.user.username }}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>
+                            Status
+                        </span>
+
+                        <strong class="success-text">
+                            Active
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================
+                 QR CODE
+            =================================== -->
+
+            <div class="dashboard-card qr-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="card-eyebrow">
+                            MEAL VERIFICATION
+                        </span>
+
+                        <h3>
+                            My QR Code
+                        </h3>
+
+                    </div>
+
+                    <span class="qr-badge">
+                        SCAN
+                    </span>
+
+                </div>
+
+
+                <div class="qr-container">
+
+                    <div
+                        id="student-qr"
+                        class="qr-code"
+                      data-token="{{ current_meal_token.token|default:'' }}"
+                    >
+                        <div class="qr-placeholder">
+                            QR
+                        </div>
+                    </div>
+
+                </div>
+
+                <p class="qr-help">
+                    Show this QR code to the cafeteria
+                    staff when redeeming your meal.
+                </p>
+
+                <button
+                    type="button"
+                    id="fullscreen-qr"
+                    class="secondary-button"
+                >
+                    View QR Code
+                </button>
+
+            </div>
+
+
+            <!-- ==================================
+                 TODAY'S MEALS
+            =================================== -->
+
+            <div class="dashboard-card meals-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="card-eyebrow">
+                            TODAY
+                        </span>
+
+                        <h3>
+                            Today's Meals
+                        </h3>
+
+                    </div>
+
+                    <span class="date-label">
+                        {% now "M d, Y" %}
+                    </span>
+
+                </div>
+
+
+                <div class="meal-list">
+
+                    {% if meal_services %}
+
+                        {% for service in meal_services %}
+
+                            <div
+                                class="meal-item
+                                {% if service.is_redeemed %}
+                                    redeemed
+                                {% elif not service.is_active %}
+                                    inactive
+                                {% endif %}"
+                            >
+
+                             <div class="meal-icon">
+
+    {% if service.meal.meal_type == "breakfast" %}
+        <i data-lucide="sun"></i>
+
+    {% elif service.meal.meal_type == "lunch" %}
+        <i data-lucide="utensils"></i>
+
+    {% else %}
+        <i data-lucide="moon"></i>
+    {% endif %}
+
+</div>
+
+
+                                <div class="meal-info">
+
+                                    <strong>
+                                        {{ service.meal.name }}
+                                    </strong>
+
+                                    <span>
+                                        {{ service.starts_at|time:"H:i" }}
+                                        -
+                                        {{ service.ends_at|time:"H:i" }}
+                                    </span>
+
+                                </div>
+
+
+                                <div class="meal-status">
+
+                                    {% if service.is_redeemed %}
+
+                                       <span class="status-redeemed">
+    <i data-lucide="check"></i>
+    Redeemed
+</span>
+
+                                    {% elif not service.is_active %}
+
+                                        <span class="status-inactive">
+                                            Unavailable
+                                        </span>
+
+                                    {% else %}
+
+                                        <span class="status-available">
+                                            Available
+                                        </span>
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <div class="empty-state">
+
+                           <div class="empty-icon">
+    <i data-lucide="utensils-crossed"></i>
+</div>
+
+                            <h4>
+                                No meals scheduled
+                            </h4>
+
+                            <p>
+                                There are no meal services
+                                scheduled for today.
+                            </p>
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================
+                 QUICK STATISTICS
+            =================================== -->
+
+            <div class="dashboard-card statistics-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="card-eyebrow">
+                            ACTIVITY
+                        </span>
+
+                        <h3>
+                            Meal Statistics
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stats-grid">
+
+                    <div class="stat-box">
+
+                       <span class="stat-icon success">
+    <i data-lucide="check"></i>
+</span>
+
+                        <div>
+
+                            <strong>
+                                {{ successful_redemptions|default:"0" }}
+                            </strong>
+
+                            <span>
+                                Successful
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-box">
+
+                      <span class="stat-icon">
+    <i data-lucide="utensils"></i>
+</span>
+
+                        <div>
+
+                            <strong>
+                                {{ today_redemptions|default:"0" }}
+                            </strong>
+
+                            <span>
+                                Today
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-box">
+
+                     <span class="stat-icon">
+    <i data-lucide="calendar"></i>
+</span>
+
+                        <div>
+
+                            <strong>
+                                {{ total_redemptions|default:"0" }}
+                            </strong>
+
+                            <span>
+                                Total Meals
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             REDEMPTION HISTORY
+        ======================================= -->
+
+        <section class="history-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        HISTORY
+                    </span>
+
+                    <h2>
+                        Recent Redemptions
+                    </h2>
+
+                    <p>
+                        Your latest meal redemption activity.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card history-card">
+
+                {% if redemptions %}
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Meal
+                                    </th>
+
+                                    <th>
+                                        Date
+                                    </th>
+
+                                    <th>
+                                        Time
+                                    </th>
+
+                                    <th>
+                                        Status
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                {% for redemption in redemptions %}
+
+                                    <tr>
+
+                                        <td>
+
+                                            <div class="history-meal">
+
+                                              <span class="history-icon">
+    <i data-lucide="utensils"></i>
+</span>
+
+                                                <div>
+
+                                                    <strong>
+                                                        {{ redemption.meal_service.meal.name }}
+                                                    </strong>
+
+                                                    <span>
+                                                        {{ redemption.meal_service.meal.get_meal_type_display }}
+                                                    </span>
+
+                                                </div>
+
+                                            </div>
+
+                                        </td>
+
+
+                                        <td>
+                                            {{ redemption.meal_service.service_date|date:"M d, Y" }}
+                                        </td>
+
+
+                                        <td>
+                                            {{ redemption.redeemed_at|time:"H:i" }}
+                                        </td>
+
+
+                                        <td>
+
+                                            {% if redemption.status == "success" %}
+
+                                              <div class="empty-icon">
+    <i data-lucide="clipboard-list"></i>
+</div>
+
+                                            {% else %}
+
+                                                <span class="table-status rejected">
+                                                    Rejected
+                                                </span>
+
+                                            {% endif %}
+
+                                        </td>
+
+                                    </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                {% else %}
+
+                    <div class="empty-history">
+
+                     <div class="empty-icon">
+    <i data-lucide="clipboard-list"></i>
+</div>
+
+                        <h3>
+                            No redemption history
+                        </h3>
+
+                        <p>
+                            Your meal redemptions will appear here.
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==========================================
+         QR MODAL
+    =========================================== -->
+
+    <div
+        id="qr-modal"
+        class="modal hidden"
+    >
+
+        <div class="modal-content">
+
+         <button
+    type="button"
+    id="close-qr"
+    class="modal-close"
+    aria-label="Close"
+>
+    <i data-lucide="x"></i>
+</button>
+
+            <span class="card-eyebrow">
+                SMARTMEAL CARD
+            </span>
+
+            <h2>
+                Scan My Meal Card
+            </h2>
+
+            <div
+                id="modal-qr"
+                class="modal-qr"
+            ></div>
+
+            <p>
+                Show this code to the cafeteria
+                scanner.
+            </p>
+
+            <strong class="modal-card-number">
+                {{ meal_card.card_number|default:"" }}
+            </strong>
+
+        </div>
+
+    </div>
+
+
+</div>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+</script>
+
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+></script>
+<script
+    src="{% static 'students/js/student-navigation.js' %}"
+></script>
+<script src="{% static 'students/js/dashboard.js' %}"></script>
+<script src="{% static 'students/js/theme.js' %}"></script>
+
+
+
+</body>
+</html>
+

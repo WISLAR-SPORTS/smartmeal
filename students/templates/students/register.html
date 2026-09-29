@@ -1,0 +1,605 @@
+
+
+{% load static %}
+<!DOCTYPE html> <html lang="en"> <head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Register | SmartMeal</title>
+
+<link
+    rel="stylesheet"
+    href="{% static 'students/css/register.css' %}"
+>
+
+<link
+    rel="stylesheet"
+    href="{% static 'students/css/login.css' %}"
+>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+</head> <body> <main class="registration-page">
+
+<!-- ==========================================
+     BRAND PANEL
+=========================================== -->
+
+<section class="registration-brand">
+
+    <a
+        href="{% url 'students:landing' %}"
+        class="brand"
+    >
+
+                               <div class="brand-icon">
+    <img
+        src="{% static 'students/images/logo.jpg' %}"
+        alt="SmartMeal Logo"
+    >
+</div>
+
+        <div class="brand-text">
+            <strong>SmartMeal</strong>
+            <span>Student Meal Portal</span>
+        </div>
+
+    </a>
+
+    <div class="brand-content">
+
+        <span class="eyebrow">
+            STUDENT REGISTRATION
+        </span>
+
+        <h1>
+            Start your
+            <span>SmartMeal</span>
+            journey.
+        </h1>
+
+        <p>
+            Create your student account and get
+            access to your digital meal card,
+            meal schedules, notifications and
+            redemption history.
+        </p>
+
+        <div class="registration-features">
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    <i data-lucide="credit-card"></i>
+                </span>
+
+                <div>
+                    <strong>
+                        Digital Meal Card
+                    </strong>
+
+                    <span>
+                        Access your SmartMeal card
+                        from your dashboard.
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    <i data-lucide="calendar-days"></i>
+                </span>
+
+                <div>
+                    <strong>
+                        Meal Schedule
+                    </strong>
+
+                    <span>
+                        See available meals and
+                        service times.
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    <i data-lucide="qr-code"></i>
+                </span>
+
+                <div>
+                    <strong>
+                        Easy Redemption
+                    </strong>
+
+                    <span>
+                        Use your QR code when
+                        collecting meals.
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="brand-footer">
+
+        <span>
+            © {% now "Y" %} SmartMeal
+        </span>
+
+        <span>
+            Smart • Simple • Secure
+        </span>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     REGISTRATION SECTION
+=========================================== -->
+
+<section class="registration-section">
+
+    <div class="registration-container">
+
+        <!-- MOBILE BRAND -->
+
+        <div class="mobile-brand">
+
+            <a
+                href="{% url 'students:landing' %}"
+                class="brand"
+            >
+
+                                     <div class="brand-icon">
+    <img
+        src="{% static 'students/images/logo.jpg' %}"
+        alt="SmartMeal Logo"
+    >
+</div>
+
+                <div class="brand-text">
+                    <strong>SmartMeal</strong>
+                    <span>Student Meal Portal</span>
+                </div>
+
+            </a>
+
+        </div>
+
+        <!-- REGISTRATION CARD -->
+
+        <div class="registration-card">
+
+            <div class="registration-header">
+
+                <div class="registration-icon">
+                    <i data-lucide="user-plus"></i>
+                </div>
+
+                <span class="card-eyebrow">
+                    CREATE ACCOUNT
+                </span>
+
+                <h2>
+                    Create your account
+                </h2>
+
+                <p>
+                    Enter your details to create
+                    your SmartMeal student account.
+                </p>
+
+            </div>
+
+            <!-- GENERAL ERRORS -->
+
+            {% if form.non_field_errors %}
+
+                <div class="form-alert">
+
+                    <i data-lucide="circle-alert"></i>
+
+                    <div>
+
+                        {% for error in form.non_field_errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+            <form
+                method="post"
+                class="registration-form"
+            >
+
+                {% csrf_token %}
+
+                <!-- ==================================
+                     STUDENT INFORMATION
+                =================================== -->
+
+                <div class="form-section">
+
+                    <div class="form-section-heading">
+
+                        <span>
+                            01
+                        </span>
+
+                        <div>
+                            <strong>
+                                Student information
+                            </strong>
+
+                            <small>
+                                Your academic account details
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="form-grid">
+
+                        <!-- STUDENT ID -->
+
+                        <div class="form-group">
+
+                            <label
+                                for="{{ form.student_id.id_for_label }}"
+                            >
+                                Student ID
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    <i data-lucide="badge"></i>
+                                </span>
+
+                                {{ form.student_id }}
+
+                            </div>
+
+                            {% if form.student_id.errors %}
+
+                                <div class="field-error">
+
+                                    <i data-lucide="circle-alert"></i>
+
+                                    <span>
+                                        {{ form.student_id.errors.0 }}
+                                    </span>
+
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+                        <!-- UNIVERSITY -->
+
+                        <div class="form-group">
+
+                            <label
+                                for="{{ form.university.id_for_label }}"
+                            >
+                                University
+                            </label>
+
+                            <div class="input-wrapper select-wrapper">
+
+                                <span class="input-icon">
+                                    <i data-lucide="building-2"></i>
+                                </span>
+
+                                {{ form.university }}
+
+                            </div>
+
+                            {% if form.university.errors %}
+
+                                <div class="field-error">
+
+                                    <i data-lucide="circle-alert"></i>
+
+                                    <span>
+                                        {{ form.university.errors.0 }}
+                                    </span>
+
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+                        <!-- USERNAME -->
+
+                        <div class="form-group">
+
+                            <label
+                                for="{{ form.username.id_for_label }}"
+                            >
+                                Username
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    <i data-lucide="user"></i>
+                                </span>
+
+                                {{ form.username }}
+
+                            </div>
+
+                            {% if form.username.errors %}
+
+                                <div class="field-error">
+
+                                    <i data-lucide="circle-alert"></i>
+
+                                    <span>
+                                        {{ form.username.errors.0 }}
+                                    </span>
+
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+                        <!-- EMAIL -->
+
+                        <div class="form-group">
+
+                            <label
+                                for="{{ form.email.id_for_label }}"
+                            >
+                                Email address
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    <i data-lucide="mail"></i>
+                                </span>
+
+                                {{ form.email }}
+
+                            </div>
+
+                            {% if form.email.errors %}
+
+                                <div class="field-error">
+
+                                    <i data-lucide="circle-alert"></i>
+
+                                    <span>
+                                        {{ form.email.errors.0 }}
+                                    </span>
+
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ==================================
+                     PASSWORD SECTION
+                =================================== -->
+
+                <div class="form-section">
+
+                    <div class="form-section-heading">
+
+                        <span>
+                            02
+                        </span>
+
+                        <div>
+                            <strong>
+                                Account security
+                            </strong>
+
+                            <small>
+                                Choose a secure password
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="form-grid">
+
+                        <!-- PASSWORD -->
+
+                        <div class="form-group">
+
+                            <label
+                                for="{{ form.password.id_for_label }}"
+                            >
+                                Password
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    <i data-lucide="lock-keyhole"></i>
+                                </span>
+
+                                {{ form.password }}
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-target="{{ form.password.id_for_label }}"
+                                    aria-label="Show password"
+                                    aria-pressed="false"
+                                >
+                                    <i data-lucide="eye"></i>
+                                </button>
+
+                            </div>
+
+                            {% if form.password.errors %}
+
+                                <div class="field-error">
+
+                                    <i data-lucide="circle-alert"></i>
+
+                                    <span>
+                                        {{ form.password.errors.0 }}
+                                    </span>
+
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+                        <!-- CONFIRM PASSWORD -->
+
+                        <div class="form-group">
+
+                            <label
+                                for="{{ form.password_confirm.id_for_label }}"
+                            >
+                                Confirm password
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    <i data-lucide="shield-check"></i>
+                                </span>
+
+                                {{ form.password_confirm }}
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-target="{{ form.password_confirm.id_for_label }}"
+                                    aria-label="Show password"
+                                    aria-pressed="false"
+                                >
+                                    <i data-lucide="eye"></i>
+                                </button>
+
+                            </div>
+
+                            {% if form.password_confirm.errors %}
+
+                                <div class="field-error">
+
+                                    <i data-lucide="circle-alert"></i>
+
+                                    <span>
+                                        {{ form.password_confirm.errors.0 }}
+                                    </span>
+
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="register-button"
+                >
+
+                    <span>
+                        Create Student Account
+                    </span>
+
+                    <i data-lucide="arrow-right"></i>
+
+                </button>
+
+            </form>
+
+            <!-- SECURITY MESSAGE -->
+
+            <div class="security-message">
+
+                <span class="security-icon">
+                    <i data-lucide="shield-check"></i>
+                </span>
+
+                <div>
+
+                    <strong>
+                        Your information is secure
+                    </strong>
+
+                    <span>
+                        Your password is securely
+                        encrypted before being stored.
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- LOGIN LINK -->
+
+            <div class="login-link">
+
+                <span>
+                    Already have an account?
+                </span>
+
+                <a href="{% url 'accounts:login' %}">
+                    Sign in
+                    <i data-lucide="arrow-up-right"></i>
+                </a>
+
+            </div>
+
+            <div class="back-link">
+
+                <a href="{% url 'students:landing' %}">
+
+                    <i data-lucide="arrow-left"></i>
+
+                    Back to SmartMeal
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main> <script src="{% static 'students/js/register.js' %}"></script> </body> </html>
+

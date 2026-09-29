@@ -1,0 +1,1514 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="description"
+    content="SmartMeal is a smart student meal management and meal redemption system."
+>
+
+<title>SmartMeal | Smart Student Meal Management</title>
+
+<!-- Theme -->
+<script>
+    (function () {
+        const savedTheme = localStorage.getItem("smartmeal-theme");
+
+        if (savedTheme === "dark") {
+            document.documentElement.setAttribute(
+                "data-theme",
+                "dark"
+            );
+        }
+    })();
+</script>
+
+<!-- CSS -->
+<link
+    rel="stylesheet"
+    href="{% static 'students/css/landing.css' %}"
+>
+
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+</head> <body> <div class="landing-page">
+
+<!-- ==========================================
+     NAVIGATION
+=========================================== -->
+
+<header class="landing-header">
+
+    <div class="container nav-container">
+
+        <!-- BRAND -->
+        <a
+            href="{% url 'students:landing' %}"
+            class="landing-brand"
+        >
+                        <div class="brand-icon">
+    <img
+        src="{% static 'students/images/logo.jpg' %}"
+        alt="SmartMeal Logo"
+    >
+</div>
+
+            <div class="brand-text">
+                <strong>SmartMeal</strong>
+                <span>Student Meal Portal</span>
+            </div>
+
+        </a>
+
+        <!-- DESKTOP NAV -->
+        <nav class="landing-nav">
+
+            <a href="#features">
+                Features
+            </a>
+
+            <a href="#how-it-works">
+                How It Works
+            </a>
+
+            <a href="#benefits">
+                Benefits
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+        </nav>
+
+        <!-- NAV ACTIONS -->
+        <div class="nav-actions">
+
+            <button
+                type="button"
+                id="theme-toggle"
+                class="theme-toggle"
+                aria-label="Switch to dark mode"
+            >
+                <i data-lucide="sun"></i>
+            </button>
+
+            <a
+                href="{% url 'accounts:login' %}"
+                class="login-button"
+            >
+                Login
+            </a>
+
+            <a
+                href="{% url 'accounts:register' %}"
+                class="nav-cta"
+            >
+                Get Started
+                <i data-lucide="arrow-right"></i>
+            </a>
+
+        </div>
+
+        <!-- MOBILE MENU BUTTON -->
+        <button
+            type="button"
+            id="mobile-menu-button"
+            class="mobile-menu-button"
+            aria-label="Open menu"
+        >
+            <i data-lucide="menu"></i>
+        </button>
+
+    </div>
+
+</header>
+
+<!-- ==========================================
+     MOBILE NAVIGATION
+=========================================== -->
+
+<div
+    id="mobile-menu"
+    class="mobile-menu"
+>
+
+<button
+    type="button"
+    id="mobile-theme-toggle"
+    class="mobile-menu-item"
+    aria-label="Switch to dark mode"
+    aria-pressed="false"
+>
+    <span class="mobile-menu-icon">
+        <i data-lucide="moon"></i>
+    </span>
+
+    <span class="mobile-menu-text">
+        <strong>Dark Mode</strong>
+        <small>Switch appearance</small>
+    </span>
+
+    <span class="mobile-theme-indicator">
+        <i data-lucide="sun"></i>
+    </span>
+</button>
+
+
+    <a href="#features">
+        Features
+    </a>
+
+    <a href="#how-it-works">
+        How It Works
+    </a>
+
+    <a href="#benefits">
+        Benefits
+    </a>
+
+    <a href="#about">
+        About
+    </a>
+
+    <a
+        href="{% url 'accounts:login' %}"
+        class="mobile-login"
+    >
+        Login
+    </a>
+
+</div>
+
+<!-- ==========================================
+     HERO SECTION
+=========================================== -->
+
+<main>
+
+    <section class="hero-section">
+
+        <div class="hero-background-shape shape-one"></div>
+        <div class="hero-background-shape shape-two"></div>
+
+        <div class="container hero-container">
+
+            <!-- HERO CONTENT -->
+            <div class="hero-content">
+
+                <span class="hero-eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    SMART STUDENT MEAL MANAGEMENT
+                </span>
+
+                <h1>
+                    Your meals.
+                    <span>Smarter.</span>
+                    Simpler.
+                </h1>
+
+                <p class="hero-description">
+                    SmartMeal makes student meal management
+                    simple, secure, and convenient. View your
+                    meals, scan your QR code, track redemptions,
+                    and stay informed from one place.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a
+                        href="{% url 'accounts:login' %}"
+                        class="primary-button"
+                    >
+                        Access My Meal Portal
+                        <i data-lucide="arrow-right"></i>
+                    </a>
+
+                    <a
+                        href="#how-it-works"
+                        class="secondary-button"
+                    >
+                        <i data-lucide="play-circle"></i>
+                        See How It Works
+                    </a>
+
+                </div>
+
+                <!-- TRUST ITEMS -->
+                <div class="hero-trust">
+
+                    <div class="trust-item">
+                        <i data-lucide="shield-check"></i>
+                        <span>Secure</span>
+                    </div>
+
+                    <div class="trust-item">
+                        <i data-lucide="zap"></i>
+                        <span>Fast</span>
+                    </div>
+
+                    <div class="trust-item">
+                        <i data-lucide="smartphone"></i>
+                        <span>Mobile Friendly</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- HERO VISUAL -->
+            <div class="hero-visual">
+
+                <div class="visual-glow"></div>
+
+                <!-- MEAL CARD -->
+                <div class="meal-card-preview">
+
+                    <div class="preview-card-top">
+
+                        <div>
+
+                            <span>
+                                SMARTMEAL
+                            </span>
+
+                            <small>
+                                STUDENT MEAL CARD
+                            </small>
+
+                        </div>
+
+                        <div class="preview-logo">
+                            SM
+                        </div>
+
+                    </div>
+
+                    <div class="preview-card-number">
+                        •••• &nbsp; •••• &nbsp; •••• &nbsp; 4821
+                    </div>
+
+                    <div class="preview-card-bottom">
+
+                        <div>
+                            <small>STUDENT</small>
+                            <strong>SMART STUDENT</strong>
+                        </div>
+
+                        <div>
+                            <small>STATUS</small>
+                            <strong class="active-status">
+                                ACTIVE
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                        <!-- QR CARD -->
+<div class="qr-preview-card">
+
+    <div class="qr-preview-header">
+
+        <div class="qr-preview-icon">
+            <i data-lucide="qr-code"></i>
+        </div>
+
+        <div>
+            <strong>
+                Meal Verification
+            </strong>
+
+            <span>
+                Scan to redeem
+            </span>
+        </div>
+
+    </div>
+
+
+    <!-- REAL QR CODE -->
+    <div
+        id="landing-qr"
+        class="fake-qr"
+    ></div>
+
+
+    <div class="scan-status">
+        <span></span>
+        Ready to scan
+    </div>
+
+</div>
+
+
+                <!-- FLOATING NOTIFICATION  -->
+                <div class="floating-notification">
+
+                    <div class="notification-icon">
+                        <i data-lucide="check"></i>
+                    </div>
+
+                    <div>
+                        <strong>
+                            Meal Redeemed
+                        </strong>
+
+                        <span>
+                            Lunch · 12:42 PM
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div> 
+
+    </section>   
+
+    <!-- ==========================================
+         STATS
+    =========================================== -->
+
+    <section class="stats-section">
+
+        <div class="container stats-container">
+
+            <div class="stat-item">
+
+                <strong>
+                    24/7
+                </strong>
+
+                <span>
+                    Portal Access
+                </span>
+
+            </div>
+
+            <div class="stat-divider"></div>
+
+            <div class="stat-item">
+
+                <strong>
+                    QR
+                </strong>
+
+                <span>
+                    Fast Verification
+                </span>
+
+            </div>
+
+            <div class="stat-divider"></div>
+
+            <div class="stat-item">
+
+                <strong>
+                    100%
+                </strong>
+
+                <span>
+                    Digital Records
+                </span>
+
+            </div>
+
+            <div class="stat-divider"></div>
+
+            <div class="stat-item">
+
+                <strong>
+                    1
+                </strong>
+
+                <span>
+                    Simple Platform
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================================
+         FEATURES
+    =========================================== -->
+
+    <section
+        id="features"
+        class="features-section section"
+    >
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="section-eyebrow">
+                    FEATURES
+                </span>
+
+                <h2>
+                    Everything you need
+                    <span>in one place.</span>
+                </h2>
+
+                <p>
+                    SmartMeal gives students a simple way
+                    to manage their daily meals and keep
+                    track of their meal activity.
+                </p>
+
+            </div>
+
+            <div class="features-grid">
+
+                <!-- FEATURE -->
+                <article class="feature-card featured">
+
+                    <div class="feature-icon green">
+                        <i data-lucide="qr-code"></i>
+                    </div>
+
+                    <h3>
+                        QR Meal Verification
+                    </h3>
+
+                    <p>
+                        Quickly verify and redeem your meal
+                        using your personal SmartMeal QR code.
+                    </p>
+
+                    <a href="{% url 'accounts:login' %}">
+                        Access QR Code
+                        <i data-lucide="arrow-up-right"></i>
+                    </a>
+
+                </article>
+
+                <article class="feature-card">
+
+                    <div class="feature-icon blue">
+                        <i data-lucide="calendar-days"></i>
+                    </div>
+
+                    <h3>
+                        Meal Schedule
+                    </h3>
+
+                    <p>
+                        View today's meals and upcoming meal
+                        services from your student portal.
+                    </p>
+
+                </article>
+
+                <article class="feature-card">
+
+                    <div class="feature-icon purple">
+                        <i data-lucide="clipboard-list"></i>
+                    </div>
+
+                    <h3>
+                        Meal History
+                    </h3>
+
+                    <p>
+                        Keep track of your previous meal
+                        redemptions and activity.
+                    </p>
+
+                </article>
+
+                <article class="feature-card">
+
+                    <div class="feature-icon orange">
+                        <i data-lucide="bell"></i>
+                    </div>
+
+                    <h3>
+                        Notifications
+                    </h3>
+
+                    <p>
+                        Stay updated with important meal
+                        announcements and notifications.
+                    </p>
+
+                </article>
+
+                <article class="feature-card">
+
+                    <div class="feature-icon cyan">
+                        <i data-lucide="user-round"></i>
+                    </div>
+
+                    <h3>
+                        Student Profile
+                    </h3>
+
+                    <p>
+                        Manage your student information and
+                        SmartMeal account details.
+                    </p>
+
+                </article>
+
+                <article class="feature-card">
+
+                    <div class="feature-icon red">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+
+                    <h3>
+                        Secure Access
+                    </h3>
+
+                    <p>
+                        Your meal information and redemption
+                        records are protected through secure
+                        account access.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================================
+         HOW IT WORKS
+    =========================================== -->
+
+    <section
+        id="how-it-works"
+        class="how-section section"
+    >
+
+        <div class="container">
+
+            <div class="section-heading centered">
+
+                <span class="section-eyebrow">
+                    HOW IT WORKS
+                </span>
+
+                <h2>
+                    Meals made
+                    <span>simple.</span>
+                </h2>
+
+                <p>
+                    From checking your meal schedule to
+                    redeeming your meal, SmartMeal keeps
+                    everything straightforward.
+                </p>
+
+            </div>
+
+            <div class="steps-container">
+
+                <!-- STEP 1 -->
+                <div class="step">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+                    <div class="step-icon">
+                        <i data-lucide="log-in"></i>
+                    </div>
+
+                    <h3>
+                        Sign In
+                    </h3>
+
+                    <p>
+                        Access your SmartMeal student portal
+                        using your account.
+                    </p>
+
+                </div>
+
+                <div class="step-line"></div>
+
+                <!-- STEP 2 -->
+                <div class="step">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+                    <div class="step-icon">
+                        <i data-lucide="calendar-check"></i>
+                    </div>
+
+                    <h3>
+                        Check Your Meal
+                    </h3>
+
+                    <p>
+                        See available meals and today's
+                        meal schedule.
+                    </p>
+
+                </div>
+
+                <div class="step-line"></div>
+
+                <!-- STEP 3 -->
+                <div class="step">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+                    <div class="step-icon">
+                        <i data-lucide="qr-code"></i>
+                    </div>
+
+                    <h3>
+                        Show Your QR
+                    </h3>
+
+                    <p>
+                        Present your personal QR code to
+                        cafeteria staff.
+                    </p>
+
+                </div>
+
+                <div class="step-line"></div>
+
+                <!-- STEP 4 -->
+                <div class="step">
+
+                    <div class="step-number">
+                        04
+                    </div>
+
+                    <div class="step-icon">
+                        <i data-lucide="check-circle-2"></i>
+                    </div>
+
+                    <h3>
+                        Enjoy Your Meal
+                    </h3>
+
+                    <p>
+                        Your redemption is recorded and
+                        your meal is ready.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================================
+         STUDENT EXPERIENCE
+    =========================================== -->
+
+    <section
+        id="benefits"
+        class="experience-section section"
+    >
+
+        <div class="container experience-container">
+
+            <!-- IMAGE / DASHBOARD PREVIEW -->
+            <div class="experience-visual">
+
+                <div class="dashboard-preview">
+
+                    <div class="preview-window-header">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+                    <div class="preview-dashboard">
+
+                        <div class="preview-sidebar">
+
+                            <div class="mini-logo">
+                                SM
+                            </div>
+
+                            <div class="mini-sidebar-item active">
+                                <i data-lucide="house"></i>
+                            </div>
+
+                            <div class="mini-sidebar-item">
+                                <i data-lucide="utensils"></i>
+                            </div>
+
+                            <div class="mini-sidebar-item">
+                                <i data-lucide="bell"></i>
+                            </div>
+
+                        </div>
+
+                        <div class="mini-content">
+
+                            <span class="mini-label">
+                                STUDENT PORTAL
+                            </span>
+
+                            <h4>
+                                Welcome back!
+                            </h4>
+
+                            <div class="mini-cards">
+
+                                <div class="mini-card meal-mini">
+                                    <i data-lucide="credit-card"></i>
+
+                                    <div>
+                                        <small>MEAL CARD</small>
+                                        <strong>ACTIVE</strong>
+                                    </div>
+                                </div>
+
+                                <div class="mini-card qr-mini">
+                                    <i data-lucide="qr-code"></i>
+
+                                    <div>
+                                        <small>QR CODE</small>
+                                        <strong>READY</strong>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="mini-meals">
+
+                                <div>
+                                    <span class="mini-meal-icon">
+                                        <i data-lucide="sun"></i>
+                                    </span>
+
+                                    <span>
+                                        Breakfast
+                                    </span>
+
+                                    <b>
+                                        Redeemed
+                                    </b>
+                                </div>
+
+                                <div>
+                                    <span class="mini-meal-icon">
+                                        <i data-lucide="utensils"></i>
+                                    </span>
+
+                                    <span>
+                                        Lunch
+                                    </span>
+
+                                    <b class="available">
+                                        Available
+                                    </b>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CONTENT -->
+            <div class="experience-content">
+
+                <span class="section-eyebrow">
+                    BUILT FOR STUDENTS
+                </span>
+
+                <h2>
+                    A better way to
+                    <span>manage your meals.</span>
+                </h2>
+
+                <p>
+                    SmartMeal puts the information you need
+                    right at your fingertips. No unnecessary
+                    paperwork. No complicated process.
+                </p>
+
+                <div class="benefit-list">
+
+                    <div class="benefit-item">
+
+                        <div class="benefit-check">
+                            <i data-lucide="check"></i>
+                        </div>
+
+                        <div>
+                            <strong>
+                                Know what's available
+                            </strong>
+
+                            <p>
+                                Check your meal schedule before
+                                heading to the cafeteria.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="benefit-item">
+
+                        <div class="benefit-check">
+                            <i data-lucide="check"></i>
+                        </div>
+
+                        <div>
+                            <strong>
+                                Redeem faster
+                            </strong>
+
+                            <p>
+                                Use your personal QR code for
+                                quick meal verification.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="benefit-item">
+
+                        <div class="benefit-check">
+                            <i data-lucide="check"></i>
+                        </div>
+
+                        <div>
+                            <strong>
+                                Track your activity
+                            </strong>
+
+                            <p>
+                                View your meal redemption
+                                history whenever you need it.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <a
+                    href="{% url 'accounts:login' %}"
+                    class="primary-button"
+                >
+                    Open Student Portal
+                    <i data-lucide="arrow-right"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================================
+         ABOUT
+    =========================================== -->
+
+    <section
+        id="about"
+        class="about-section section"
+    >
+
+        <div class="container about-container">
+
+            <div class="about-content">
+
+                <span class="section-eyebrow">
+                    ABOUT SMARTMEAL
+                </span>
+
+                <h2>
+                    Making student meal
+                    management <span>smarter.</span>
+                </h2>
+
+                <p>
+                    SmartMeal is designed to simplify the way
+                    students interact with their meal services.
+                    By bringing meal schedules, QR verification,
+                    notifications, and redemption history into
+                    one platform, SmartMeal creates a more
+                    convenient digital experience.
+                </p>
+
+            </div>
+
+            <div class="about-values">
+
+                <div class="value-card">
+
+                    <i data-lucide="sparkles"></i>
+
+                    <strong>
+                        Simple
+                    </strong>
+
+                    <span>
+                        Easy to understand and use.
+                    </span>
+
+                </div>
+
+                <div class="value-card">
+
+                    <i data-lucide="lock"></i>
+
+                    <strong>
+                        Secure
+                    </strong>
+
+                    <span>
+                        Designed with account security in mind.
+                    </span>
+
+                </div>
+
+                <div class="value-card">
+
+                    <i data-lucide="smartphone"></i>
+
+                    <strong>
+                        Accessible
+                    </strong>
+
+                    <span>
+                        Designed for modern devices.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================================
+         CTA
+    =========================================== -->
+
+    <section class="cta-section">
+
+        <div class="container">
+
+            <div class="cta-card">
+
+                <div class="cta-decoration decoration-one"></div>
+                <div class="cta-decoration decoration-two"></div>
+
+                <div class="cta-content">
+
+                    <span class="section-eyebrow">
+                        READY WHEN YOU ARE
+                    </span>
+
+                    <h2>
+                        Your next meal starts
+                        <span>with SmartMeal.</span>
+                    </h2>
+
+                    <p>
+                        Sign in to your student portal and
+                        manage your meals from one convenient
+                        place.
+                    </p>
+
+                    <a
+                        href="{% url 'accounts:login' %}"
+                        class="cta-button"
+                    >
+                        Access SmartMeal
+                        <i data-lucide="arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- ==========================================
+     FOOTER
+=========================================== -->
+
+<footer class="landing-footer">
+
+    <div class="container footer-container">
+
+        <div class="footer-brand">
+
+            <a
+                href="{% url 'students:landing' %}"
+                class="landing-brand"
+            >
+
+                                       <div class="brand-icon">
+    <img
+        src="{% static 'students/images/logo.jpg' %}"
+        alt="SmartMeal Logo"
+    >
+</div>
+
+                <div class="brand-text">
+                    <strong>SmartMeal</strong>
+                    <span>Student Meal Portal</span>
+                </div>
+
+            </a>
+
+            <p>
+                Smarter meal management for students.
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+
+            <div>
+
+                <strong>
+                    Platform
+                </strong>
+
+                <a href="#features">
+                    Features
+                </a>
+
+                <a href="#how-it-works">
+                    How It Works
+                </a>
+
+                <a href="{% url 'accounts:login' %}">
+                    Student Login
+                </a>
+
+            </div>
+
+            <div>
+
+                <strong>
+                    Support
+                </strong>
+
+                <a href="{% url 'students:student_help' %}">
+                    Help & Support
+                </a>
+
+                <a href="#about">
+                    About SmartMeal
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container footer-bottom">
+
+        <span>
+            © {% now "Y" %} SmartMeal. All rights reserved.
+        </span>
+
+        <span>
+            Student Meal Management System
+        </span>
+
+    </div>
+
+</footer>
+
+</div>
+
+<!-- ========================================== JAVASCRIPT =========================================== --> <script> lucide.createIcons();
+/* ==========================================
+   LANDING PAGE QR CODE
+========================================== */
+
+const landingQR =
+    document.getElementById("landing-qr");
+
+if (landingQR && typeof QRCode !== "undefined") {
+
+    new QRCode(landingQR, {
+
+        text: "https://smartmeal.local/meal/demo",
+
+        width: 150,
+        height: 150,
+
+        colorDark: "#17201a",
+        colorLight: "#ffffff",
+
+        correctLevel: QRCode.CorrectLevel.H
+
+    });
+
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* ==========================================
+       LUCIDE ICONS
+    ========================================== */
+
+    if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+    }
+
+
+    /* ==========================================
+       MOBILE MENU
+    ========================================== */
+
+    const mobileMenuButton =
+        document.getElementById("mobile-menu-button");
+
+    const mobileMenu =
+        document.getElementById("mobile-menu");
+
+    if (mobileMenuButton && mobileMenu) {
+
+        mobileMenuButton.addEventListener("click", function () {
+
+            mobileMenu.classList.toggle("active");
+
+            const isOpen =
+                mobileMenu.classList.contains("active");
+
+            mobileMenuButton.setAttribute(
+                "aria-expanded",
+                isOpen ? "true" : "false"
+            );
+
+            mobileMenuButton.innerHTML =
+                `<i data-lucide="${isOpen ? "x" : "menu"}"></i>`;
+
+            if (typeof lucide !== "undefined") {
+                lucide.createIcons();
+            }
+
+        });
+
+
+        /* Close mobile menu when a link is clicked */
+
+        mobileMenu
+            .querySelectorAll("a")
+            .forEach(function (link) {
+
+                link.addEventListener("click", function () {
+
+                    mobileMenu.classList.remove("active");
+
+                    mobileMenuButton.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                    mobileMenuButton.innerHTML =
+                        `<i data-lucide="menu"></i>`;
+
+                    if (typeof lucide !== "undefined") {
+                        lucide.createIcons();
+                    }
+
+                });
+
+            });
+    }
+
+
+    /* ==========================================
+       THEME TOGGLE
+       DESKTOP + MOBILE USE ONE FUNCTION
+    ========================================== */
+
+    const desktopToggle =
+        document.getElementById("theme-toggle");
+
+    const mobileToggle =
+        document.getElementById("mobile-theme-toggle");
+
+
+    function isDarkMode() {
+
+        return document.documentElement
+            .getAttribute("data-theme") === "dark";
+
+    }
+
+
+    function updateThemeButtons() {
+
+        const dark =
+            isDarkMode();
+
+
+        /* --------------------------------------
+           Desktop Toggle
+        -------------------------------------- */
+
+        if (desktopToggle) {
+
+            desktopToggle.setAttribute(
+                "aria-pressed",
+                dark ? "true" : "false"
+            );
+
+            desktopToggle.setAttribute(
+                "aria-label",
+                dark
+                    ? "Switch to light mode"
+                    : "Switch to dark mode"
+            );
+
+            desktopToggle.innerHTML =
+                `<i data-lucide="${dark ? "sun" : "moon"}"></i>`;
+        }
+
+
+        /* --------------------------------------
+           Mobile Toggle
+        -------------------------------------- */
+
+        if (mobileToggle) {
+
+            mobileToggle.setAttribute(
+                "aria-pressed",
+                dark ? "true" : "false"
+            );
+
+            mobileToggle.setAttribute(
+                "aria-label",
+                dark
+                    ? "Switch to light mode"
+                    : "Switch to dark mode"
+            );
+
+
+            const iconContainer =
+                mobileToggle.querySelector(
+                    ".mobile-menu-icon"
+                );
+
+            if (iconContainer) {
+
+                iconContainer.innerHTML =
+                    `<i data-lucide="${dark ? "sun" : "moon"}"></i>`;
+
+            }
+
+
+            const text =
+                mobileToggle.querySelector(
+                    ".mobile-menu-text strong"
+                );
+
+            if (text) {
+
+                text.textContent =
+                    dark
+                        ? "Light Mode"
+                        : "Dark Mode";
+
+            }
+
+
+            const indicator =
+                mobileToggle.querySelector(
+                    ".mobile-theme-indicator"
+                );
+
+            if (indicator) {
+
+                indicator.innerHTML =
+                    `<i data-lucide="${dark ? "sun" : "moon"}"></i>`;
+
+            }
+
+        }
+
+
+        /* Re-render Lucide icons */
+
+        if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+        }
+
+    }
+
+
+    function toggleTheme() {
+
+        const dark =
+            isDarkMode();
+
+
+        if (dark) {
+
+            document.documentElement
+                .removeAttribute("data-theme");
+
+            localStorage.setItem(
+                "smartmeal-theme",
+                "light"
+            );
+
+        } else {
+
+            document.documentElement
+                .setAttribute(
+                    "data-theme",
+                    "dark"
+                );
+
+            localStorage.setItem(
+                "smartmeal-theme",
+                "dark"
+            );
+
+        }
+
+
+        updateThemeButtons();
+
+    }
+
+
+    /* --------------------------------------
+       Desktop Theme Button
+    -------------------------------------- */
+
+    if (desktopToggle) {
+
+        desktopToggle.addEventListener(
+            "click",
+            toggleTheme
+        );
+
+    }
+
+
+    /* --------------------------------------
+       Mobile Theme Button
+    -------------------------------------- */
+
+    if (mobileToggle) {
+
+        mobileToggle.addEventListener(
+            "click",
+            toggleTheme
+        );
+
+    }
+
+
+    /* Set correct state when page loads */
+
+    updateThemeButtons();
+
+
+    /* ==========================================
+       NAVBAR SHADOW ON SCROLL
+    ========================================== */
+
+    const header =
+        document.querySelector(".landing-header");
+
+    window.addEventListener("scroll", function () {
+
+        if (!header) return;
+
+        if (window.scrollY > 20) {
+
+            header.classList.add("scrolled");
+
+        } else {
+
+            header.classList.remove("scrolled");
+
+        }
+
+    });
+
+
+    /* ==========================================
+       SMOOTH SCROLLING
+    ========================================== */
+
+    document
+        .querySelectorAll('a[href^="#"]')
+        .forEach(function (anchor) {
+
+            anchor.addEventListener(
+                "click",
+                function (event) {
+
+                    const selector =
+                        this.getAttribute("href");
+
+                    const target =
+                        document.querySelector(selector);
+
+                    if (!target) return;
+
+                    event.preventDefault();
+
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }
+            );
+
+        });
+
+});
+
+
+
+
+</script> 
+</body>
+
+</html>

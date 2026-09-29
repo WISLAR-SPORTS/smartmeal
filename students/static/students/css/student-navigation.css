@@ -1,0 +1,575 @@
+
+/* ==========================================================
+   STUDENT NAVIGATION
+========================================================== */
+
+.topbar {
+    position: relative;
+    z-index: 1000;
+}
+
+
+/* ==========================================================
+   BRAND
+========================================================== */
+
+.brand {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* ==========================================================
+   DESKTOP NAV
+========================================================== */
+
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+    margin-right: 24px;
+}
+
+.nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 12px;
+    border-radius: var(--radius);
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.nav-link:hover {
+    background: var(--background-primary);
+    color: var(--text);
+}
+
+.nav-icon {
+    font-size: 16px;
+}
+
+
+/* ==========================================================
+   NOTIFICATION BADGE
+========================================================== */
+
+.notification-link {
+    position: relative;
+}
+
+.notification-count {
+    min-width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    border-radius: var(--radius-pill);
+    background: var(--danger);
+    color: var(--text-white);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+/* ==========================================================
+   USER MENU
+========================================================== */
+
+.user-menu-wrapper {
+    position: relative;
+}
+
+.user-menu-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 8px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.user-menu-button:hover {
+    background: var(--background-primary);
+}
+
+.student-avatar,
+.dropdown-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--text-white);
+    font-weight: 700;
+}
+
+.student-avatar {
+    width: 38px;
+    height: 38px;
+}
+
+.student-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.student-details strong {
+    font-size: 13px;
+    color: var(--text);
+}
+
+.student-details span {
+    font-size: 11px;
+    color: var(--text-light);
+}
+
+.menu-chevron {
+    margin-left: 4px;
+    color: var(--text-light);
+    font-size: 9px;
+}
+
+
+/* ==========================================================
+   USER DROPDOWN
+========================================================== */
+
+.user-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 310px;
+    padding: 8px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+}
+
+.user-dropdown.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+/* ==========================================================
+   DROPDOWN HEADER
+========================================================== */
+
+.dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+}
+
+.dropdown-avatar {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+}
+
+.dropdown-header > div:last-child {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-header strong {
+    font-size: 14px;
+    color: var(--text);
+}
+
+.dropdown-header span {
+    margin-top: 2px;
+    font-size: 11px;
+    color: var(--text-light);
+}
+
+
+/* ==========================================================
+   DIVIDER
+========================================================== */
+
+.dropdown-divider {
+    height: 1px;
+    margin: 6px 4px;
+    background: var(--border);
+}
+
+
+/* ==========================================================
+   DROPDOWN LINKS
+========================================================== */
+
+.dropdown-link {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius);
+    color: var(--text);
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: left;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.dropdown-link:hover {
+    background: var(--background-primary);
+    color: var(--text);
+}
+
+.dropdown-link > span:first-child {
+    width: 28px;
+    display: flex;
+    justify-content: center;
+    font-size: 17px;
+}
+
+.dropdown-link > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-link strong {
+    font-size: 13px;
+    color: inherit;
+}
+
+.dropdown-link small {
+    margin-top: 2px;
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.dropdown-badge {
+    min-width: 20px;
+    height: 20px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    border-radius: var(--radius-pill);
+    background: var(--danger);
+    color: var(--text-white) !important;
+    font-size: 10px !important;
+    font-weight: 700;
+}
+
+
+/* ==========================================================
+   LOGOUT
+========================================================== */
+
+.logout-link {
+    color: var(--danger);
+}
+
+.logout-link:hover {
+    background: var(--danger-light);
+    color: var(--danger-dark);
+}
+
+
+/* ==========================================================
+   MOBILE NAV
+========================================================== */
+
+.mobile-bottom-nav {
+    display: none;
+}
+
+
+/* ==========================================================
+   MOBILE PROFILE SHEET
+========================================================== */
+
+.mobile-profile-sheet {
+    display: none;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 900px) {
+
+    .desktop-nav {
+        display: none;
+    }
+
+    .student-details {
+        display: none;
+    }
+
+    .menu-chevron {
+        display: none;
+    }
+
+    .user-menu-button {
+        padding: 4px;
+    }
+
+    .user-dropdown {
+        right: 8px;
+    }
+
+    /* ==============================================
+       MOBILE BOTTOM NAV
+    ============================================== */
+
+    .mobile-bottom-nav {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2000;
+        height: 68px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+        background: color-mix(
+            in srgb,
+            var(--card-bg) 96%,
+            transparent
+        );
+
+        border-top: 1px solid var(--border);
+
+        box-shadow:
+            0 -5px 20px rgba(0, 0, 0, 0.12);
+
+        backdrop-filter: blur(12px);
+    }
+
+    .mobile-nav-item {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        border: none;
+        background: transparent;
+        color: var(--text-light);
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .mobile-nav-item > span {
+        font-size: 20px;
+        line-height: 1;
+    }
+
+    .mobile-nav-item small {
+        font-size: 10px;
+        font-weight: 600;
+    }
+
+    .mobile-nav-item:hover,
+    .mobile-nav-item:focus {
+        color: var(--primary);
+    }
+
+    .mobile-icon-wrapper {
+        position: relative;
+    }
+
+    .mobile-icon-wrapper b {
+        position: absolute;
+        top: -6px;
+        right: -9px;
+        min-width: 15px;
+        height: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 3px;
+        border-radius: 50%;
+        background: var(--danger);
+        color: var(--text-white);
+        font-size: 8px;
+    }
+
+    body {
+        padding-bottom: 78px;
+    }
+
+
+    /* ==============================================
+       MOBILE SHEET
+    ============================================== */
+
+    .mobile-profile-sheet {
+        position: fixed;
+        inset: 0;
+        z-index: 3000;
+        display: flex;
+        pointer-events: none;
+        visibility: hidden;
+    }
+
+    .mobile-profile-sheet.open {
+        pointer-events: auto;
+        visibility: visible;
+    }
+
+    .mobile-sheet-overlay {
+        position: absolute;
+        inset: 0;
+
+        background: rgba(0, 0, 0, 0.45);
+
+        opacity: 0;
+        transition: opacity 0.25s ease;
+    }
+
+    .mobile-profile-sheet.open
+    .mobile-sheet-overlay {
+        opacity: 1;
+    }
+
+    .mobile-sheet {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 12px 16px 25px;
+
+        background: var(--card-bg);
+
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+
+        box-shadow:
+            0 -15px 50px rgba(0, 0, 0, 0.20);
+    }
+
+    .mobile-profile-sheet.open
+    .mobile-sheet {
+        transform: translateY(0);
+    }
+
+    .mobile-sheet-handle {
+        width: 40px;
+        height: 4px;
+        margin: 0 auto 18px;
+        border-radius: var(--radius-pill);
+        background: var(--border);
+    }
+
+    .mobile-sheet-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 4px 16px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .mobile-sheet-header > div:last-child {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobile-sheet-header strong {
+        font-size: 15px;
+        color: var(--text);
+    }
+
+    .mobile-sheet-header span {
+        margin-top: 3px;
+        color: var(--text-light);
+        font-size: 11px;
+    }
+
+    .mobile-menu-list {
+        padding-top: 8px;
+    }
+
+    .mobile-menu-list a,
+    .mobile-menu-list button {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 8px;
+        border: none;
+        background: transparent;
+        color: var(--text);
+        text-decoration: none;
+        font-size: 14px;
+        text-align: left;
+        cursor: pointer;
+        border-radius: var(--radius);
+    }
+
+    .mobile-menu-list a:hover,
+    .mobile-menu-list button:hover {
+        background: var(--background-primary);
+    }
+
+    .mobile-menu-list form {
+        margin: 0;
+    }
+
+    .mobile-menu-list button {
+        color: var(--danger);
+    }
+}
+
+
+/* ==========================================================
+   SMALL PHONES
+========================================================== */
+
+@media (max-width: 420px) {
+
+    .brand-text span {
+        display: none;
+    }
+
+    .brand-text h1 {
+        font-size: 16px;
+    }
+
+    .topbar {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .mobile-bottom-nav {
+        height: 64px;
+    }
+}
+

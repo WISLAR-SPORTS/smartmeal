@@ -1,0 +1,16 @@
+.selector,
+.related-widget-wrapper {
+    overflow: visible !important;
+}
+
+fieldset,
+.form-row,
+.form-row > div {
+    overflow: visible !important;
+}
+
+/* Keep Django's calendar/time popup above surrounding elements */
+.calendarbox,
+.clockbox {
+    z-index: 99999 !important;
+}

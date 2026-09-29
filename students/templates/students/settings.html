@@ -1,0 +1,242 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<!-- LOAD SAVED THEME BEFORE CSS -->
+<script>
+    (function () {
+        const savedTheme =
+            localStorage.getItem("smartmeal-theme");
+
+        if (savedTheme === "dark") {
+            document.documentElement.setAttribute(
+                "data-theme",
+                "dark"
+            );
+        }
+    })();
+</script>
+
+<title>Settings | SmartMeal</title>
+
+<link
+    rel="stylesheet"
+    href="{% static 'students/css/dashboard.css' %}"
+>
+<link
+    rel="stylesheet"
+    href="{% static 'students/css/dashboardicon.css' %}"
+>
+
+<link
+    rel="stylesheet"
+    href="{% static 'students/css/student-navigation.css' %}"
+>
+
+
+</head>
+
+<body>
+
+<div class="student-app">
+
+
+<!-- ==========================================
+     REUSABLE STUDENT NAVIGATION
+=========================================== -->
+
+{% include "students/top-navbar.html" %}
+
+
+<!-- ==========================================
+     PAGE CONTENT
+=========================================== -->
+
+<main class="dashboard-main">
+
+    <section class="welcome-section">
+
+        <div>
+
+            <span class="eyebrow">
+                ACCOUNT
+            </span>
+
+            <h2>
+                Settings
+            </h2>
+
+            <p>
+                Manage your SmartMeal preferences.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         NOTIFICATION SETTINGS
+    =========================================== -->
+
+    <section class="dashboard-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <span class="card-eyebrow">
+                    NOTIFICATIONS
+                </span>
+
+                <h3>
+                    Notification Preferences
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <label class="setting-row">
+
+            <span>
+
+                <strong>
+                    Meal reminders
+                </strong>
+
+                <small>
+                    Receive reminders when your meal
+                    service starts.
+                </small>
+
+            </span>
+
+            <input
+                type="checkbox"
+                checked
+            >
+
+        </label>
+
+
+        <label class="setting-row">
+
+            <span>
+
+                <strong>
+                    Redemption notifications
+                </strong>
+
+                <small>
+                    Notify me when a meal is redeemed.
+                </small>
+
+            </span>
+
+            <input
+                type="checkbox"
+                checked
+            >
+
+        </label>
+
+
+        <label class="setting-row">
+
+            <span>
+
+                <strong>
+                    Announcements
+                </strong>
+
+                <small>
+                    Receive university meal announcements.
+                </small>
+
+            </span>
+
+            <input
+                type="checkbox"
+                checked
+            >
+
+        </label>
+
+    </section>
+
+
+    <!-- ==========================================
+         SECURITY
+    =========================================== -->
+
+    <section class="dashboard-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <span class="card-eyebrow">
+                    SECURITY
+                </span>
+
+                <h3>
+                    Account Security
+                </h3>
+
+            </div>
+
+        </div>
+
+<a
+    href="{% url 'accounts:student_change_password' %}"
+    class="secondary-button"
+>
+    Change Password
+</a>
+
+    </section>
+
+</main>
+
+
+</div>
+
+<!-- ==========================================
+     ICONS
+=========================================== -->
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+    lucide.createIcons();
+</script>
+
+<!-- ==========================================
+     NAVIGATION
+=========================================== -->
+
+<script src="{% static 'students/js/student-navigation.js' %}"></script>
+
+<!-- ==========================================
+     THEME
+=========================================== -->
+
+<script src="{% static 'students/js/theme.js' %}"></script>
+
+</body>
+
+</html>

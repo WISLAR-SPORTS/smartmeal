@@ -1,0 +1,205 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <!-- LOAD SAVED THEME BEFORE CSS -->
+    <script>
+        (function () {
+            const savedTheme =
+                localStorage.getItem("smartmeal-theme");
+
+            if (savedTheme === "dark") {
+                document.documentElement.setAttribute(
+                    "data-theme",
+                    "dark"
+                );
+            }
+        })();
+    </script>
+
+    <title>Meal Schedule | SmartMeal</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'students/css/dashboard.css' %}"
+    >
+    
+    <link
+        rel="stylesheet"
+        href="{% static 'students/css/dashboardicon.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'students/css/student-navigation.css' %}"
+    >
+
+</head>
+
+<body>
+
+<div class="student-app">
+
+    <!-- ==========================================
+         REUSABLE STUDENT NAVIGATION
+    =========================================== -->
+
+    {% include "students/top-navbar.html" %}
+
+
+    <!-- ==========================================
+         PAGE CONTENT
+    =========================================== -->
+
+    <main class="dashboard-main">
+
+        <section class="welcome-section">
+
+            <div>
+
+                <span class="eyebrow">
+                    MEALS
+                </span>
+
+                <h2>
+                    Meal Schedule
+                </h2>
+
+                <p>
+                    View today's available meal services.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="dashboard-grid">
+
+            {% for service in meal_services %}
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <span class="card-eyebrow">
+                                {{ service.meal.get_meal_type_display }}
+                            </span>
+
+                            <h3>
+                                {{ service.meal.name }}
+                            </h3>
+
+                        </div>
+
+
+                        {% if service.is_active %}
+
+                            <span class="card-status">
+                                AVAILABLE
+                            </span>
+
+                        {% else %}
+
+                            <span class="card-status">
+                                INACTIVE
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="card-details">
+
+                        <div>
+
+                            <span>
+                                Starts
+                            </span>
+
+                            <strong>
+                                {{ service.starts_at|time:"H:i" }}
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Ends
+                            </span>
+
+                            <strong>
+                                {{ service.expires_at|time:"H:i" }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% empty %}
+
+                <div class="dashboard-card">
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            🍽
+                        </div>
+
+                        <h4>
+                            No meals scheduled
+                        </h4>
+
+                        <p>
+                            No meal services are scheduled.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- Lucide icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+    lucide.createIcons();
+</script>
+
+
+<!-- Navigation JavaScript -->
+<script src="{% static 'students/js/student-navigation.js' %}"></script>
+
+<!-- Theme JavaScript -->
+<script src="{% static 'students/js/theme.js' %}"></script>
+
+</body>
+
+</html>
+

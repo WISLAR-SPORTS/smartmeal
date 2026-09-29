@@ -1,0 +1,298 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <script>
+        (function () {
+            const savedTheme =
+                localStorage.getItem("smartmeal-theme");
+
+            if (savedTheme === "dark") {
+                document.documentElement.setAttribute(
+                    "data-theme",
+                    "dark"
+                );
+            }
+        })();
+    </script>
+
+    <title>Edit Profile | SmartMeal</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'students/css/dashboard.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'students/css/dashboardicon.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'students/css/student-navigation.css' %}"
+    >
+
+</head>
+
+<body>
+
+<div class="student-app">
+
+    {% include "students/top-navbar.html" %}
+
+
+    <main class="dashboard-main">
+
+        <section class="welcome-section">
+
+            <div>
+
+                <span class="eyebrow">
+                    ACCOUNT
+                </span>
+
+                <h2>
+                    Edit Profile
+                </h2>
+
+                <p>
+                    Update your SmartMeal student information.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="card-eyebrow">
+                        PROFILE INFORMATION
+                    </span>
+
+                    <h3>
+                        Personal Information
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <form
+                method="post"
+                enctype="multipart/form-data"
+            >
+
+                {% csrf_token %}
+
+
+                {% if form.non_field_errors %}
+
+                    <div class="form-errors">
+
+                        {{ form.non_field_errors }}
+
+                    </div>
+
+                {% endif %}
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.first_name.id_for_label }}">
+                            First name
+                        </label>
+
+                        {{ form.first_name }}
+
+                        {% for error in form.first_name.errors %}
+                            <small class="form-error">
+                                {{ error }}
+                            </small>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.last_name.id_for_label }}">
+                            Last name
+                        </label>
+
+                        {{ form.last_name }}
+
+                        {% for error in form.last_name.errors %}
+                            <small class="form-error">
+                                {{ error }}
+                            </small>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.email.id_for_label }}">
+                            Email
+                        </label>
+
+                        {{ form.email }}
+
+                        {% for error in form.email.errors %}
+                            <small class="form-error">
+                                {{ error }}
+                            </small>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.phone.id_for_label }}">
+                            Phone
+                        </label>
+
+                        {{ form.phone }}
+
+                        {% for error in form.phone.errors %}
+                            <small class="form-error">
+                                {{ error }}
+                            </small>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.faculty.id_for_label }}">
+                            Faculty
+                        </label>
+
+                        {{ form.faculty }}
+
+                        {% for error in form.faculty.errors %}
+                            <small class="form-error">
+                                {{ error }}
+                            </small>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.course.id_for_label }}">
+                            Course
+                        </label>
+
+                        {{ form.course }}
+
+                        {% for error in form.course.errors %}
+                            <small class="form-error">
+                                {{ error }}
+                            </small>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.year_of_study.id_for_label }}">
+                            Year of Study
+                        </label>
+
+                        {{ form.year_of_study }}
+
+                        {% for error in form.year_of_study.errors %}
+                            <small class="form-error">
+                                {{ error }}
+                            </small>
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.photo.id_for_label }}">
+                            Profile Photo
+                        </label>
+
+                        {{ form.photo }}
+
+                        {% for error in form.photo.errors %}
+                            <small class="form-error">
+                                {{ error }}
+                            </small>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <a
+                        href="{% url 'students:student_profile' %}"
+                        class="secondary-button"
+                    >
+                        Cancel
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+    lucide.createIcons();
+</script>
+
+<script src="{% static 'students/js/student-navigation.js' %}"></script>
+
+<script src="{% static 'students/js/theme.js' %}"></script>
+
+</body>
+
+</html>
+

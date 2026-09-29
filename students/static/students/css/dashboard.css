@@ -1,0 +1,1239 @@
+
+/* ==========================================
+   RESET
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* =================================
+       PRIMARY / BRAND
+    ================================= */
+
+    --primary: #C95A43;
+    --primary-dark: #A94735;
+    --primary-light: #F7E9E5;
+
+
+    /* =================================
+       SUCCESS
+    ================================= */
+
+    --success: #7C3AED;
+    --success-dark: #6324C5;
+    --success-light: #F3EEFF;
+
+
+    /* =================================
+       DANGER
+    ================================= */
+
+    --danger: #B84D3A;
+    --danger-dark: #963C2D;
+    --danger-light: #F8E9E5;
+
+
+    /* =================================
+       WARNING
+    ================================= */
+
+    --warning: #C28E2C;
+    --warning-dark: #A27622;
+    --warning-light: #F8F1DF;
+
+
+    /* =================================
+       TEXT
+    ================================= */
+
+    --text: #241A24;
+    --text-light: #766A78;
+    --text-muted: #9B919D;
+    --text-white: #FFFFFF;
+
+
+    /* =================================
+       BORDERS
+    ================================= */
+
+    --border: #E9E1DD;
+    --border-primary: #E4BDB3;
+    --border-secondary: #DDD0F4;
+
+
+    /* =================================
+       BACKGROUNDS
+    ================================= */
+
+    --background: #FCFAF9;
+    --background-primary: #F9EFEC;
+    --background-secondary: #F7F2FF;
+
+    --white: #FFFFFF;
+    --card-bg: #FFFFFF;
+
+
+    /* =================================
+       SHADOWS
+    ================================= */
+
+    --shadow-sm: 0 2px 10px rgba(74, 48, 58, 0.06);
+    --shadow: 0 8px 25px rgba(74, 48, 58, 0.09);
+    --shadow-lg: 0 15px 40px rgba(74, 48, 58, 0.12);
+
+
+    /* =================================
+       RADIUS
+    ================================= */
+
+    --radius-sm: 6px;
+    --radius: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-pill: 999px;
+}
+
+
+
+body {
+    
+
+    background: var(--background);
+    color: var(--text);
+
+    line-height: 1.5;
+     font-family: 'Times New Roman', Times, serif;
+}
+
+
+[data-theme="dark"] {
+
+    /* =================================
+       PRIMARY / BRAND
+    ================================= */
+
+    --primary: #D9674E;
+    --primary-dark: #E97860;
+    --primary-light: #35211E;
+
+
+    /* =================================
+       SUCCESS
+    ================================= */
+
+    --success: #9B7FE8;
+    --success-dark: #B29AF0;
+    --success-light: #241D35;
+
+
+    /* =================================
+       DANGER
+    ================================= */
+
+    --danger: #D9674E;
+    --danger-dark: #C45A45;
+    --danger-light: #35211E;
+
+
+    /* =================================
+       WARNING
+    ================================= */
+
+    --warning: #D0A943;
+    --warning-dark: #DFB95B;
+    --warning-light: #302814;
+
+
+    /* =================================
+       TEXT
+    ================================= */
+
+    --text: #DDD6D9;
+    --text-light: #AAA0A6;
+    --text-muted: #82777F;
+    --text-white: #E5DFE2;
+
+
+    /* =================================
+       BORDERS
+    ================================= */
+
+    --border: #332C32;
+    --border-primary: #51332E;
+    --border-secondary: #3B3152;
+
+
+    /* =================================
+       BACKGROUNDS
+    ================================= */
+
+    --background: #141215;
+    --background-primary: #281A18;
+    --background-secondary: #201A2A;
+
+    --white: #1B171C;
+    --card-bg: #201B20;
+
+
+    /* =================================
+       SHADOWS
+    ================================= */
+
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.30);
+    --shadow: 0 8px 25px rgba(0, 0, 0, 0.40);
+    --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.52);
+}
+
+
+
+
+
+/* ==========================================
+   APP
+========================================== */
+
+.student-app {
+    min-height: 100vh;
+}
+
+
+/* ==========================================
+   TOP BAR
+========================================== */
+
+.topbar {
+    height: 76px;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.brand,
+.student-info {
+    display: flex;
+    align-items: center;
+     font-family: 'Times New Roman', Times, serif;
+}
+
+.brand {
+    gap: 12px;
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    background: var(--primary);
+    color: white;
+
+    border-radius: 11px;
+
+    font-weight: 800;
+    font-size: 14px;
+     font-family: 'Times New Roman', Times, serif;
+}
+
+
+.brand-text h1 {
+    font-size: 19px;
+    line-height: 1.1;
+}
+
+.brand-text span {
+    display: block;
+    margin-top: 2px;
+
+    color: var(--text-light);
+    font-size: 11px;
+}
+
+.student-info {
+    gap: 10px;
+}
+
+.student-avatar {
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    font-weight: 700;
+}
+
+.student-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.student-details strong {
+    font-size: 13px;
+}
+
+.student-details span {
+    color: var(--text-light);
+    font-size: 11px;
+}
+
+
+/* ==========================================
+   MAIN
+========================================== */
+
+.dashboard-main {
+    width: min(1200px, 90%);
+    margin: 0 auto;
+
+    padding: 42px 0 70px;
+}
+
+
+/* ==========================================
+   WELCOME
+========================================== */
+
+.welcome-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    margin-bottom: 30px;
+}
+
+.eyebrow,
+.card-eyebrow {
+    display: block;
+
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+}
+
+.welcome-section h2 {
+    margin-top: 7px;
+
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.15;
+}
+
+.welcome-section p {
+    margin-top: 8px;
+
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 9px 13px;
+
+    border-radius: 30px;
+
+    background: var(--success-light);
+    color: var(--success);
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    background: var(--success);
+
+    border-radius: 50%;
+}
+
+
+/* ==========================================
+   DASHBOARD GRID
+========================================== */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(280px, 0.65fr);
+
+    gap: 20px;
+}
+
+.dashboard-card {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    padding: 24px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    margin-bottom: 22px;
+}
+
+.card-header h3 {
+    margin-top: 5px;
+
+    font-size: 18px;
+}
+
+.card-status,
+.qr-badge {
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: .7px;
+}
+
+.card-status {
+    background: var(--success-light);
+    color: var(--success);
+}
+
+.qr-badge {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.date-label {
+    color: var(--text-light);
+    font-size: 11px;
+}
+
+
+/* ==========================================
+   MEAL CARD
+========================================== */
+
+.meal-card {
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f0f8f4 100%
+        );
+}
+
+.card-number {
+    padding: 20px;
+
+    border-radius: 13px;
+
+    background: var(--primary);
+
+    color: white;
+
+    margin-bottom: 18px;
+}
+
+.card-number span {
+    display: block;
+
+    opacity: .75;
+
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-number strong {
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+.card-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.card-details span {
+    display: block;
+
+    color: var(--text-light);
+
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.card-details strong {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 13px;
+}
+
+.success-text {
+    color: var(--success);
+}
+
+
+/* ==========================================
+   QR CARD
+========================================== */
+
+.qr-card {
+    text-align: center;
+}
+
+.qr-card .card-header {
+    text-align: left;
+}
+
+.qr-container {
+    display: flex;
+    justify-content: center;
+
+    padding: 8px 0 15px;
+}
+
+.qr-code {
+    width: 170px;
+    height: 170px;
+
+    display: grid;
+    place-items: center;
+
+    background: white;
+
+    border: 8px solid white;
+
+    border-radius: 10px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
+}
+
+.qr-code img,
+.modal-qr img {
+    max-width: 100%;
+    height: auto;
+}
+
+.qr-placeholder {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    place-items: center;
+
+    background: #f4f6f5;
+
+    color: #9aa59f;
+
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.qr-help {
+    max-width: 260px;
+
+    margin: 0 auto 15px;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+}
+
+.secondary-button,
+.primary-button {
+    border: 0;
+
+    border-radius: 9px;
+
+    padding: 10px 15px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition:
+        transform .15s ease,
+        background .15s ease;
+}
+
+.secondary-button {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.secondary-button:hover,
+.primary-button:hover {
+    transform: translateY(-1px);
+}
+
+.primary-button {
+    background: var(--primary);
+    color: white;
+}
+
+
+/* ==========================================
+   MEALS
+========================================== */
+
+.meals-card {
+    grid-column: 1 / -1;
+}
+
+.meal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.meal-item {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 13px;
+
+    border: 1px solid var(--border);
+    border-radius: 11px;
+
+    transition: background .15s ease;
+}
+
+.meal-item:hover {
+    background: #fafcfb;
+}
+
+.meal-item.redeemed {
+    background: #f5fbf8;
+}
+
+.meal-icon {
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background: var(--primary-light);
+
+    font-size: 18px;
+}
+
+.meal-info {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.meal-info strong {
+    font-size: 13px;
+}
+
+.meal-info span {
+    color: var(--text-light);
+    font-size: 11px;
+}
+
+.meal-status {
+    white-space: nowrap;
+}
+
+.status-available,
+.status-redeemed,
+.status-inactive {
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.status-available {
+    color: var(--success);
+}
+
+.status-redeemed {
+    color: var(--primary);
+}
+
+.status-inactive {
+    color: var(--text-light);
+}
+
+
+/* ==========================================
+   STATISTICS
+========================================== */
+
+.statistics-card {
+    grid-column: 1 / -1;
+}
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+}
+
+.stat-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 16px;
+
+    background: #f8faf9;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+}
+
+.stat-icon {
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 9px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    font-size: 16px;
+}
+
+.stat-icon.success {
+    background: var(--success-light);
+    color: var(--success);
+}
+
+.stat-box strong {
+    display: block;
+
+    font-size: 20px;
+}
+
+.stat-box div span {
+    color: var(--text-light);
+
+    font-size: 10px;
+}
+
+
+/* ==========================================
+   HISTORY
+========================================== */
+
+.history-section {
+    margin-top: 45px;
+}
+
+.section-heading {
+    margin-bottom: 18px;
+}
+
+.section-heading h2 {
+    margin-top: 5px;
+
+    font-size: 23px;
+}
+
+.section-heading p {
+    margin-top: 5px;
+
+    color: var(--text-light);
+
+    font-size: 13px;
+}
+
+.history-card {
+    padding: 0;
+
+    overflow: hidden;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 650px;
+}
+
+th {
+    padding: 14px 20px;
+
+    background: #f8faf9;
+
+    border-bottom: 1px solid var(--border);
+
+    color: var(--text-light);
+
+    font-size: 10px;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+}
+
+td {
+    padding: 16px 20px;
+
+    border-bottom: 1px solid var(--border);
+
+    font-size: 12px;
+}
+
+tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.history-meal {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.history-icon {
+    width: 32px;
+    height: 32px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 8px;
+
+    background: var(--primary-light);
+}
+
+.history-meal div {
+    display: flex;
+    flex-direction: column;
+}
+
+.history-meal strong {
+    font-size: 12px;
+}
+
+.history-meal span {
+    color: var(--text-light);
+    font-size: 10px;
+}
+
+.table-status {
+    display: inline-flex;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.table-status.success {
+    background: var(--success-light);
+    color: var(--success);
+}
+
+.table-status.rejected {
+    background: var(--danger-light);
+    color: var(--danger);
+}
+
+
+/* ==========================================
+   EMPTY STATES
+========================================== */
+
+.empty-state,
+.empty-history {
+    text-align: center;
+
+    padding: 35px 20px;
+
+    color: var(--text-light);
+}
+
+.empty-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.empty-state h4,
+.empty-history h3 {
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.empty-state p,
+.empty-history p {
+    font-size: 12px;
+}
+
+
+/* ==========================================
+   MODAL
+========================================== */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    z-index: 100;
+
+    display: grid;
+    place-items: center;
+
+    padding: 20px;
+
+    background: rgba(10, 25, 18, .65);
+
+    backdrop-filter: blur(5px);
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    width: min(400px, 100%);
+
+    position: relative;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 32px;
+
+    text-align: center;
+
+    box-shadow: 0 25px 70px rgba(0, 0, 0, .2);
+}
+
+.modal-content h2 {
+    margin-top: 6px;
+
+    font-size: 24px;
+}
+
+.modal-content p {
+    margin: 12px auto;
+
+    max-width: 270px;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+}
+
+.modal-close {
+    position: absolute;
+
+    top: 14px;
+    right: 14px;
+
+    width: 32px;
+    height: 32px;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background: #f0f3f1;
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    font-size: 22px;
+}
+
+.modal-qr {
+    width: 230px;
+    height: 230px;
+
+    display: grid;
+    place-items: center;
+
+    margin: 25px auto 10px;
+}
+
+.modal-card-number {
+    color: var(--primary);
+
+    font-size: 13px;
+}
+/* =====================================================
+   MEAL COUNTDOWN
+===================================================== */
+
+.meal-info {
+    min-width: 0;
+}
+
+
+.meal-time {
+    display: block;
+}
+
+
+.meal-countdown {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-top: 6px;
+
+    color: #2563eb;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    transition:
+        color 0.25s ease;
+}
+
+
+.meal-countdown svg {
+    width: 14px;
+    height: 14px;
+}
+
+
+/* WARNING */
+
+.meal-item.countdown-warning
+.meal-countdown {
+
+    color: #f59e0b;
+
+}
+
+
+/* DANGER */
+
+.meal-item.countdown-danger
+.meal-countdown {
+
+    color: #ef4444;
+
+    animation:
+        countdown-pulse 0.9s ease-in-out infinite;
+
+}
+
+
+@keyframes countdown-pulse {
+
+    0%,
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateX(0);
+
+    }
+
+    50% {
+
+        opacity: 0.65;
+
+        transform:
+            translateX(2px);
+
+    }
+
+}
+
+
+/* ENDED */
+
+.meal-item.meal-ended {
+
+    opacity: 0.65;
+
+}
+
+
+.meal-item.meal-ended
+.meal-countdown {
+
+    color: #64748b;
+
+}
+
+
+/* AVAILABLE DOT */
+
+.availability-dot {
+
+    display: inline-block;
+
+    width: 7px;
+    height: 7px;
+
+    margin-right: 5px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(34, 197, 94, 0.12);
+
+    animation:
+        availability-pulse 2s infinite;
+
+}
+
+
+@keyframes availability-pulse {
+
+    0%,
+    100% {
+
+        box-shadow:
+            0 0 0 4px
+            rgba(34, 197, 94, 0.12);
+
+    }
+
+    50% {
+
+        box-shadow:
+            0 0 0 7px
+            rgba(34, 197, 94, 0.04);
+
+    }
+
+}
+
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 800px) {
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .meals-card,
+    .statistics-card {
+        grid-column: auto;
+    }
+
+    .welcome-section {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 560px) {
+
+    .topbar {
+        height: 68px;
+
+        padding: 0 4%;
+    }
+
+    .brand-text span {
+        display: none;
+    }
+
+    .student-details {
+        display: none;
+    }
+
+    .dashboard-main {
+        width: 92%;
+
+        padding-top: 30px;
+    }
+
+    .dashboard-card {
+        padding: 18px;
+    }
+
+    .meal-item {
+        align-items: flex-start;
+    }
+
+    .meal-status {
+        margin-left: auto;
+    }
+
+    .card-number strong {
+        font-size: 18px;
+    }
+
+}
+

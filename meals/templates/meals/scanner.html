@@ -1,0 +1,711 @@
+
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block title %}
+    Meal Scanner | SmartMeal
+{% endblock %}
+
+
+{% block extrastyle %}
+
+    {{ block.super }}
+
+    <link
+        rel="stylesheet"
+        href="{% static 'meals/css/scanner.css' %}"
+    >
+    
+    <link
+        rel="stylesheet"
+        href="{% static 'meals/css/scanner2.css' %}"
+    >
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="scanner-app">
+
+    <!-- ==========================================
+         TOP BAR
+    =========================================== -->
+
+    <header class="topbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                SM
+            </div>
+
+            <div>
+                <h1>SmartMeal</h1>
+
+                <span>
+                    Cafeteria Scanner
+                </span>
+            </div>
+
+        </div>
+
+
+        <div class="staff-info">
+
+            <div class="staff-avatar">
+                {{ request.user.first_name|first|default:request.user.username|first|upper }}
+            </div>
+
+            <div class="staff-details">
+
+                <strong>
+                    {{ request.user.get_full_name|default:request.user.username }}
+                </strong>
+
+                <span>
+                    Staff Scanner
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==========================================
+         MAIN
+    =========================================== -->
+
+    <main class="scanner-main">
+
+
+        <!-- ======================================
+             LEFT / MAIN SCANNER
+        ======================================= -->
+
+        <section class="scanner-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        MEAL VERIFICATION
+                    </span>
+
+                    <h2>
+                        Scan Student Card
+                    </h2>
+
+                    <p>
+                        Scan the student's QR code to verify
+                        and redeem their meal.
+                    </p>
+
+                </div>
+
+
+                <div class="connection-status">
+
+                    <span class="status-dot"></span>
+
+                    Online
+
+                </div>
+
+            </div>
+
+
+         
+
+            <!-- ======================================
+                 CAMERA AREA
+            ======================================= -->
+
+            <div class="scanner-card">
+
+                <div class="camera-wrapper">
+
+
+                    <div id="qr-reader"></div>
+
+
+                    <!-- CAMERA PLACEHOLDER -->
+
+                    <div
+                        id="camera-placeholder"
+                        class="camera-placeholder"
+                    >
+
+                        <div class="camera-icon">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.7"
+                            >
+
+                                <path
+                                    d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
+                                />
+
+                                <circle
+                                    cx="12"
+                                    cy="13"
+                                    r="4"
+                                />
+
+                            </svg>
+
+                        </div>
+
+
+                        <h3>
+                            Camera not started
+                        </h3>
+
+
+                        <p>
+                            Allow camera access to scan
+                            student QR codes.
+                        </p>
+
+
+                        <button
+                            type="button"
+                            id="start-camera"
+                            class="primary-button"
+                        >
+                            Start Scanner
+                        </button>
+
+                    </div>
+
+
+                    <!-- SCAN FRAME -->
+
+                    <div
+                        id="scan-frame"
+                        class="scan-frame hidden"
+                    >
+
+                        <span class="corner top-left"></span>
+
+                        <span class="corner top-right"></span>
+
+                        <span class="corner bottom-left"></span>
+
+                        <span class="corner bottom-right"></span>
+
+                        <div class="scan-line"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SCANNER INSTRUCTION -->
+
+                <div class="scanner-instruction">
+
+                    <div class="instruction-icon">
+                        QR
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Position the QR code inside the frame
+                        </strong>
+
+                        <span>
+                            Keep the student's card steady.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                 MANUAL TOKEN
+            ======================================= -->
+
+            <div class="manual-section">
+
+                <button
+                    type="button"
+                    id="manual-toggle"
+                    class="manual-toggle"
+                >
+                    Enter QR token manually
+                </button>
+
+
+                <div
+                    id="manual-form"
+                    class="manual-form hidden"
+                >
+
+                    <input
+                        type="text"
+                        id="qr-token"
+                        placeholder="Enter QR token"
+                        autocomplete="off"
+                    >
+
+
+                    <button
+                        type="button"
+                        id="manual-submit"
+                        class="primary-button"
+                    >
+                        Verify
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+<!-- ==========================================
+     RIGHT SIDEBAR
+========================================== -->
+
+<aside class="scanner-sidebar">
+
+
+    <!-- ======================================
+         CURRENT SERVICE
+    ======================================= -->
+
+    <div class="side-card current-meal">
+
+        <div class="side-card-header">
+
+            <span>
+                CURRENT SERVICE
+            </span>
+
+            <span class="live-badge">
+                LIVE
+            </span>
+
+        </div>
+
+
+        <div id="selected-meal">
+
+            {% if current_meal_name %}
+
+                <div class="selected-meal-content">
+
+                    
+<div class="meal-icon">
+    <i data-lucide="utensils"></i>
+</div>
+
+
+
+                    <div class="meal-main">
+
+                        <h3>
+                            {{ current_meal_name }}
+                        </h3>
+
+                        <span class="selected-meal-type">
+                            CURRENT MEAL
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="service-time">
+
+                    <span>
+                        Serving time
+                    </span>
+
+                    <strong>
+                        {{ current_meal_time }}
+                    </strong>
+
+                </div>
+
+
+                <div class="service-status active">
+                    <span class="status-dot"></span>
+                    Service Active
+                </div>
+
+            {% else %}
+
+                <div class="empty-state">
+
+                  <div class="meal-icon">
+    <i data-lucide="utensils"></i>
+</div>
+
+                    <p>
+                        No meal service currently active
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- ======================================
+         TODAY'S STATISTICS
+    ======================================= -->
+
+    <div class="side-card">
+
+        <div class="side-card-header">
+
+            <span>
+                TODAY'S MEALS
+            </span>
+
+            <span class="card-date">
+                {{ today|date:"d M" }}
+            </span>
+
+        </div>
+
+
+        <div class="meal-stat-grid">
+
+            <div class="meal-stat">
+
+               <span class="stat-icon redeemed"> <i data-lucide="circle-check"></i> </span>
+
+                <div>
+
+                    <strong id="redeemed-count">
+                        0
+                    </strong>
+
+                    <span>
+                        Redeemed
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="meal-stat">
+
+           <span class="stat-icon remaining"> <i data-lucide="users"></i> </span>
+
+                <div>
+
+                    <strong id="remaining-count">
+                        0
+                    </strong>
+
+                    <span>
+                        Remaining
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- ======================================
+         SERVICE SCHEDULE
+    ======================================= -->
+
+    <div class="side-card">
+
+        <div class="side-card-header">
+
+            <span>
+                TODAY'S SCHEDULE
+            </span>
+
+        </div>
+
+
+        <div class="schedule-list">
+
+            <div class="schedule-item {% if current_meal_type == 'lunch' %}active{% endif %}">
+
+           <div class="schedule-icon"> <i data-lucide="utensils"></i> </div>
+
+                <div class="schedule-details">
+
+                    <strong>
+                        Lunch
+                    </strong>
+
+                    <span>
+                        00:00 - 16:30
+                    </span>
+
+                </div>
+
+                {% if current_meal_type == 'lunch' %}
+                    <span class="schedule-active">
+                        NOW
+                    </span>
+                {% endif %}
+
+            </div>
+
+
+            <div class="schedule-item {% if current_meal_type == 'dinner' %}active{% endif %}">
+
+                <div class="meal-icon">
+    <i data-lucide="utensils"></i>
+</div>
+
+                <div class="schedule-details">
+
+                    <strong>
+                        Dinner / Saapa
+                    </strong>
+
+                    <span>
+                        16:31 - 23:59
+                    </span>
+
+                </div>
+
+                {% if current_meal_type == 'dinner' %}
+                    <span class="schedule-active">
+                        NOW
+                    </span>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ======================================
+         SCANNER STATUS
+    ======================================= -->
+
+    <div class="side-card">
+
+        <div class="side-card-header">
+
+            <span>
+                SCANNER STATUS
+            </span>
+
+        </div>
+
+
+        <div class="scanner-status-list">
+
+            <div class="status-row">
+
+                <span class="status-indicator ready"></span>
+
+                <span>
+                    Camera
+                </span>
+
+                <strong id="camera-status">
+                    Ready
+                </strong>
+
+            </div>
+
+
+            <div class="status-row">
+
+                <span class="status-indicator ready"></span>
+
+                <span>
+                    QR Scanner
+                </span>
+
+                <strong id="qr-status">
+                    Ready
+                </strong>
+
+            </div>
+
+
+            <div class="status-row">
+
+                <span class="status-indicator online"></span>
+
+                <span>
+                    Server
+                </span>
+
+                <strong>
+                    Online
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ======================================
+         STAFF
+    ======================================= -->
+
+    <div class="side-card staff-card">
+
+        <div class="side-card-header">
+
+            <span>
+                STAFF
+            </span>
+
+        </div>
+
+
+        <div class="sidebar-staff">
+
+            <div class="sidebar-staff-avatar">
+
+                {{ request.user.first_name|first|default:request.user.username|first|upper }}
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    {{ request.user.get_full_name|default:request.user.username }}
+                </strong>
+
+                <span>
+                    Staff Scanner
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</aside>
+
+
+
+    </main>
+
+
+    <!-- ==========================================
+         RESULT MODAL
+    =========================================== -->
+
+    <div
+        id="result-overlay"
+        class="result-overlay hidden"
+    >
+
+        <div
+            id="result-modal"
+            class="result-modal"
+        >
+
+
+            <div
+                id="modal-icon"
+                class="modal-icon"
+            >
+                ✓
+            </div>
+
+
+            <span
+                id="modal-status"
+                class="modal-status"
+            >
+                APPROVED
+            </span>
+
+
+            <h2 id="modal-title">
+                Meal Approved
+            </h2>
+
+
+            <p id="modal-message">
+                Meal redeemed successfully.
+            </p>
+
+
+            <div
+                id="modal-student"
+                class="modal-student"
+            ></div>
+
+
+            <button
+                type="button"
+                id="close-result"
+                class="primary-button full-width"
+            >
+                Continue Scanning
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block extrajs %}
+
+    {{ block.super }}
+
+    <script
+        src="https://unpkg.com/html5-qrcode"
+        type="text/javascript"
+    ></script>
+
+  
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script
+    src="{% static 'meals/js/scanner.js' %}"
+></script>
+
+<script>
+    lucide.createIcons();
+</script>
+
+
+
+{% endblock %}
+

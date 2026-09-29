@@ -1,0 +1,433 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login | SmartMeal</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'students/css/login.css' %}"
+    >
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+
+<body>
+
+    <main class="login-page">
+
+        <!-- ==========================================
+             LEFT / BRAND SECTION
+        =========================================== -->
+
+        <section class="login-brand">
+
+            <a
+                href="{% url 'students:landing' %}"
+                class="brand"
+            >
+<div class="brand-icon">
+    <img
+        src="{% static 'students/images/logo.jpg' %}"
+        alt="SmartMeal Logo"
+    >
+</div>
+
+
+                <div class="brand-text">
+                    <strong>SmartMeal</strong>
+                    <span>Student Meal Portal</span>
+                </div>
+
+            </a>
+
+
+            <div class="brand-content">
+
+                <span class="eyebrow">
+                    STUDENT PORTAL
+                </span>
+
+                <h1>
+                    Welcome back to
+                    <span>SmartMeal.</span>
+                </h1>
+
+                <p>
+                    Sign in to access your meal card,
+                    today's meals, redemption history,
+                    and notifications.
+                </p>
+
+
+                <div class="brand-features">
+
+                    <div class="feature">
+
+                        <span class="feature-icon">
+                            <i data-lucide="qr-code"></i>
+                        </span>
+
+                        <div>
+                            <strong>
+                                Digital Meal Card
+                            </strong>
+
+                            <span>
+                                Access your QR meal card
+                                anytime.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <span class="feature-icon">
+                            <i data-lucide="utensils"></i>
+                        </span>
+
+                        <div>
+                            <strong>
+                                View Your Meals
+                            </strong>
+
+                            <span>
+                                Check today's available
+                                meals.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature">
+
+                        <span class="feature-icon">
+                            <i data-lucide="history"></i>
+                        </span>
+
+                        <div>
+                            <strong>
+                                Track Redemptions
+                            </strong>
+
+                            <span>
+                                Keep track of your meal
+                                activity.
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="brand-footer">
+                <span>
+                    © {% now "Y" %} SmartMeal
+                </span>
+
+                <span>
+                    Smart • Simple • Secure
+                </span>
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             LOGIN SECTION
+        =========================================== -->
+
+        <section class="login-section">
+
+            <div class="login-container">
+
+                <div class="mobile-brand">
+
+                    <a
+                        href="{% url 'students:landing' %}"
+                        class="brand"
+                    >
+
+                        <div class="brand-icon">
+    <img
+        src="{% static 'students/images/logo.jpg' %}"
+        alt="SmartMeal Logo"
+    >
+</div>
+
+                        <div class="brand-text">
+                            <strong>SmartMeal</strong>
+                            <span>Student Meal Portal</span>
+                        </div>
+
+                    </a>
+
+                </div>
+
+
+                <div class="login-card">
+
+                    <div class="login-header">
+
+                        <div class="login-icon">
+                            <i data-lucide="log-in"></i>
+                        </div>
+
+                        <span class="card-eyebrow">
+                            STUDENT LOGIN
+                        </span>
+
+                        <h2>
+                            Sign in to your account
+                        </h2>
+
+                        <p>
+                            Enter your credentials to
+                            continue to your dashboard.
+                        </p>
+
+                    </div>
+
+
+                    <!-- ==================================
+                         FORM ERRORS
+                    =================================== -->
+
+                    {% if form.non_field_errors %}
+
+                        <div class="form-alert">
+
+                            <i data-lucide="circle-alert"></i>
+
+                            <div>
+
+                                {% for error in form.non_field_errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <form
+                        method="post"
+                        class="login-form"
+                        novalidate
+                    >
+
+                        {% csrf_token %}
+
+
+                        <!-- USERNAME -->
+
+                        <div class="form-group">
+
+                            <label
+                                for="{{ form.username.id_for_label }}"
+                            >
+                                Username
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    <i data-lucide="user"></i>
+                                </span>
+
+                                {{ form.username }}
+
+                            </div>
+
+
+                            {% if form.username.errors %}
+
+                                <div class="field-error">
+
+                                    <i data-lucide="circle-alert"></i>
+
+                                    <span>
+                                        {{ form.username.errors.0 }}
+                                    </span>
+
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- PASSWORD -->
+
+                        <div class="form-group">
+
+                            <div class="password-label-row">
+
+                                <label
+                                    for="{{ form.password.id_for_label }}"
+                                >
+                                    Password
+                                </label>
+
+                            </div>
+
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    <i data-lucide="lock-keyhole"></i>
+                                </span>
+
+
+                                {{ form.password }}
+
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    id="password-toggle"
+                                    aria-label="Show password"
+                                    aria-pressed="false"
+                                >
+
+                                    <i
+                                        data-lucide="eye"
+                                        id="password-eye"
+                                    ></i>
+
+                                </button>
+
+                            </div>
+
+
+                            {% if form.password.errors %}
+
+                                <div class="field-error">
+
+                                    <i data-lucide="circle-alert"></i>
+
+                                    <span>
+                                        {{ form.password.errors.0 }}
+                                    </span>
+
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- LOGIN BUTTON -->
+
+                        <button
+                            type="submit"
+                            class="login-button"
+                        >
+
+                            <span>
+                                Sign In
+                            </span>
+
+                            <i data-lucide="arrow-right"></i>
+
+                        </button>
+                        <!-- REGISTER BUTTON -->
+                        
+
+<a
+    href="{% url 'accounts:register' %}"
+    class="register-button"
+>
+    <span>
+        Create Student Account
+    </span>
+
+    <i data-lucide="user-plus"></i>
+</a>
+  
+                    </form>
+
+
+                    <!-- ==================================
+                         SECURITY MESSAGE
+                    =================================== -->
+
+                    <div class="security-message">
+
+                        <span class="security-icon">
+                            <i data-lucide="shield-check"></i>
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Secure Login
+                            </strong>
+
+                            <span>
+                                Your account information
+                                is protected.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="back-link">
+
+                        <a href="{% url 'students:landing' %}">
+
+                            <i data-lucide="arrow-left"></i>
+
+                            <span>
+                                Back to SmartMeal
+                            </span>
+
+                        </a>
+                       
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+    =========================================== -->
+
+    <script src="{% static 'students/js/login.js' %}"></script>
+
+      
+    </script>
+
+</body>
+
+</html>

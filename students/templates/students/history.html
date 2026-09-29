@@ -1,0 +1,196 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <!-- LOAD SAVED THEME BEFORE CSS -->
+    <script>
+        (function () {
+            const savedTheme =
+                localStorage.getItem("smartmeal-theme");
+
+            if (savedTheme === "dark") {
+                document.documentElement.setAttribute(
+                    "data-theme",
+                    "dark"
+                );
+            }
+        })();
+    </script>
+
+    <title>Meal History | SmartMeal</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'students/css/dashboard.css' %}"
+    >
+      <link
+        rel="stylesheet"
+        href="{% static 'students/css/dashboardicon.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'students/css/student-navigation.css' %}"
+    >
+
+</head>
+
+<body>
+
+<div class="student-app">
+
+    <!-- ==========================================
+         REUSABLE STUDENT NAVIGATION
+    =========================================== -->
+
+    {% include "students/top-navbar.html" %}
+
+
+    <!-- ==========================================
+         PAGE CONTENT
+    =========================================== -->
+
+    <main class="dashboard-main">
+
+        <section class="welcome-section">
+
+            <div>
+
+                <span class="eyebrow">
+                    HISTORY
+                </span>
+
+                <h2>
+                    Meal History
+                </h2>
+
+                <p>
+                    View your previous meal redemptions.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="dashboard-card">
+
+            {% if redemptions %}
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Meal</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for redemption in redemptions %}
+
+                                <tr>
+
+                                    <td>
+                                        {{ redemption.meal_service.meal.name }}
+                                    </td>
+
+                                    <td>
+                                        {{ redemption.meal_service.service_date|date:"M d, Y" }}
+                                    </td>
+
+                                    <td>
+                                        {{ redemption.redeemed_at|time:"H:i" }}
+                                    </td>
+
+                                    <td>
+
+                                        {% if redemption.status == "success" %}
+
+                                            <span class="table-status success">
+                                                ✓ Success
+                                            </span>
+
+                                        {% else %}
+
+                                            <span class="table-status rejected">
+                                                Rejected
+                                            </span>
+
+                                        {% endif %}
+
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            {% else %}
+
+                <div class="empty-history">
+
+                    <div class="empty-icon">
+                        📋
+                    </div>
+
+                    <h3>
+                        No meal history
+                    </h3>
+
+                    <p>
+                        Your redeemed meals will appear here.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- Lucide icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+    lucide.createIcons();
+</script>
+
+
+<!-- Navigation JavaScript -->
+<script src="{% static 'students/js/student-navigation.js' %}"></script>
+
+<!-- Theme JavaScript -->
+<script src="{% static 'students/js/theme.js' %}"></script>
+
+</body>
+
+</html>
+

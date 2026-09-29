@@ -1,0 +1,132 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <!-- LOAD SAVED THEME BEFORE CSS -->
+    <script>
+        (function () {
+            const savedTheme =
+                localStorage.getItem("smartmeal-theme");
+
+            if (savedTheme === "dark") {
+                document.documentElement.setAttribute(
+                    "data-theme",
+                    "dark"
+                );
+            }
+        })();
+    </script>
+
+    <title>Notifications | SmartMeal</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'students/css/dashboard.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'students/css/student-navigation.css' %}"
+    >
+      <link
+        rel="stylesheet"
+        href="{% static 'students/css/theme.css' %}"
+    >
+ <link
+    rel="stylesheet"
+    href="{% static 'students/css/dashboardicon.css' %}"
+>
+</head>
+
+<body>
+
+<div class="student-app">
+
+    <!-- ==========================================
+         REUSABLE STUDENT NAVIGATION
+    =========================================== -->
+
+    {% include "students/top-navbar.html" %}
+
+
+    <!-- ==========================================
+         PAGE CONTENT
+    =========================================== -->
+
+    <main class="dashboard-main">
+
+        <section class="welcome-section">
+
+            <div>
+
+                <span class="eyebrow">
+                    ALERTS
+                </span>
+
+                <h2>
+                    Notifications
+                </h2>
+
+                <p>
+                    Important updates about your meals and account.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="dashboard-card">
+
+            <div class="empty-history">
+
+                <div class="empty-icon">
+                    🔔
+                </div>
+
+                <h3>
+                    No notifications
+                </h3>
+
+                <p>
+                    New SmartMeal notifications will appear here.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- Lucide icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+    lucide.createIcons();
+</script>
+
+
+<!-- Navigation JavaScript -->
+<script src="{% static 'students/js/student-navigation.js' %}"></script>
+
+<!-- Theme JavaScript -->
+<script src="{% static 'students/js/theme.js' %}"></script>
+
+</body>
+
+</html>
+

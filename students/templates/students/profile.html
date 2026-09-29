@@ -1,0 +1,265 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <!-- LOAD SAVED THEME BEFORE CSS -->
+    <script>
+        (function () {
+            const savedTheme =
+                localStorage.getItem("smartmeal-theme");
+
+            if (savedTheme === "dark") {
+                document.documentElement.setAttribute(
+                    "data-theme",
+                    "dark"
+                );
+            }
+        })();
+    </script>
+
+    <title>My Profile | SmartMeal</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'students/css/dashboard.css' %}"
+    >
+      <link
+        rel="stylesheet"
+        href="{% static 'students/css/dashboardicon.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'students/css/student-navigation.css' %}"
+    >
+
+</head>
+
+<body>
+
+<div class="student-app">
+
+    <!-- ==========================================
+         REUSABLE STUDENT NAVIGATION
+    =========================================== -->
+
+    {% include "students/top-navbar.html" %}
+
+
+    <!-- ==========================================
+         PAGE CONTENT
+    =========================================== -->
+
+    <main class="dashboard-main">
+
+        <section class="welcome-section">
+
+            <div>
+
+                <span class="eyebrow">
+                    ACCOUNT
+                </span>
+
+                <h2>
+                    My Profile
+                </h2>
+
+                <p>
+                    View your SmartMeal student information.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="card-eyebrow">
+                        STUDENT INFORMATION
+                    </span>
+
+                    <h3>
+                        {{ student.first_name }}
+                        {{ student.last_name }}
+                    </h3>
+
+                </div>
+
+                <span class="card-status">
+
+                    {% if student.is_active %}
+                        ACTIVE
+                    {% else %}
+                        INACTIVE
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <div class="card-details">
+
+                <div>
+                    <span>Student ID</span>
+                    <strong>
+                        {{ student.student_id }}
+                    </strong>
+                </div>
+
+
+                <div>
+                    <span>Email</span>
+                    <strong>
+                        {{ student.email }}
+                    </strong>
+                </div>
+
+
+                <div>
+                    <span>Phone</span>
+                    <strong>
+                        {{ student.phone|default:"Not provided" }}
+                    </strong>
+                </div>
+
+
+                <div>
+                    <span>University</span>
+                    <strong>
+                        {{ student.university }}
+                    </strong>
+                </div>
+
+
+                <div>
+                    <span>Faculty</span>
+                    <strong>
+                        {{ student.faculty|default:"Not provided" }}
+                    </strong>
+                </div>
+
+
+                <div>
+                    <span>Course</span>
+                    <strong>
+                        {{ student.course|default:"Not provided" }}
+                    </strong>
+                </div>
+
+
+                <div>
+                    <span>Year of Study</span>
+                    <strong>
+                        {{ student.year_of_study|default:"Not provided" }}
+                    </strong>
+                </div>
+
+            </div>
+
+        </section>
+     
+<section class="dashboard-card">
+
+    <div class="card-header">
+
+        <div>
+
+            <span class="card-eyebrow">
+                ACCOUNT
+            </span>
+
+            <h3>
+                Profile Settings
+            </h3>
+
+        </div>
+
+    </div>
+
+    <p>
+        Update your personal information and profile photo.
+    </p>
+
+    <a
+        href="{% url 'accounts:student_edit_profile' %}"
+        class="secondary-button"
+    >
+        Edit Profile
+    </a>
+
+</section>
+
+
+<section class="dashboard-card">
+
+    <div class="card-header">
+
+        <div>
+
+            <span class="card-eyebrow">
+                SECURITY
+            </span>
+
+            <h3>
+                Account Security
+            </h3>
+
+        </div>
+
+    </div>
+
+    <p>
+        Change your SmartMeal account password.
+    </p>
+
+    <a
+        href="{% url 'accounts:student_change_password' %}"
+        class="secondary-button"
+    >
+        Change Password
+    </a>
+
+</section>
+
+
+
+    </main>
+
+</div>
+
+
+<!-- Lucide icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+    lucide.createIcons();
+</script>
+
+
+<!-- Navigation JavaScript -->
+<script src="{% static 'students/js/student-navigation.js' %}"></script>
+
+<!-- Theme JavaScript -->
+<script src="{% static 'students/js/theme.js' %}"></script>
+
+</body>
+
+</html>
+

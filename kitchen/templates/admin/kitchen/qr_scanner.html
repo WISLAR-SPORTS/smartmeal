@@ -1,0 +1,147 @@
+
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block title %}QR Scanner | SmartMeal{% endblock %}
+
+{% block extrastyle %}
+
+<link rel="stylesheet" href="{% static 'kitchen/css/scanner.css' %}"> {% endblock %}
+
+
+{% block content %}
+
+<div class="smartmeal-scanner-page">
+
+    <div class="scanner-container">
+
+        <!-- Header -->
+
+        <div class="scanner-header">
+
+            <div class="scanner-title-wrapper">
+
+                <div class="scanner-icon">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+
+                <div>
+                    <h1>Meal Card Scanner</h1>
+
+                    <p>
+                        Scan a student's digital meal card to verify their eligibility.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="scanner-status">
+                <span class="status-dot"></span>
+                Scanner Ready
+            </div>
+
+        </div>
+
+
+        <!-- Main -->
+
+        <div class="scanner-grid">
+
+            <!-- Scanner -->
+
+            <div class="scanner-card">
+
+                <div class="scanner-card-header">
+
+                    <h2>Scan QR Code</h2>
+
+                    <p>
+                        Position the student's QR code inside the scanning area.
+                    </p>
+
+                </div>
+
+                <div class="scanner-body">
+
+                    <div class="scanner-wrapper">
+
+                        <div id="reader"></div>
+
+                        <div class="scanner-overlay">
+
+                            <div class="scan-frame">
+
+                                <div class="scan-corner top-left"></div>
+                                <div class="scan-corner top-right"></div>
+                                <div class="scan-corner bottom-left"></div>
+                                <div class="scan-corner bottom-right"></div>
+
+                                <div class="scan-line"></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="scanner-instruction">
+
+                        <i class="fas fa-camera"></i>
+
+                        <span>
+                            Allow camera access and scan the student's QR code
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Result -->
+
+            <div class="result-card">
+
+                <div class="result-header">
+
+                    <h2>Verification</h2>
+
+                    <p>
+                        Student information will appear here after scanning.
+                    </p>
+
+                </div>
+
+                <div id="result">
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+
+                        <h3>Waiting for scan</h3>
+
+                        <p>
+                            Scan a valid SmartMeal QR code to view the student's
+                            meal card information.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+<script src="{% static 'kitchen/js/scanner.js' %}"></script>
+{% endblock %}
+

@@ -1,0 +1,340 @@
+
+<!-- ==========================================
+     TOP NAVBAR
+=========================================== -->
+
+<header class="topbar">
+
+    <!-- BRAND -->
+    <a
+        href="{% url 'students:dashboard' %}"
+        class="brand"
+    >
+
+        <div class="brand-icon">
+            SM
+        </div>
+
+        <div class="brand-text">
+            <h1>SmartMeal</h1>
+            <span>Student Portal</span>
+        </div>
+
+    </a>
+
+
+    <!-- DESKTOP NAVIGATION -->
+    <nav class="desktop-nav">
+
+        <!-- THEME TOGGLE -->
+        <button
+            type="button"
+            id="theme-toggle"
+            class="theme-toggle"
+            aria-label="Switch to dark mode"
+            aria-pressed="false"
+        >
+
+            <span class="theme-track">
+
+                <span class="theme-sky"></span>
+
+                <span class="theme-sun">
+                    <i data-lucide="sun"></i>
+                </span>
+
+                <span class="theme-moon">
+                    <i data-lucide="moon"></i>
+                </span>
+
+                <span class="theme-person">
+                    <span class="person-head"></span>
+                    <span class="person-body"></span>
+                    <span class="person-leg leg-one"></span>
+                    <span class="person-leg leg-two"></span>
+                </span>
+
+            </span>
+
+        </button>
+
+
+        <!-- DASHBOARD -->
+        <a
+            href="{% url 'students:dashboard' %}"
+            class="nav-link"
+        >
+            <span class="nav-icon">
+                <i data-lucide="house"></i>
+            </span>
+
+            Dashboard
+        </a>
+
+
+        <!-- HISTORY -->
+        <a
+            href="{% url 'students:student_history' %}"
+            class="nav-link"
+        >
+            <span class="nav-icon">
+                <i data-lucide="clipboard-list"></i>
+            </span>
+
+            History
+        </a>
+
+
+        <!-- MEALS -->
+        <a
+            href="{% url 'students:student_schedule' %}"
+            class="nav-link"
+        >
+            <span class="nav-icon">
+                <i data-lucide="utensils"></i>
+            </span>
+
+            Meals
+        </a>
+
+
+        <!-- NOTIFICATIONS -->
+        <a
+            href="{% url 'students:student_notifications' %}"
+            class="nav-link notification-link"
+        >
+
+            <span class="nav-icon">
+                <i data-lucide="bell"></i>
+            </span>
+
+            Notifications
+
+            {% if unread_notifications %}
+
+                <span class="notification-count">
+                    {{ unread_notifications }}
+                </span>
+
+            {% endif %}
+
+        </a>
+
+    </nav>
+
+
+    <!-- USER MENU -->
+    <div class="user-menu-wrapper">
+
+        <button
+            type="button"
+            id="user-menu-button"
+            class="user-menu-button"
+            aria-expanded="false"
+        >
+
+            <div class="student-avatar">
+                {{ student.first_name|first|upper }}
+            </div>
+
+            <div class="student-details">
+
+                <strong>
+                    {{ student.first_name }} {{ student.last_name }}
+                </strong>
+
+                <span>
+                    Student
+                </span>
+
+            </div>
+
+            <span class="menu-chevron">
+                <i data-lucide="chevron-down"></i>
+            </span>
+
+        </button>
+
+
+        <!-- USER DROPDOWN -->
+        <div
+            id="user-dropdown"
+            class="user-dropdown"
+        >
+
+            <!-- DROPDOWN HEADER -->
+            <div class="dropdown-header">
+
+                <div class="dropdown-avatar">
+                    {{ student.first_name|first|upper }}
+                </div>
+
+                <div>
+
+                    <strong>
+                        {{ student.first_name }} {{ student.last_name }}
+                    </strong>
+
+                    <span>
+                        {{ student.student_id }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="dropdown-divider"></div>
+
+
+            <!-- PROFILE -->
+            <a
+                href="{% url 'students:student_profile' %}"
+                class="dropdown-link"
+            >
+
+                <span class="dropdown-icon">
+                    <i data-lucide="user"></i>
+                </span>
+
+                <div>
+                    <strong>My Profile</strong>
+                    <small>View and edit your profile</small>
+                </div>
+
+            </a>
+
+
+            <!-- NOTIFICATIONS -->
+            <a
+                href="{% url 'students:student_notifications' %}"
+                class="dropdown-link"
+            >
+
+                <span class="dropdown-icon">
+                    <i data-lucide="bell"></i>
+                </span>
+
+                <div>
+                    <strong>Notifications</strong>
+                    <small>View your notifications</small>
+                </div>
+
+                {% if unread_notifications %}
+
+                    <span class="dropdown-badge">
+                        {{ unread_notifications }}
+                    </span>
+
+                {% endif %}
+
+            </a>
+
+
+            <!-- HISTORY -->
+            <a
+                href="{% url 'students:student_history' %}"
+                class="dropdown-link"
+            >
+
+                <span class="dropdown-icon">
+                    <i data-lucide="clipboard-list"></i>
+                </span>
+
+                <div>
+                    <strong>Meal History</strong>
+                    <small>View your meal redemptions</small>
+                </div>
+
+            </a>
+
+
+            <!-- MEAL SCHEDULE -->
+            <a
+                href="{% url 'students:student_schedule' %}"
+                class="dropdown-link"
+            >
+
+                <span class="dropdown-icon">
+                    <i data-lucide="calendar-days"></i>
+                </span>
+
+                <div>
+                    <strong>Meal Schedule</strong>
+                    <small>View available meals</small>
+                </div>
+
+            </a>
+
+
+            <!-- HELP -->
+            <a
+                href="{% url 'students:student_help' %}"
+                class="dropdown-link"
+            >
+
+                <span class="dropdown-icon">
+                    <i data-lucide="circle-help"></i>
+                </span>
+
+                <div>
+                    <strong>Help &amp; Support</strong>
+                    <small>Get help with SmartMeal</small>
+                </div>
+
+            </a>
+
+
+            <!-- SETTINGS -->
+            <a
+                href="{% url 'students:student_settings' %}"
+                class="dropdown-link"
+            >
+
+                <span class="dropdown-icon">
+                    <i data-lucide="settings"></i>
+                </span>
+
+                <div>
+                    <strong>Settings</strong>
+                    <small>Manage your account</small>
+                </div>
+
+            </a>
+
+
+            <div class="dropdown-divider"></div>
+
+
+            <!-- LOGOUT -->
+            <form
+                method="post"
+                action="{% url 'accounts:logout' %}"
+            >
+
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="dropdown-link logout-link"
+                >
+
+                    <span class="dropdown-icon">
+                        <i data-lucide="log-out"></i>
+                    </span>
+
+                    <div>
+                        <strong>Logout</strong>
+                        <small>Sign out of SmartMeal</small>
+                    </div>
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</header>
+

@@ -1,0 +1,204 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <!-- LOAD SAVED THEME BEFORE CSS -->
+    <script>
+        (function () {
+            const savedTheme =
+                localStorage.getItem("smartmeal-theme");
+
+            if (savedTheme === "dark") {
+                document.documentElement.setAttribute(
+                    "data-theme",
+                    "dark"
+                );
+            }
+        })();
+    </script>
+
+    <title>Help & Support | SmartMeal</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'students/css/dashboard.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'students/css/student-navigation.css' %}"
+
+    >
+        <link
+        rel="stylesheet"
+        href="{% static 'students/css/dashboardicon.css' %}"
+    >
+
+</head>
+
+<body>
+
+<div class="student-app">
+
+    <!-- ==========================================
+         REUSABLE STUDENT NAVIGATION
+    =========================================== -->
+
+    {% include "students/top-navbar.html" %}
+
+
+    <!-- ==========================================
+         PAGE CONTENT
+    =========================================== -->
+
+    <main class="dashboard-main">
+
+        <section class="welcome-section">
+
+            <div>
+
+                <span class="eyebrow">
+                    SUPPORT
+                </span>
+
+                <h2>
+                    Help & Support
+                </h2>
+
+                <p>
+                    Find answers to common SmartMeal problems.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="dashboard-grid">
+
+
+            <!-- QR CODE -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>
+                            QR Code not working?
+                        </h3>
+                    </div>
+
+                </div>
+
+                <p>
+                    Make sure your screen brightness is high
+                    enough and position the QR code inside
+                    the scanner frame.
+                </p>
+
+            </div>
+
+
+            <!-- MEAL REDEEMED -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>
+                            Meal already redeemed?
+                        </h3>
+                    </div>
+
+                </div>
+
+                <p>
+                    Each meal token can normally be redeemed
+                    only once.
+                </p>
+
+            </div>
+
+
+            <!-- TOKEN EXPIRED -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>
+                            Token expired?
+                        </h3>
+                    </div>
+
+                </div>
+
+                <p>
+                    Meal tokens are valid only during their
+                    assigned meal service period.
+                </p>
+
+            </div>
+
+
+            <!-- ASSISTANCE -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>
+                            Need assistance?
+                        </h3>
+                    </div>
+
+                </div>
+
+                <p>
+                    Contact the cafeteria staff or your
+                    university SmartMeal administrator.
+                </p>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- Lucide icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+    lucide.createIcons();
+</script>
+
+
+<!-- Navigation JavaScript -->
+<script src="{% static 'students/js/student-navigation.js' %}"></script>
+
+<!-- Theme JavaScript -->
+<script src="{% static 'students/js/theme.js' %}"></script>
+
+</body>
+
+</html>
+
