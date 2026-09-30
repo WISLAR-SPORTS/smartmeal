@@ -130,3 +130,153 @@
     width: 16px;
     height: 16px;
 }
+/* ==========================================
+   STUDENT AVATAR
+========================================== */
+
+.student-avatar {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    border: 2px solid var(--border-primary);
+
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.student-avatar img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* ==========================================
+   DROPDOWN AVATAR
+========================================== */
+
+.dropdown-avatar {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    border: 2px solid var(--border-primary);
+
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.dropdown-avatar img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+
+/* ==========================================
+   TOP BAR
+========================================== */
+.topbar {
+    position: fixed !important;
+
+    top: 12px !important;
+    left: 50% !important;
+
+    transform: translateX(-50%) !important;
+
+    width: 92%;
+    max-width: 1400px;
+    height: 76px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 28px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    box-shadow: var(--shadow-sm);
+
+    z-index: 99999;
+
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 900px) {
+
+    .topbar {
+        width: 94%;
+        padding: 0 20px;
+    }
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .topbar {
+        top: 8px;
+
+        width: calc(100% - 16px);
+
+        height: 64px;
+
+        padding: 0 14px;
+
+        border-radius: 16px;
+    }
+     .student-avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .dropdown-avatar {
+        width: 46px;
+        height: 46px;
+    }
+}

@@ -172,6 +172,49 @@ a {
     padding: 42px 0 60px;
 }
 
+.messages {
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+
+    padding: 14px 16px;
+
+    border-radius: var(--radius);
+
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.5;
+
+    box-sizing: border-box;
+}
+
+.message-success {
+    color: var(--success-dark);
+    background: var(--success-light);
+    border: 1px solid var(--border-secondary);
+}
+
+.message-error {
+    color: var(--danger-dark);
+    background: var(--danger-light);
+    border: 1px solid var(--danger);
+}
+
+.message-warning {
+    color: var(--warning-dark);
+    background: var(--warning-light);
+    border: 1px solid var(--warning);
+}
+
+.message-info {
+    color: var(--text);
+    background: var(--background-secondary);
+    border: 1px solid var(--border-secondary);
+}
 
 /* =========================================
    WELCOME / PAGE HEADER

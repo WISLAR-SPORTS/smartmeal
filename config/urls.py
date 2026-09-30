@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.shortcuts import redirect
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 def admin_logout(request):
@@ -67,3 +69,9 @@ urlpatterns = [
         include("meals.urls"),
     ),
 ]
+
+
+urlpatterns += static(
+    settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT,
+)

@@ -183,6 +183,10 @@ class StudentProfileForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = [
+             "first_name",
+            "last_name",
+            "email",
+            "phone",
             "student_id",
             "faculty",
             "course",
@@ -191,10 +195,34 @@ class StudentProfileForm(forms.ModelForm):
         ]
 
         widgets = {
+              "first_name": forms.TextInput(
+                            attrs={
+                                "class": "form-control",
+                                "placeholder": "your first name",
+                            }
+                        ),
+            "last_name": forms.TextInput(
+                            attrs={
+                                "class": "form-control",
+                                "placeholder": "your last name",
+                            }
+                        ),
+            "email": forms.TextInput(
+                                            attrs={
+                                                "class": "form-control",
+                                                "placeholder": "your email",
+                                            }
+                                        ),
+            "phone": forms.TextInput(
+                                        attrs={
+                                            "class": "form-control",
+                                            "placeholder": "your phone number",
+                                        }
+                                    ),
             "student_id": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Student ID",
+                    "placeholder": "e.g KU012342029",
                 }
             ),
             "faculty": forms.TextInput(
@@ -216,9 +244,9 @@ class StudentProfileForm(forms.ModelForm):
                     "min": 1,
                 }
             ),
-            "photo": forms.ClearableFileInput(
+            "photo": forms.FileInput(
                 attrs={
-                    "class": "form-control",
+                    "accept": "image/jpeg,image/png,image/webp",
                 }
             ),
         }

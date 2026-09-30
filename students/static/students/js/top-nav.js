@@ -211,3 +211,61 @@
         }
 
     });
+
+
+
+  
+    const photoInput = document.getElementById(
+        "{{ form.photo.id_for_label }}"
+    );
+
+    photoInput.addEventListener("change", function () {
+
+        const file = this.files[0];
+
+        if (!file) {
+            return;
+        }
+
+        if (!file.type.startsWith("image/")) {
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+
+            let preview =
+                document.getElementById("photo-preview");
+
+            const placeholder =
+                document.getElementById("photo-placeholder");
+
+
+            if (placeholder) {
+                placeholder.remove();
+            }
+
+
+            if (!preview) {
+
+                preview = document.createElement("img");
+
+                preview.id = "photo-preview";
+
+                preview.className = "photo-preview";
+
+                preview.alt = "Profile photo preview";
+
+                document
+                    .querySelector(".photo-preview-container")
+                    .appendChild(preview);
+            }
+
+
+            preview.src = event.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    });
+

@@ -200,27 +200,74 @@ body {
     min-height: 100vh;
 }
 
-
 /* ==========================================
    TOP BAR
 ========================================== */
 
 .topbar {
+    position: fixed;
+
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 92%;
+    max-width: 1400px;
     height: 76px;
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
+
+    box-sizing: border-box;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 5%;
+    padding: 0 28px;
 
-    position: sticky;
-    top: 0;
-    z-index: 50;
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    box-shadow: var(--shadow-sm);
+
+    z-index: 1000;
+
     font-family: 'Times New Roman', Times, serif;
 }
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 900px) {
+
+    .topbar {
+        width: 94%;
+        padding: 0 20px;
+    }
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .topbar {
+        top: 8px;
+
+        width: calc(100% - 16px);
+
+        height: 64px;
+
+        padding: 0 14px;
+
+        border-radius: 16px;
+    }
+}
+
 
 .brand,
 .student-info {
@@ -306,8 +353,9 @@ body {
     width: min(1200px, 90%);
     margin: 0 auto;
 
-    padding: 42px 0 70px;
+    padding: 105px 0 70px;
 }
+
 
 
 /* ==========================================
@@ -1165,11 +1213,293 @@ tbody tr:last-child td {
 
 }
 
+/* =========================================
+   SMARTMEAL MEAL CARD
+========================================= */
+
+.meal-card {
+    position: relative;
+    overflow: hidden;
+
+    width: 100%;
+    min-height: 260px;
+
+    padding: 28px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary-dark),
+            var(--primary)
+        );
+
+    border: none;
+    border-radius: var(--radius-xl);
+
+    box-shadow: var(--shadow-lg);
+}
+
+
+/* =========================================
+   CARD HEADER
+========================================= */
+
+.meal-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+}
+
+.meal-card-header .card-eyebrow {
+    color: rgba(255, 255, 255, 0.70);
+}
+
+.meal-card-header h3 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 1.25rem;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.meal-card .card-status {
+    flex-shrink: 0;
+
+    padding: 6px 12px;
+
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    border-radius: var(--radius-pill);
+
+    font-size: 0.7rem;
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+}
+
+
+/* =========================================
+   CARD BODY
+========================================= */
+
+.meal-card-body {
+    display: flex;
+    align-items: center;
+
+    gap: 28px;
+
+    padding-top: 25px;
+}
+
+/* =========================================
+   LARGE PASSPORT PHOTO
+========================================= */
+
+.student-passport {
+    flex: 0 0 auto;
+
+    width: 150px;
+    height: 190px;
+
+    padding: 5px;
+
+    background: #ffffff;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25);
+
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+
+/* Student image */
+
+.student-passport img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: 6px;
+}
+
+
+/* =========================================
+   NO PHOTO
+========================================= */
+
+.passport-placeholder {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    color: var(--primary);
+
+    background: #f5f5f5;
+
+    border-radius: 5px;
+
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+
+/* =========================================
+   CARD INFORMATION
+========================================= */
+
+.meal-card-info {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.meal-card .card-number {
+    margin: 0;
+}
+
+
+.meal-card .card-number span,
+.meal-card .card-details span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 0.72rem;
+}
+
+
+.meal-card .card-number strong {
+    display: block;
+
+    color: #ffffff;
+
+    font-size: clamp(1.15rem, 3vw, 1.6rem);
+
+    letter-spacing: 0.08em;
+
+    word-break: break-word;
+}
+
+
+/* =========================================
+   DETAILS
+========================================= */
+
+.meal-card .card-details {
+    display: flex;
+
+    gap: 40px;
+
+    margin-top: 25px;
+}
+
+
+.meal-card .card-details strong {
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 0.92rem;
+}
+
+
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+[data-theme="dark"] .meal-card::after {
+    background:
+        linear-gradient(
+            90deg,
+            var(--card-bg) 0%,
+            rgba(32, 27, 32, 0.88) 55%,
+            rgba(32, 27, 32, 0.65) 100%
+        );
+}
+
+[data-theme="dark"] .meal-card-photo {
+    opacity: 0.16;
+    filter: grayscale(80%);
+}
+
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 520px) {
+
+    .meal-card {
+        min-height: 270px;
+    }
+
+    .meal-card-photo {
+        width: 130px;
+        height: 130px;
+
+        top: 25px;
+        right: 15px;
+
+        transform: none;
+
+        opacity: 0.08;
+    }
+
+    .meal-card .card-details {
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+
+        margin-top: 22px;
+    }
+
+}
 
 
 /* ==========================================
    RESPONSIVE
 ========================================== */
+@media (max-width: 900px) {
+    .dashboard-main {
+        width: 92%;
+        padding-top: 100px;
+    }
+}
 
 @media (max-width: 800px) {
 
@@ -1180,6 +1510,10 @@ tbody tr:last-child td {
     .meals-card,
     .statistics-card {
         grid-column: auto;
+    }
+     .dashboard-main {
+        width: 92%;
+        padding-top: 100px;
     }
 
     .welcome-section {
@@ -1193,9 +1527,55 @@ tbody tr:last-child td {
     .stats-grid {
         grid-template-columns: 1fr;
     }
+  
+   
+     .student-passport {
+        width: 130px;
+        height: 165px;
+    }
+
+
 
 }
 
+/* Mobile */
+@media (max-width: 600px) {
+    .dashboard-main {
+        width: calc(100% - 24px);
+
+        padding-top: 85px;
+        padding-bottom: 50px;
+    }
+     .student-passport {
+        width: 130px;
+        height: 165px;
+    }
+     .meal-card {
+        padding: 22px;
+
+        border-radius: var(--radius-lg);
+    }
+
+
+    .meal-card-header {
+        align-items: flex-start;
+    }
+
+
+    .meal-card-body {
+        align-items: flex-start;
+
+        gap: 18px;
+    }
+ .meal-card .card-details {
+        flex-direction: column;
+
+        gap: 12px;
+
+        margin-top: 18px;
+    }
+
+}
 
 @media (max-width: 560px) {
 
@@ -1213,11 +1593,61 @@ tbody tr:last-child td {
         display: none;
     }
 
-    .dashboard-main {
+   .dashboard-main {
         width: 92%;
-
-        padding-top: 30px;
+        padding-top: 100px;
     }
+     .meal-card {
+        min-height: 270px;
+    }
+
+  
+
+  
+
+}
+
+
+@media (max-width: 420px) {
+
+    .meal-card {
+        padding: 18px;
+    }
+
+
+    .meal-card-header h3 {
+        font-size: 1.05rem;
+    }
+
+
+    .meal-card-body {
+        flex-direction: column;
+
+        align-items: center;
+
+        text-align: center;
+    }
+
+
+    .student-passport {
+        width: 95px;
+        height: 120px;
+    }
+
+
+    .meal-card-info {
+        width: 100%;
+    }
+
+
+    .meal-card .card-details {
+        align-items: center;
+    }
+
+}
+
+
+
 
     .dashboard-card {
         padding: 18px;
@@ -1235,5 +1665,5 @@ tbody tr:last-child td {
         font-size: 18px;
     }
 
-}
+
 

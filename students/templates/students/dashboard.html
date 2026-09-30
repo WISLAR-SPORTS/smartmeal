@@ -37,6 +37,10 @@
     rel="stylesheet"
     href="{% static 'students/css/dashboardicon.css' %}"
 >
+   <link
+    rel="stylesheet"
+    href="{% static 'students/css/topnav.css' %}"
+>
 </head>
 
 <body>
@@ -160,8 +164,16 @@
         >
 
             <div class="student-avatar">
-                {{ student.first_name|first|upper }}
-            </div>
+    {% if student.photo %}
+        <img
+            src="{{ student.photo.url }}"
+            alt="{{ student.first_name }} {{ student.last_name }}"
+        >
+    {% else %}
+        {{ student.first_name|first|upper }}
+    {% endif %}
+</div>
+
 
             <div class="student-details">
 
@@ -191,9 +203,17 @@
             <!-- DROPDOWN HEADER -->
             <div class="dropdown-header">
 
-                <div class="dropdown-avatar">
-                    {{ student.first_name|first|upper }}
-                </div>
+              <div class="student-avatar">
+    {% if student.photo %}
+        <img
+            src="{{ student.photo.url }}"
+            alt="{{ student.first_name }} {{ student.last_name }}"
+        >
+    {% else %}
+        {{ student.first_name|first|upper }}
+    {% endif %}
+</div>
+
 
                 <div>
 
@@ -213,6 +233,26 @@
             <div class="dropdown-divider"></div>
            
 
+                <button
+    type="button"
+    id="mobile-theme-toggle"
+    class="mobile-menu-item"
+    aria-label="Switch to dark mode"
+    aria-pressed="false"
+>
+    <span class="mobile-menu-icon">
+        <i data-lucide="moon"></i>
+    </span>
+
+    <span class="mobile-menu-text">
+        <strong>Dark Mode</strong>
+        <small>Switch appearance</small>
+    </span>
+
+    <span class="mobile-theme-indicator">
+        <i data-lucide="sun"></i>
+    </span>
+</button>
             <!-- PROFILE -->
             <a
                 href="{% url 'students:student_profile' %}"
@@ -543,74 +583,91 @@
         ======================================= -->
 
         <section class="dashboard-grid">
+<div class="dashboard-card meal-card">
+
+    <div class="meal-card-header">
+
+        <div>
+            <span class="card-eyebrow">
+                MEAL CARD
+            </span>
+
+            <h3>
+                My SmartMeal Card
+            </h3>
+        </div>
+
+        <span class="card-status">
+            ACTIVE
+        </span>
+
+    </div>
 
 
-            <!-- ==================================
-                 MEAL CARD
-            =================================== -->
+    <div class="meal-card-body">
 
-            <div class="dashboard-card meal-card">
+        <!-- PASSPORT PHOTO -->
+        <div class="student-passport">
 
-                <div class="card-header">
-
-                    <div>
-
-                        <span class="card-eyebrow">
-                            MEAL CARD
-                        </span>
-
-                        <h3>
-                            My SmartMeal Card
-                        </h3>
-
-                    </div>
-
-                    <span class="card-status">
-                        ACTIVE
-                    </span>
-
+            {% if student.photo %}
+                <img
+                    src="{{ student.photo.url }}"
+                    alt="{{ student.first_name }} {{ student.last_name }}"
+                >
+            {% else %}
+                <div class="passport-placeholder">
+                    {{ student.first_name|first|upper }}
                 </div>
+            {% endif %}
+
+        </div>
 
 
-                <div class="card-number">
+        <!-- CARD INFORMATION -->
+        <div class="meal-card-info">
 
+            <div class="card-number">
+
+                <span>
+                    Card Number
+                </span>
+
+                <strong>
+                    {{ meal_card.card_number|default:"Not assigned" }}
+                </strong>
+
+            </div>
+
+
+            <div class="card-details">
+
+                <div>
                     <span>
-                        Card Number
+                        Student
                     </span>
 
                     <strong>
-                        {{ meal_card.card_number|default:"Not assigned" }}
+                        {{ student.first_name }} {{ student.last_name }}
                     </strong>
-
                 </div>
 
+                <div>
+                    <span>
+                        Student ID
+                    </span>
 
-                <div class="card-details">
-
-                    <div>
-                        <span>
-                            Student
-                        </span>
-
-                        <strong>
-                            {{ request.user.get_full_name|default:request.user.username }}
-                        </strong>
-                    </div>
-
-                    <div>
-                        <span>
-                            Status
-                        </span>
-
-                        <strong class="success-text">
-                            Active
-                        </strong>
-                    </div>
-
+                    <strong>
+                        {{ student.student_id }}
+                    </strong>
                 </div>
 
             </div>
 
+        </div>
+
+    </div>
+
+</div>
 
             <!-- ==================================
                  QR CODE

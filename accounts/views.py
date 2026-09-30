@@ -151,9 +151,10 @@ def logout_view(request):
     logout(request)
     return redirect("accounts:login")
 
-
 @login_required
 def student_change_password(request):
+    student = request.user.student_profile
+
     if request.method == "POST":
         form = StudentPasswordChangeForm(
             request.user,
@@ -177,7 +178,7 @@ def student_change_password(request):
             )
 
             return redirect(
-                "accounts:student_settings"
+                "accounts:student_change_password"
             )
 
     else:
@@ -190,8 +191,10 @@ def student_change_password(request):
         "students/change_password.html",
         {
             "form": form,
+            "student": student,
         },
     )
+
 
 
 @login_required
@@ -214,7 +217,7 @@ def student_edit_profile(request):
             )
 
             return redirect(
-                "accounts:student_profile"
+                "accounts:student_edit_profile"
             )
 
     else:

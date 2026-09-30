@@ -133,9 +133,16 @@
             aria-expanded="false"
         >
 
-            <div class="student-avatar">
-                {{ student.first_name|first|upper }}
-            </div>
+           <div class="student-avatar">
+    {% if student.photo %}
+        <img
+            src="{{ student.photo.url }}"
+            alt="{{ student.first_name }} {{ student.last_name }}"
+        >
+    {% else %}
+        {{ student.first_name|first|upper }}
+    {% endif %}
+</div>
 
             <div class="student-details">
 
@@ -165,9 +172,17 @@
             <!-- DROPDOWN HEADER -->
             <div class="dropdown-header">
 
-                <div class="dropdown-avatar">
-                    {{ student.first_name|first|upper }}
-                </div>
+              <div class="dropdown-avatar">
+    {% if student.photo %}
+        <img
+            src="{{ student.photo.url }}"
+            alt="{{ student.first_name }} {{ student.last_name }}"
+        >
+    {% else %}
+        {{ student.first_name|first|upper }}
+    {% endif %}
+</div>
+
 
                 <div>
 
