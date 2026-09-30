@@ -1,0 +1,766 @@
+/* =========================================
+   SMARTMEAL — EDIT PROFILE
+   ========================================= */
+
+:root {
+    /* PRIMARY / BRAND */
+    --primary: #C95A43;
+    --primary-dark: #A94735;
+    --primary-light: #F7E9E5;
+
+    /* SUCCESS */
+    --success: #7C3AED;
+    --success-dark: #6324C5;
+    --success-light: #F3EEFF;
+
+    /* DANGER */
+    --danger: #B84D3A;
+    --danger-dark: #963C2D;
+    --danger-light: #F8E9E5;
+
+    /* WARNING */
+    --warning: #C28E2C;
+    --warning-dark: #A27622;
+    --warning-light: #F8F1DF;
+
+    /* TEXT */
+    --text: #241A24;
+    --text-light: #766A78;
+    --text-muted: #9B919D;
+    --text-white: #FFFFFF;
+
+    /* BORDERS */
+    --border: #E9E1DD;
+    --border-primary: #E4BDB3;
+    --border-secondary: #DDD0F4;
+
+    /* BACKGROUNDS */
+    --background: #FCFAF9;
+    --background-primary: #F9EFEC;
+    --background-secondary: #F7F2FF;
+
+    --white: #FFFFFF;
+    --card-bg: #FFFFFF;
+
+    /* SHADOWS */
+    --shadow-sm: 0 2px 10px rgba(74, 48, 58, 0.06);
+    --shadow: 0 8px 25px rgba(74, 48, 58, 0.09);
+    --shadow-lg: 0 15px 40px rgba(74, 48, 58, 0.12);
+
+    /* RADIUS */
+    --radius-sm: 6px;
+    --radius: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-pill: 999px;
+}
+
+
+/* =========================================
+   DARK THEME
+   ========================================= */
+
+[data-theme="dark"] {
+    --primary: #D9674E;
+    --primary-dark: #E97860;
+    --primary-light: #35211E;
+
+    --success: #9B7FE8;
+    --success-dark: #B29AF0;
+    --success-light: #241D35;
+
+    --danger: #D9674E;
+    --danger-dark: #C45A45;
+    --danger-light: #35211E;
+
+    --warning: #D0A943;
+    --warning-dark: #DFB95B;
+    --warning-light: #302814;
+
+    --text: #DDD6D9;
+    --text-light: #AAA0A6;
+    --text-muted: #82777F;
+    --text-white: #E5DFE2;
+
+    --border: #332C32;
+    --border-primary: #51332E;
+    --border-secondary: #3B3152;
+
+    --background: #141215;
+    --background-primary: #281A18;
+    --background-secondary: #201A2A;
+
+    --white: #1B171C;
+    --card-bg: #201B20;
+
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.30);
+    --shadow: 0 8px 25px rgba(0, 0, 0, 0.40);
+    --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.52);
+}
+
+
+/* =========================================
+   GLOBAL
+   ========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    color: var(--text);
+    background: var(--background);
+
+    line-height: 1.6;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+}
+
+
+/* =========================================
+   APP CONTAINER
+   ========================================= */
+
+.student-app {
+    min-height: 100vh;
+    background: var(--background);
+}
+
+
+/* =========================================
+   MAIN CONTENT
+   ========================================= */
+
+.dashboard-main {
+    width: min(1200px, calc(100% - 48px));
+    margin: 0 auto;
+
+    padding: 42px 0 60px;
+}
+
+
+/* =========================================
+   WELCOME / PAGE HEADER
+   ========================================= */
+
+.welcome-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+}
+
+.welcome-section > div {
+    max-width: 720px;
+}
+
+.eyebrow {
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    color: var(--primary);
+
+    font-size: 0.75rem;
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.welcome-section h2 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 750;
+
+    line-height: 1.2;
+}
+
+.welcome-section p {
+    margin: 10px 0 0;
+
+    color: var(--text-light);
+
+    font-size: 0.98rem;
+}
+
+
+/* =========================================
+   PROFILE CARD
+   ========================================= */
+
+.dashboard-card {
+    width: 100%;
+
+    padding: 30px;
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow);
+
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* =========================================
+   CARD HEADER
+   ========================================= */
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 22px;
+    margin-bottom: 28px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.card-eyebrow {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--primary);
+
+    font-size: 0.7rem;
+    font-weight: 800;
+
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+.card-header h3 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   FORM GRID
+   ========================================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 22px 24px;
+}
+
+
+/* =========================================
+   FORM GROUP
+   ========================================= */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+
+    color: var(--text);
+
+    font-size: 0.88rem;
+    font-weight: 650;
+}
+
+
+/* =========================================
+   INPUTS
+   Works with Django-generated form widgets
+   ========================================= */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    min-height: 46px;
+
+    padding: 11px 13px;
+
+    color: var(--text);
+    background: var(--background);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    outline: none;
+
+    font-size: 0.92rem;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-muted);
+}
+
+
+/* =========================================
+   INPUT FOCUS
+   ========================================= */
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(201, 90, 67, 0.12);
+
+    background: var(--card-bg);
+}
+
+
+/* =========================================
+   SELECT
+   ========================================= */
+
+.form-group select {
+    appearance: none;
+
+    padding-right: 40px;
+
+    background-image:
+        linear-gradient(45deg, transparent 50%, var(--text-light) 50%),
+        linear-gradient(135deg, var(--text-light) 50%, transparent 50%);
+
+    background-position:
+        calc(100% - 17px) 20px,
+        calc(100% - 12px) 20px;
+
+    background-size:
+        5px 5px,
+        5px 5px;
+
+    background-repeat: no-repeat;
+}
+
+
+/* =========================================
+   FILE INPUT
+   ========================================= */
+
+.form-group input[type="file"] {
+    min-height: auto;
+
+    padding: 9px;
+
+    cursor: pointer;
+
+    background: var(--background);
+}
+
+.form-group input[type="file"]::file-selector-button {
+    margin-right: 10px;
+
+    padding: 7px 12px;
+
+    color: var(--primary-dark);
+    background: var(--primary-light);
+
+    border: 0;
+    border-radius: var(--radius-sm);
+
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.form-group input[type="file"]::file-selector-button:hover {
+    color: var(--text-white);
+    background: var(--primary);
+}
+
+
+/* =========================================
+   VALIDATION ERRORS
+   ========================================= */
+
+.form-error {
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--danger);
+
+    font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+.form-errors {
+    margin-bottom: 22px;
+
+    padding: 12px 15px;
+
+    color: var(--danger);
+    background: var(--danger-light);
+
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius);
+
+    font-size: 0.88rem;
+}
+
+.form-errors ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+
+/* =========================================
+   INVALID INPUT
+   ========================================= */
+
+.form-group input:invalid:not(:placeholder-shown),
+.form-group select:invalid {
+    border-color: var(--danger);
+}
+
+
+/* =========================================
+   FORM ACTIONS
+   ========================================= */
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 32px;
+    padding-top: 24px;
+
+    border-top: 1px solid var(--border);
+}
+
+
+/* =========================================
+   BUTTON BASE
+   ========================================= */
+
+.primary-button,
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+
+    padding: 10px 20px;
+
+    border-radius: var(--radius);
+
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+/* =========================================
+   PRIMARY BUTTON
+   ========================================= */
+
+.primary-button {
+    color: var(--text-white);
+    background: var(--primary);
+
+    border: 1px solid var(--primary);
+
+    box-shadow:
+        0 4px 12px rgba(201, 90, 67, 0.18);
+}
+
+.primary-button:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+
+    box-shadow:
+        0 6px 16px rgba(201, 90, 67, 0.24);
+
+    transform: translateY(-1px);
+}
+
+.primary-button:active {
+    transform: translateY(0);
+}
+
+.primary-button:focus-visible {
+    outline: none;
+
+    box-shadow:
+        0 0 0 3px var(--primary-light),
+        0 0 0 5px var(--primary);
+}
+
+
+/* =========================================
+   SECONDARY BUTTON
+   ========================================= */
+
+.secondary-button {
+    color: var(--text);
+    background: var(--card-bg);
+
+    border: 1px solid var(--border);
+}
+
+.secondary-button:hover {
+    color: var(--primary-dark);
+
+    background: var(--primary-light);
+
+    border-color: var(--border-primary);
+}
+
+.secondary-button:focus-visible {
+    outline: none;
+
+    box-shadow:
+        0 0 0 3px var(--primary-light);
+}
+
+
+/* =========================================
+   DISABLED STATE
+   ========================================= */
+
+.primary-button:disabled,
+.secondary-button:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    transform: none;
+    box-shadow: none;
+}
+
+
+/* =========================================
+   DARK MODE OVERRIDES
+   ========================================= */
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea {
+    color-scheme: dark;
+}
+
+[data-theme="dark"] .form-group input[type="file"]::file-selector-button {
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+[data-theme="dark"] .primary-button {
+    color: #FFFFFF;
+
+    box-shadow:
+        0 4px 14px rgba(217, 103, 78, 0.22);
+}
+
+[data-theme="dark"] .primary-button:hover {
+    color: #FFFFFF;
+}
+
+
+/* =========================================
+   RESPONSIVE — TABLET
+   ========================================= */
+
+@media (max-width: 800px) {
+
+    .dashboard-main {
+        width: min(100% - 32px, 680px);
+
+        padding-top: 32px;
+        padding-bottom: 45px;
+    }
+
+    .dashboard-card {
+        padding: 24px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+
+        gap: 19px;
+    }
+
+}
+
+
+/* =========================================
+   RESPONSIVE — MOBILE
+   ========================================= */
+
+@media (max-width: 520px) {
+
+    .dashboard-main {
+        width: calc(100% - 24px);
+
+        padding-top: 24px;
+        padding-bottom: 35px;
+    }
+
+    .welcome-section {
+        margin-bottom: 22px;
+    }
+
+    .welcome-section h2 {
+        font-size: 1.65rem;
+    }
+
+    .welcome-section p {
+        font-size: 0.9rem;
+    }
+
+    .dashboard-card {
+        padding: 20px 16px;
+
+        border-radius: var(--radius);
+    }
+
+    .card-header {
+        padding-bottom: 18px;
+        margin-bottom: 22px;
+    }
+
+    .card-header h3 {
+        font-size: 1.15rem;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+
+        margin-top: 26px;
+        padding-top: 20px;
+    }
+
+    .primary-button,
+    .secondary-button {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+}
+
+
+/* =========================================
+   PRINT
+   ========================================= */
+
+@media print {
+
+    body {
+        color: #000;
+        background: #fff;
+    }
+
+    .dashboard-card {
+        border: 1px solid #ccc;
+        box-shadow: none;
+    }
+
+    .form-actions {
+        display: none;
+    }
+
+}
