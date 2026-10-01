@@ -1,0 +1,787 @@
+/* =========================================================
+   SMARTMEAL — NOTIFICATIONS PAGE
+   Modern • Responsive • Interactive • Dark Mode
+========================================================= */
+
+
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background: var(--background);
+    color: var(--text);
+
+    font-family: 'Times New Roman', Times, serif;
+
+    line-height: 1.5;
+
+    -webkit-font-smoothing: antialiased;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+
+/* =========================================================
+   APPLICATION
+========================================================= */
+
+.student-app {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            var(--background-primary),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 0% 100%,
+            var(--background-secondary),
+            transparent 28%
+        ),
+        var(--background);
+
+    transition: background 0.3s ease;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   IMPORTANT: TOPBAR SAFE AREA
+========================================================= */
+
+.dashboard-main {
+    width: min(100% - 48px, 1100px);
+
+    margin: 0 auto;
+
+    /*
+       Keeps content below the fixed topbar.
+       Do not reduce this on mobile.
+    */
+
+    padding-top: 120px;
+    padding-bottom: 70px;
+}
+
+
+/* =========================================================
+   WELCOME SECTION
+========================================================= */
+
+.welcome-section {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 180px;
+
+    margin-bottom: 28px;
+
+    padding: 38px 42px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-xl);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--background-primary),
+            var(--card-bg)
+        );
+
+    box-shadow: var(--shadow-sm);
+
+    overflow: hidden;
+
+    isolation: isolate;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.welcome-section:hover {
+    transform: translateY(-1px);
+
+    border-color: var(--border-primary);
+
+    box-shadow: var(--shadow);
+}
+
+
+/* Decorative circle */
+
+.welcome-section::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    right: -70px;
+    top: -105px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    opacity: 0.08;
+
+    z-index: -1;
+
+    pointer-events: none;
+}
+
+
+/* Decorative line */
+
+.welcome-section::before {
+    content: "";
+
+    position: absolute;
+
+    width: 75px;
+    height: 4px;
+
+    left: 42px;
+    bottom: 22px;
+
+    border-radius: var(--radius-pill);
+
+    background: var(--primary);
+
+    opacity: 0.75;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.eyebrow {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 9px;
+
+    color: var(--primary);
+
+    font-size: 0.72rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.15em;
+
+    text-transform: uppercase;
+}
+
+.eyebrow::before {
+    content: "";
+
+    width: 7px;
+    height: 7px;
+
+    flex: 0 0 7px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    box-shadow:
+        0 0 0 4px var(--primary-light);
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.welcome-section h2 {
+    position: relative;
+
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: clamp(
+        1.8rem,
+        4vw,
+        2.55rem
+    );
+
+    font-weight: 750;
+
+    letter-spacing: -0.045em;
+
+    line-height: 1.1;
+}
+
+.welcome-section p {
+    position: relative;
+
+    max-width: 620px;
+
+    margin: 10px 0 0;
+
+    color: var(--text-light);
+
+    font-size: 0.98rem;
+}
+
+
+/* =========================================================
+   NOTIFICATION CARD
+========================================================= */
+
+.dashboard-main > .dashboard-card {
+    position: relative;
+
+    min-height: 350px;
+
+    margin: 0;
+
+    padding: 0;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    background: var(--card-bg);
+
+    box-shadow: var(--shadow-sm);
+
+    overflow: hidden;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.3s ease;
+}
+
+.dashboard-main > .dashboard-card:hover {
+    border-color: var(--border-primary);
+
+    box-shadow: var(--shadow);
+}
+
+
+/* Top accent */
+
+.dashboard-main > .dashboard-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            transparent 75%
+        );
+
+    opacity: 0.75;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   EMPTY NOTIFICATION STATE
+========================================================= */
+
+.empty-history {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 350px;
+
+    padding: 55px 25px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   NOTIFICATION ICON
+========================================================= */
+
+.empty-icon {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 76px;
+    height: 76px;
+
+    margin-bottom: 20px;
+
+    border: 1px solid var(--border-primary);
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary-light),
+            var(--card-bg)
+        );
+
+    font-size: 1.8rem;
+
+    box-shadow:
+        0 10px 30px rgba(201, 90, 67, 0.12);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Small notification glow */
+
+.empty-icon::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -7px;
+
+    border: 1px solid var(--primary);
+
+    border-radius: 50%;
+
+    opacity: 0.10;
+
+    transform: scale(0.9);
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+
+/* Interactive icon */
+
+.dashboard-card:hover .empty-icon {
+    transform:
+        translateY(-5px)
+        rotate(-4deg);
+
+    box-shadow:
+        0 15px 35px rgba(201, 90, 67, 0.17);
+}
+
+.dashboard-card:hover .empty-icon::before {
+    transform: scale(1.08);
+
+    opacity: 0.16;
+}
+
+
+/* =========================================================
+   EMPTY TITLE
+========================================================= */
+
+.empty-history h3 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 1.2rem;
+
+    font-weight: 750;
+
+    letter-spacing: -0.025em;
+}
+
+
+/* =========================================================
+   EMPTY DESCRIPTION
+========================================================= */
+
+.empty-history p {
+    max-width: 430px;
+
+    margin: 8px auto 0;
+
+    color: var(--text-light);
+
+    font-size: 0.88rem;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   SUBTLE STATUS DOT
+========================================================= */
+
+.empty-history h3::after {
+    content: "";
+
+    display: inline-block;
+
+    width: 6px;
+    height: 6px;
+
+    margin-left: 8px;
+
+    vertical-align: middle;
+
+    border-radius: 50%;
+
+    background: var(--success);
+
+    opacity: 0.75;
+
+    box-shadow:
+        0 0 0 4px var(--success-light);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .dashboard-main {
+        width: calc(100% - 32px);
+
+        padding-top: 110px;
+
+        padding-bottom: 55px;
+    }
+
+
+    .welcome-section {
+        min-height: 160px;
+
+        padding: 32px;
+    }
+
+
+    .welcome-section::before {
+        left: 32px;
+    }
+
+
+    .dashboard-main > .dashboard-card {
+        min-height: 320px;
+    }
+
+
+    .empty-history {
+        min-height: 320px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    /*
+       TOPBAR CLEARANCE
+       This is the important part.
+    */
+
+    .dashboard-main {
+        width: calc(100% - 24px);
+
+        padding-top: 100px;
+
+        padding-bottom: 45px;
+    }
+
+
+    /* Welcome */
+
+    .welcome-section {
+        min-height: 150px;
+
+        margin-bottom: 18px;
+
+        padding: 27px 22px 32px;
+
+        border-radius: var(--radius-lg);
+    }
+
+
+    .welcome-section::after {
+        width: 160px;
+        height: 160px;
+
+        right: -55px;
+        top: -75px;
+    }
+
+
+    .welcome-section::before {
+        left: 22px;
+
+        bottom: 17px;
+
+        width: 60px;
+    }
+
+
+    .welcome-section h2 {
+        font-size: 1.7rem;
+    }
+
+
+    .welcome-section p {
+        max-width: 90%;
+
+        margin-top: 8px;
+
+        font-size: 0.88rem;
+
+        line-height: 1.55;
+    }
+
+
+    /* Notification card */
+
+    .dashboard-main > .dashboard-card {
+        min-height: 285px;
+
+        border-radius: var(--radius-lg);
+    }
+
+
+    .empty-history {
+        min-height: 285px;
+
+        padding: 40px 20px;
+    }
+
+
+    /* Icon */
+
+    .empty-icon {
+        width: 64px;
+        height: 64px;
+
+        margin-bottom: 17px;
+
+        font-size: 1.55rem;
+    }
+
+
+    /* Text */
+
+    .empty-history h3 {
+        font-size: 1.05rem;
+    }
+
+
+    .empty-history p {
+        max-width: 310px;
+
+        font-size: 0.81rem;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .dashboard-main {
+        width: calc(100% - 18px);
+
+        padding-top: 95px;
+
+        padding-bottom: 35px;
+    }
+
+
+    .welcome-section {
+        padding: 23px 18px 29px;
+    }
+
+
+    .welcome-section h2 {
+        font-size: 1.55rem;
+    }
+
+
+    .welcome-section p {
+        font-size: 0.82rem;
+    }
+
+
+    .dashboard-main > .dashboard-card {
+        min-height: 260px;
+    }
+
+
+    .empty-history {
+        min-height: 260px;
+
+        padding: 35px 15px;
+    }
+
+
+    .empty-icon {
+        width: 58px;
+        height: 58px;
+
+        font-size: 1.4rem;
+    }
+
+
+    .empty-history h3 {
+        font-size: 0.98rem;
+    }
+
+
+    .empty-history p {
+        max-width: 270px;
+
+        font-size: 0.78rem;
+    }
+
+
+    .empty-history h3::after {
+        width: 5px;
+        height: 5px;
+
+        margin-left: 6px;
+    }
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) {
+
+    .welcome-section:hover {
+        transform: none;
+
+        border-color: var(--border);
+
+        box-shadow: var(--shadow-sm);
+    }
+
+
+    .dashboard-main > .dashboard-card:hover {
+        border-color: var(--border);
+
+        box-shadow: var(--shadow-sm);
+    }
+
+
+    .dashboard-card:hover .empty-icon {
+        transform: none;
+
+        box-shadow:
+            0 10px 30px rgba(201, 90, 67, 0.12);
+    }
+
+
+    .dashboard-card:hover .empty-icon::before {
+        transform: scale(0.9);
+
+        opacity: 0.10;
+    }
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+[data-theme="dark"] .welcome-section {
+    background:
+        linear-gradient(
+            135deg,
+            var(--background-primary),
+            var(--card-bg)
+        );
+}
+
+
+[data-theme="dark"] .dashboard-main > .dashboard-card {
+    background: var(--card-bg);
+}
+
+
+[data-theme="dark"] .empty-icon {
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.30);
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+    }
+}

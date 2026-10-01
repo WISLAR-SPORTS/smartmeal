@@ -167,41 +167,7 @@
 }
 
 
-/* ==========================================
-   DROPDOWN AVATAR
-========================================== */
 
-.dropdown-avatar {
-    width: 48px;
-    height: 48px;
-
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    overflow: hidden;
-
-    border-radius: 50%;
-
-    background: var(--primary-light);
-    color: var(--primary);
-
-    border: 2px solid var(--border-primary);
-
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-.dropdown-avatar img {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-}
 
 
 
@@ -240,6 +206,38 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
+
+.brand-icon {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: white;
+}
+
+.brand-icon img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+}
+.brand-icon img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
 /* ==========================================
    TABLET
 ========================================== */
@@ -279,4 +277,60 @@
         width: 46px;
         height: 46px;
     }
+}
+/* ==========================================
+   DROPDOWN AVATAR
+========================================== */
+
+.dropdown-avatar {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    border: 2px solid var(--border-primary);
+
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.dropdown-avatar img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.mobile-profile-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e5e7eb;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.mobile-profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }

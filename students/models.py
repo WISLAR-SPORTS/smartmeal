@@ -2,7 +2,7 @@
 from django.db import models
 from accounts.models import User
 import secrets
-
+from cloudinary.models import CloudinaryField
 
 class University(models.Model):
     name = models.CharField(max_length=200)
@@ -62,6 +62,15 @@ class Student(models.Model):
         blank=True,
         null=True,
     )
+   
+
+    photo = CloudinaryField(
+    "photo",
+    folder="students/photos",
+    blank=True,
+    null=True,
+)
+  
 
     is_active = models.BooleanField(default=True)
 

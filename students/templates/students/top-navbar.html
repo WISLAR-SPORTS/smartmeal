@@ -1,4 +1,4 @@
-
+{% load static %}
 <!-- ==========================================
      TOP NAVBAR
 =========================================== -->
@@ -11,9 +11,12 @@
         class="brand"
     >
 
-        <div class="brand-icon">
-            SM
-        </div>
+                              <div class="brand-icon">
+    <img
+        src="{% static 'students/images/logo.jpg' %}"
+        alt="SmartMeal Logo"
+    >
+</div>
 
         <div class="brand-text">
             <h1>SmartMeal</h1>
@@ -375,4 +378,68 @@
     </div>
 
 </header>
+<!-- ==========================================
+     MOBILE BOTTOM NAVIGATION
+=========================================== -->
 
+<nav class="mobile-bottom-nav">
+
+    <a
+        href="{% url 'students:dashboard' %}"
+        class="mobile-nav-item"
+    >
+        <span>
+            <i data-lucide="house"></i>
+        </span>
+        <small>Home</small>
+    </a>
+
+    <a
+        href="{% url 'students:student_schedule' %}"
+        class="mobile-nav-item"
+    >
+        <span>
+            <i data-lucide="utensils"></i>
+        </span>
+        <small>Meals</small>
+    </a>
+
+    <a
+        href="{% url 'students:student_notifications' %}"
+        class="mobile-nav-item mobile-notification"
+    >
+        <span class="mobile-icon-wrapper">
+
+            <i data-lucide="bell"></i>
+
+            {% if unread_notifications %}
+                <b>{{ unread_notifications }}</b>
+            {% endif %}
+
+        </span>
+
+        <small>Alerts</small>
+    </a>
+
+    <!-- Profile -->
+    <a
+        href="{% url 'students:student_profile' %}"
+        class="mobile-nav-item"
+    >
+        <span class="mobile-profile-avatar">
+
+            {% if student.photo %}
+                <img
+                    src="{{ student.photo.url }}"
+                    alt="{{ student.first_name }} {{ student.last_name }}"
+                >
+            {% else %}
+                {{ student.first_name|first|upper }}
+            {% endif %}
+
+        </span>
+
+        <small>Profile</small>
+    </a>
+
+</nav>

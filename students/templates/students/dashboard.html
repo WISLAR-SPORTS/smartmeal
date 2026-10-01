@@ -56,9 +56,13 @@
     <!-- BRAND -->
     <a href="{% url 'students:dashboard' %}" class="brand">
 
-        <div class="brand-icon">
-            SM
-        </div>
+      
+                              <div class="brand-icon">
+    <img
+        src="{% static 'students/images/logo.jpg' %}"
+        alt="SmartMeal Logo"
+    >
+</div>
 
         <div class="brand-text">
             <h1>SmartMeal</h1>
@@ -395,58 +399,63 @@
 
 <nav class="mobile-bottom-nav">
 
-<a
-    href="{% url 'students:dashboard' %}"
-    class="mobile-nav-item"
->
-    <span>
-        <i data-lucide="house"></i>
-    </span>
-    <small>Home</small>
-</a>
+    <a
+        href="{% url 'students:dashboard' %}"
+        class="mobile-nav-item"
+    >
+        <span>
+            <i data-lucide="house"></i>
+        </span>
+        <small>Home</small>
+    </a>
 
-<a
-    href="{% url 'students:student_schedule' %}"
-    class="mobile-nav-item"
->
-    <span>
-        <i data-lucide="utensils"></i>
-    </span>
-    <small>Meals</small>
-</a>
+    <a
+        href="{% url 'students:student_schedule' %}"
+        class="mobile-nav-item"
+    >
+        <span>
+            <i data-lucide="utensils"></i>
+        </span>
+        <small>Meals</small>
+    </a>
 
     <a
         href="{% url 'students:student_notifications' %}"
         class="mobile-nav-item mobile-notification"
     >
+        <span class="mobile-icon-wrapper">
 
-    <span class="mobile-icon-wrapper">
+            <i data-lucide="bell"></i>
 
-    <i data-lucide="bell"></i>
+            {% if unread_notifications %}
+                <b>{{ unread_notifications }}</b>
+            {% endif %}
 
-    {% if unread_notifications %}
-        <b>
-            {{ unread_notifications }}
-        </b>
-    {% endif %}
-
-</span>
+        </span>
 
         <small>Alerts</small>
-
     </a>
 
-
-    <button
-        type="button"
-        id="mobile-profile-button"
+    <!-- Profile -->
+    <a
+        href="{% url 'students:student_profile' %}"
         class="mobile-nav-item"
     >
-       <span>
-    <i data-lucide="user"></i>
-</span>
+        <span class="mobile-profile-avatar">
+
+            {% if student.photo %}
+                <img
+                    src="{{ student.photo.url }}"
+                    alt="{{ student.first_name }} {{ student.last_name }}"
+                >
+            {% else %}
+                {{ student.first_name|first|upper }}
+            {% endif %}
+
+        </span>
+
         <small>Profile</small>
-    </button>
+    </a>
 
 </nav>
 

@@ -1,0 +1,924 @@
+/* =========================================================
+   SMARTMEAL — MEAL HISTORY
+   Modern • Responsive • Interactive • Dark Mode
+========================================================= */
+
+
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background: var(--background);
+    color: var(--text);
+
+   
+    font-family: 'Times New Roman', Times, serif;
+
+    line-height: 1.5;
+
+    -webkit-font-smoothing: antialiased;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+
+/* =========================================================
+   APPLICATION BACKGROUND
+========================================================= */
+
+.student-app {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            var(--background-primary),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 0% 100%,
+            var(--background-secondary),
+            transparent 28%
+        ),
+        var(--background);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   TOPBAR SAFE AREA
+========================================================= */
+
+.dashboard-main {
+    width: min(100% - 48px, 1100px);
+
+    margin: 0 auto;
+
+    /*
+       IMPORTANT:
+       The topbar is fixed/sticky.
+       Keep the page below it.
+    */
+
+    padding-top: 120px;
+    padding-bottom: 70px;
+}
+
+
+/* =========================================================
+   WELCOME SECTION
+========================================================= */
+
+.welcome-section {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 180px;
+
+    margin-bottom: 28px;
+
+    padding: 38px 42px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-xl);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--background-primary),
+            var(--card-bg)
+        );
+
+    box-shadow: var(--shadow-sm);
+
+    overflow: hidden;
+
+    isolation: isolate;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.welcome-section:hover {
+    border-color: var(--border-primary);
+
+    box-shadow: var(--shadow);
+}
+
+
+/* Decorative circle */
+
+.welcome-section::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    right: -70px;
+    top: -105px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    opacity: 0.08;
+
+    z-index: -1;
+
+    pointer-events: none;
+}
+
+
+/* Decorative accent */
+
+.welcome-section::before {
+    content: "";
+
+    position: absolute;
+
+    width: 75px;
+    height: 4px;
+
+    left: 42px;
+    bottom: 22px;
+
+    border-radius: var(--radius-pill);
+
+    background: var(--primary);
+
+    opacity: 0.75;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.eyebrow {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 9px;
+
+    color: var(--primary);
+
+    font-size: 0.72rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.15em;
+
+    text-transform: uppercase;
+}
+
+.eyebrow::before {
+    content: "";
+
+    width: 7px;
+    height: 7px;
+
+    flex: 0 0 7px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    box-shadow:
+        0 0 0 4px var(--primary-light);
+}
+
+
+/* =========================================================
+   PAGE TITLE
+========================================================= */
+
+.welcome-section h2 {
+    position: relative;
+
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: clamp(
+        1.8rem,
+        4vw,
+        2.55rem
+    );
+
+    font-weight: 750;
+
+    letter-spacing: -0.045em;
+
+    line-height: 1.1;
+}
+
+.welcome-section p {
+    position: relative;
+
+    margin: 10px 0 0;
+
+    max-width: 600px;
+
+    color: var(--text-light);
+
+    font-size: 0.98rem;
+}
+
+
+/* =========================================================
+   HISTORY CARD
+========================================================= */
+
+.dashboard-main > .dashboard-card {
+    position: relative;
+
+    padding: 0;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    background: var(--card-bg);
+
+    box-shadow: var(--shadow-sm);
+
+    overflow: hidden;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.3s ease;
+}
+
+.dashboard-main > .dashboard-card:hover {
+    border-color: var(--border-primary);
+
+    box-shadow: var(--shadow);
+}
+
+
+/* Accent line */
+
+.dashboard-main > .dashboard-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            transparent 75%
+        );
+
+    opacity: 0.75;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        var(--border-primary)
+        transparent;
+}
+
+
+/* Chrome / Edge / Safari scrollbar */
+
+.table-wrapper::-webkit-scrollbar {
+    height: 7px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: var(--border-primary);
+
+    border-radius: var(--radius-pill);
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-wrapper table {
+    width: 100%;
+
+    min-width: 650px;
+
+    border-collapse: separate;
+
+    border-spacing: 0;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.table-wrapper thead {
+    background:
+        var(--background);
+}
+
+.table-wrapper th {
+    padding: 17px 24px;
+
+    border-bottom: 1px solid var(--border);
+
+    color: var(--text-muted);
+
+    font-size: 0.69rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLE BODY
+========================================================= */
+
+.table-wrapper td {
+    padding: 18px 24px;
+
+    border-bottom: 1px solid var(--border);
+
+    color: var(--text-light);
+
+    font-size: 0.88rem;
+
+    white-space: nowrap;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+/* Remove final border */
+
+.table-wrapper tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   TABLE ROW INTERACTION
+========================================================= */
+
+.table-wrapper tbody tr {
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.table-wrapper tbody tr:hover td {
+    background: var(--background);
+
+    color: var(--text);
+}
+
+
+/* First column */
+
+.table-wrapper td:first-child {
+    color: var(--text);
+
+    font-weight: 700;
+}
+
+
+/* Date */
+
+.table-wrapper td:nth-child(2) {
+    color: var(--text-light);
+}
+
+
+/* Time */
+
+.table-wrapper td:nth-child(3) {
+    color: var(--text);
+
+    font-weight: 650;
+
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* =========================================================
+   STATUS BADGES
+========================================================= */
+
+.table-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    min-height: 29px;
+
+    padding: 5px 11px;
+
+    border: 1px solid transparent;
+
+    border-radius: var(--radius-pill);
+
+    font-size: 0.66rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.03em;
+
+    white-space: nowrap;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Success */
+
+.table-status.success {
+    color: var(--success);
+
+    background: var(--success-light);
+
+    border-color: var(--border-secondary);
+}
+
+
+/* Rejected */
+
+.table-status.rejected {
+    color: var(--danger);
+
+    background: var(--danger-light);
+
+    border-color: var(--border-primary);
+}
+
+
+/* Badge interaction */
+
+.table-wrapper tr:hover .table-status {
+    transform: translateY(-1px);
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* =========================================================
+   EMPTY HISTORY
+========================================================= */
+
+.empty-history {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 320px;
+
+    padding: 45px 25px;
+
+    text-align: center;
+}
+
+
+/* Empty icon */
+
+.empty-icon {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 68px;
+    height: 68px;
+
+    margin-bottom: 17px;
+
+    border: 1px solid var(--border-primary);
+
+    border-radius: 50%;
+
+    background: var(--primary-light);
+
+    font-size: 1.7rem;
+
+    box-shadow:
+        0 10px 25px rgba(201, 90, 67, 0.10);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.empty-history:hover .empty-icon {
+    transform:
+        translateY(-4px)
+        rotate(-4deg);
+
+    box-shadow:
+        0 14px 30px rgba(201, 90, 67, 0.15);
+}
+
+
+/* Empty heading */
+
+.empty-history h3 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 1.12rem;
+
+    font-weight: 700;
+
+    letter-spacing: -0.02em;
+}
+
+
+/* Empty description */
+
+.empty-history p {
+    margin: 7px 0 0;
+
+    color: var(--text-light);
+
+    font-size: 0.86rem;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .dashboard-main {
+        width: calc(100% - 32px);
+
+        padding-top: 110px;
+
+        padding-bottom: 55px;
+    }
+
+
+    .welcome-section {
+        min-height: 160px;
+
+        padding: 32px;
+    }
+
+
+    .welcome-section::before {
+        left: 32px;
+    }
+
+
+    .table-wrapper th {
+        padding: 16px 20px;
+    }
+
+
+    .table-wrapper td {
+        padding: 17px 20px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    /*
+       IMPORTANT:
+       100px top clearance prevents the fixed
+       topbar from covering the content.
+    */
+
+    .dashboard-main {
+        width: calc(100% - 24px);
+
+        padding-top: 100px;
+
+        padding-bottom: 45px;
+    }
+
+
+    /* Welcome */
+
+    .welcome-section {
+        min-height: 150px;
+
+        margin-bottom: 18px;
+
+        padding: 27px 22px 32px;
+
+        border-radius: var(--radius-lg);
+    }
+
+
+    .welcome-section::after {
+        width: 160px;
+        height: 160px;
+
+        right: -55px;
+        top: -75px;
+    }
+
+
+    .welcome-section::before {
+        left: 22px;
+
+        bottom: 17px;
+
+        width: 60px;
+    }
+
+
+    .welcome-section h2 {
+        font-size: 1.7rem;
+    }
+
+
+    .welcome-section p {
+        max-width: 90%;
+
+        margin-top: 8px;
+
+        font-size: 0.88rem;
+
+        line-height: 1.55;
+    }
+
+
+    /* History card */
+
+    .dashboard-main > .dashboard-card {
+        border-radius: var(--radius-lg);
+    }
+
+
+    /*
+       Give mobile tables enough width to remain
+       readable. User can swipe horizontally.
+    */
+
+    .table-wrapper table {
+        min-width: 620px;
+    }
+
+
+    .table-wrapper th {
+        padding: 15px 17px;
+
+        font-size: 0.62rem;
+    }
+
+
+    .table-wrapper td {
+        padding: 16px 17px;
+
+        font-size: 0.82rem;
+    }
+
+
+    .table-status {
+        min-height: 27px;
+
+        padding: 4px 9px;
+
+        font-size: 0.61rem;
+    }
+
+
+    /* Empty state */
+
+    .empty-history {
+        min-height: 270px;
+
+        padding: 40px 20px;
+    }
+
+
+    .empty-icon {
+        width: 60px;
+        height: 60px;
+
+        font-size: 1.5rem;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .dashboard-main {
+        width: calc(100% - 18px);
+
+        padding-top: 95px;
+
+        padding-bottom: 35px;
+    }
+
+
+    .welcome-section {
+        padding: 23px 18px 29px;
+    }
+
+
+    .welcome-section h2 {
+        font-size: 1.55rem;
+    }
+
+
+    .welcome-section p {
+        font-size: 0.82rem;
+    }
+
+
+    .table-wrapper table {
+        min-width: 590px;
+    }
+
+
+    .table-wrapper th {
+        padding: 14px;
+    }
+
+
+    .table-wrapper td {
+        padding: 15px 14px;
+
+        font-size: 0.79rem;
+    }
+
+
+    .empty-history {
+        min-height: 240px;
+
+        padding: 35px 15px;
+    }
+
+
+    .empty-history h3 {
+        font-size: 1rem;
+    }
+
+
+    .empty-history p {
+        font-size: 0.8rem;
+    }
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) {
+
+    .dashboard-main > .dashboard-card:hover {
+        box-shadow: var(--shadow-sm);
+
+        border-color: var(--border);
+    }
+
+
+    .table-wrapper tbody tr:hover td {
+        background: transparent;
+    }
+
+
+    .table-wrapper tr:hover .table-status {
+        transform: none;
+
+        box-shadow: none;
+    }
+
+
+    .empty-history:hover .empty-icon {
+        transform: none;
+
+        box-shadow:
+            0 10px 25px rgba(201, 90, 67, 0.10);
+    }
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+[data-theme="dark"] .dashboard-main > .dashboard-card:hover {
+    border-color: var(--border-primary);
+}
+
+
+[data-theme="dark"] .table-wrapper thead {
+    background: var(--background);
+}
+
+
+[data-theme="dark"] .table-wrapper tbody tr:hover td {
+    background: var(--background);
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+
+    *,
+    *::before {
+        transition-duration: 0.01ms !important;
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+    }
+}

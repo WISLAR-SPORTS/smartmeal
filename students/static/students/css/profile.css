@@ -1,11 +1,11 @@
 /* =========================================================
-   SMARTMEAL — CHANGE PASSWORD
-   Modern • Responsive • Dark Mode • Mobile Safe
+   SMARTMEAL — STUDENT PROFILE
+   Modern • Responsive • Interactive • Dark Mode
 ========================================================= */
 
 
 /* =========================================================
-   RESET
+   GLOBAL RESET
 ========================================================= */
 
 *,
@@ -36,12 +36,6 @@ body {
         color 0.3s ease;
 }
 
-button,
-input,
-a {
-    font: inherit;
-}
-
 
 /* =========================================================
    APPLICATION
@@ -69,104 +63,21 @@ a {
 
 /* =========================================================
    MAIN CONTENT
-   SAFE SPACE BELOW FIXED TOPBAR
+   TOPBAR SAFE AREA
 ========================================================= */
 
 .dashboard-main {
-    width: min(100% - 48px, 900px);
+    width: min(100% - 48px, 1100px);
 
     margin: 0 auto;
 
     /*
-       Desktop topbar clearance.
-       This prevents content from sitting underneath
-       a fixed navigation bar.
+       IMPORTANT:
+       Provides enough room below the fixed topbar.
     */
 
     padding-top: 120px;
     padding-bottom: 70px;
-}
-
-
-/* =========================================================
-   FLASH MESSAGES
-========================================================= */
-
-.messages {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 10px;
-
-    margin-bottom: 20px;
-}
-
-.message {
-    position: relative;
-
-    padding: 13px 17px;
-
-    border: 1px solid var(--border);
-
-    border-radius: var(--radius);
-
-    background: var(--card-bg);
-
-    color: var(--text);
-
-    font-size: 0.86rem;
-
-    box-shadow: var(--shadow-sm);
-
-    animation:
-        messageSlide 0.35s ease both;
-}
-
-@keyframes messageSlide {
-    from {
-        opacity: 0;
-        transform: translateY(-8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* Success */
-
-.message-success {
-    border-color: rgba(124, 58, 237, 0.25);
-
-    background: var(--success-light);
-
-    color: var(--success-dark);
-}
-
-
-/* Error */
-
-.message-error,
-.message-danger {
-    border-color: rgba(184, 77, 58, 0.25);
-
-    background: var(--danger-light);
-
-    color: var(--danger-dark);
-}
-
-
-/* Warning */
-
-.message-warning {
-    border-color: rgba(194, 142, 44, 0.25);
-
-    background: var(--warning-light);
-
-    color: var(--warning-dark);
 }
 
 
@@ -178,14 +89,13 @@ a {
     position: relative;
 
     display: flex;
-
     align-items: center;
 
-    min-height: 170px;
+    min-height: 180px;
 
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 
-    padding: 36px 40px;
+    padding: 38px 42px;
 
     border: 1px solid var(--border);
 
@@ -226,11 +136,11 @@ a {
 
     position: absolute;
 
-    width: 190px;
-    height: 190px;
+    width: 220px;
+    height: 220px;
 
-    right: -65px;
-    top: -75px;
+    right: -70px;
+    top: -105px;
 
     border-radius: 50%;
 
@@ -251,17 +161,19 @@ a {
 
     position: absolute;
 
-    left: 40px;
-    bottom: 21px;
-
-    width: 70px;
+    width: 75px;
     height: 4px;
+
+    left: 42px;
+    bottom: 22px;
 
     border-radius: var(--radius-pill);
 
     background: var(--primary);
 
     opacity: 0.75;
+
+    pointer-events: none;
 }
 
 
@@ -276,15 +188,15 @@ a {
 
     gap: 8px;
 
-    margin-bottom: 8px;
+    margin-bottom: 9px;
 
     color: var(--primary);
 
-    font-size: 0.7rem;
+    font-size: 0.72rem;
 
     font-weight: 800;
 
-    letter-spacing: 0.14em;
+    letter-spacing: 0.15em;
 
     text-transform: uppercase;
 }
@@ -307,7 +219,7 @@ a {
 
 
 /* =========================================================
-   TITLE
+   PAGE TITLE
 ========================================================= */
 
 .welcome-section h2 {
@@ -316,9 +228,9 @@ a {
     color: var(--text);
 
     font-size: clamp(
-        1.75rem,
+        1.8rem,
         4vw,
-        2.4rem
+        2.55rem
     );
 
     font-weight: 750;
@@ -329,22 +241,26 @@ a {
 }
 
 .welcome-section p {
-    margin: 9px 0 0;
+    max-width: 620px;
+
+    margin: 10px 0 0;
 
     color: var(--text-light);
 
-    font-size: 0.94rem;
+    font-size: 0.98rem;
 }
 
 
 /* =========================================================
-   PASSWORD CARD
+   PROFILE CARDS
 ========================================================= */
 
-.dashboard-card {
+.dashboard-main > .dashboard-card {
     position: relative;
 
-    padding: 32px;
+    margin-bottom: 22px;
+
+    padding: 30px;
 
     border: 1px solid var(--border);
 
@@ -363,7 +279,7 @@ a {
         background-color 0.3s ease;
 }
 
-.dashboard-card:hover {
+.dashboard-main > .dashboard-card:hover {
     transform: translateY(-2px);
 
     border-color: var(--border-primary);
@@ -372,15 +288,15 @@ a {
 }
 
 
-/* Top accent */
+/* Accent line */
 
-.dashboard-card::before {
+.dashboard-main > .dashboard-card::before {
     content: "";
 
     position: absolute;
 
-    top: 0;
     left: 0;
+    top: 0;
 
     width: 100%;
     height: 3px;
@@ -407,7 +323,13 @@ a {
 
     justify-content: space-between;
 
-    margin-bottom: 26px;
+    gap: 20px;
+
+    margin-bottom: 24px;
+}
+
+.card-header > div {
+    min-width: 0;
 }
 
 .card-eyebrow {
@@ -417,7 +339,7 @@ a {
 
     color: var(--primary);
 
-    font-size: 0.67rem;
+    font-size: 0.68rem;
 
     font-weight: 800;
 
@@ -436,166 +358,179 @@ a {
     font-weight: 750;
 
     letter-spacing: -0.025em;
+
+    line-height: 1.25;
+
+    overflow-wrap: anywhere;
 }
 
 
 /* =========================================================
-   FORM
+   ACCOUNT STATUS
 ========================================================= */
 
-form {
-    width: 100%;
+.card-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    min-height: 30px;
+
+    padding: 5px 12px;
+
+    border: 1px solid var(--border-secondary);
+
+    border-radius: var(--radius-pill);
+
+    background: var(--success-light);
+
+    color: var(--success);
+
+    font-size: 0.64rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.06em;
+
+    white-space: nowrap;
+}
+
+
+/* Status indicator */
+
+.card-status::before {
+    content: "";
+
+    width: 6px;
+    height: 6px;
+
+    margin-right: 6px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+
+    box-shadow:
+        0 0 0 3px var(--success-light);
 }
 
 
 /* =========================================================
-   FORM ERRORS
+   PROFILE INFORMATION GRID
 ========================================================= */
 
-.form-errors {
-    margin-bottom: 20px;
+.card-details {
+    display: grid;
 
-    padding: 14px 16px;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
-    border: 1px solid rgba(184, 77, 58, 0.25);
+    gap: 1px;
 
-    border-radius: var(--radius);
-
-    background: var(--danger-light);
-
-    color: var(--danger-dark);
-
-    font-size: 0.84rem;
-}
-
-.form-errors ul {
-    margin: 0;
-
-    padding-left: 20px;
-}
-
-
-/* =========================================================
-   FORM GROUP
-========================================================= */
-
-.form-group {
-    display: flex;
-
-    flex-direction: column;
-
-    margin-bottom: 20px;
-}
-
-
-/* Label */
-
-.form-group label {
-    margin-bottom: 8px;
-
-    color: var(--text);
-
-    font-size: 0.83rem;
-
-    font-weight: 700;
-}
-
-
-/* =========================================================
-   INPUTS
-   Works with Django generated inputs
-========================================================= */
-
-.form-group input {
-    width: 100%;
-
-    min-height: 48px;
-
-    padding: 0 15px;
+    overflow: hidden;
 
     border: 1px solid var(--border);
 
     border-radius: var(--radius);
 
-    outline: none;
+    background: var(--border);
+}
 
-    background: var(--background);
 
-    color: var(--text);
+/* =========================================================
+   INFORMATION ITEM
+========================================================= */
 
-    font-size: 0.9rem;
+.card-details > div {
+    display: flex;
+
+    flex-direction: column;
+
+    min-width: 0;
+
+    min-height: 88px;
+
+    padding: 18px 20px;
+
+    background: var(--card-bg);
 
     transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
         background-color 0.2s ease,
         transform 0.2s ease;
 }
 
 
-/* Placeholder */
+/* Hover */
 
-.form-group input::placeholder {
+.card-details > div:hover {
+    background: var(--background);
+
+    transform: translateY(-1px);
+}
+
+
+/* Label */
+
+.card-details > div > span {
+    margin-bottom: 6px;
+
     color: var(--text-muted);
+
+    font-size: 0.68rem;
+
+    font-weight: 750;
+
+    letter-spacing: 0.07em;
+
+    text-transform: uppercase;
 }
 
 
-/* Focus */
+/* Value */
 
-.form-group input:focus {
-    border-color: var(--primary);
+.card-details > div > strong {
+    color: var(--text);
 
-    background: var(--card-bg);
+    font-size: 0.92rem;
 
-    box-shadow:
-        0 0 0 4px var(--primary-light);
-}
-
-
-/* Invalid input */
-
-.form-group input:invalid:not(:placeholder-shown) {
-    border-color: var(--danger);
-}
-
-
-/* =========================================================
-   FIELD ERROR
-========================================================= */
-
-.form-error {
-    display: block;
-
-    margin-top: 7px;
-
-    color: var(--danger);
-
-    font-size: 0.76rem;
-
-    font-weight: 600;
+    font-weight: 650;
 
     line-height: 1.4;
+
+    overflow-wrap: anywhere;
 }
 
 
 /* =========================================================
-   FORM ACTIONS
+   ACTION CARDS
 ========================================================= */
 
-.form-actions {
-    display: flex;
+/*
+   Profile Settings and Account Security
+*/
 
-    align-items: center;
+.dashboard-main > .dashboard-card:nth-of-type(3),
+.dashboard-main > .dashboard-card:nth-of-type(4) {
+    position: relative;
+}
 
-    justify-content: flex-end;
 
-    gap: 12px;
+/* Description */
 
-    margin-top: 28px;
+.dashboard-main > .dashboard-card > p {
+    margin: 0 0 20px;
 
-    padding-top: 23px;
+    max-width: 700px;
 
-    border-top: 1px solid var(--border);
+    color: var(--text-light);
+
+    font-size: 0.88rem;
+
+    line-height: 1.6;
 }
 
 
@@ -610,23 +545,23 @@ form {
 
     justify-content: center;
 
-    min-height: 46px;
+    min-height: 44px;
 
-    padding: 0 21px;
+    padding: 0 20px;
 
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-primary);
 
     border-radius: var(--radius);
 
-    background: var(--background);
+    background: var(--primary-light);
 
-    color: var(--text-light);
+    color: var(--primary-dark);
 
     text-decoration: none;
 
     font-size: 0.86rem;
 
-    font-weight: 700;
+    font-weight: 750;
 
     white-space: nowrap;
 
@@ -643,78 +578,20 @@ form {
 .secondary-button:hover {
     transform: translateY(-2px);
 
-    border-color: var(--border-primary);
+    background: var(--primary);
 
-    background: var(--primary-light);
+    border-color: var(--primary);
 
-    color: var(--primary-dark);
+    color: var(--text-white);
+
+    box-shadow:
+        0 8px 22px rgba(201, 90, 67, 0.20);
 }
 
 .secondary-button:active {
     transform: translateY(0);
 }
 
-
-/* =========================================================
-   PRIMARY BUTTON
-========================================================= */
-
-.primary-button {
-    display: inline-flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    min-height: 46px;
-
-    padding: 0 23px;
-
-    border: 1px solid var(--primary);
-
-    border-radius: var(--radius);
-
-    background: var(--primary);
-
-    color: var(--text-white);
-
-    font-size: 0.86rem;
-
-    font-weight: 750;
-
-    white-space: nowrap;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 5px 15px rgba(201, 90, 67, 0.16);
-
-    transition:
-        transform 0.2s ease,
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.primary-button:hover {
-    transform: translateY(-2px);
-
-    background: var(--primary-dark);
-
-    border-color: var(--primary-dark);
-
-    box-shadow:
-        0 9px 22px rgba(201, 90, 67, 0.25);
-}
-
-.primary-button:active {
-    transform: translateY(0);
-
-    box-shadow:
-        0 4px 10px rgba(201, 90, 67, 0.15);
-}
-
-.primary-button:focus-visible,
 .secondary-button:focus-visible {
     outline: none;
 
@@ -740,7 +617,7 @@ form {
 
 
     .welcome-section {
-        min-height: 155px;
+        min-height: 160px;
 
         padding: 32px;
     }
@@ -751,8 +628,13 @@ form {
     }
 
 
-    .dashboard-card {
-        padding: 27px;
+    .dashboard-main > .dashboard-card {
+        padding: 25px;
+    }
+
+
+    .card-details > div {
+        padding: 17px 18px;
     }
 }
 
@@ -764,158 +646,147 @@ form {
 @media (max-width: 600px) {
 
     /*
-       TOPBAR FIX
-       Do NOT remove this top spacing.
-
-       Your navbar is fixed/absolute, so the content
-       needs its own vertical clearance.
+       IMPORTANT:
+       Keep enough clearance for the topbar.
     */
 
     .dashboard-main {
         width: calc(100% - 24px);
 
-        /*
-           Increased mobile clearance.
-           This is what prevents the topbar from covering
-           the welcome section.
-        */
-
-        padding-top: 105px;
+        padding-top: 100px;
 
         padding-bottom: 45px;
-    }
-
-
-    /* Messages */
-
-    .messages {
-        margin-bottom: 16px;
-    }
-
-
-    .message {
-        padding: 12px 14px;
-
-        font-size: 0.8rem;
     }
 
 
     /* Welcome */
 
     .welcome-section {
-        min-height: 145px;
+        min-height: 150px;
 
         margin-bottom: 18px;
 
-        padding: 26px 21px 30px;
+        padding: 27px 22px 32px;
 
         border-radius: var(--radius-lg);
     }
 
 
     .welcome-section::after {
-        width: 150px;
-        height: 150px;
+        width: 160px;
+        height: 160px;
 
         right: -55px;
-        top: -65px;
+        top: -75px;
     }
 
 
     .welcome-section::before {
-        left: 21px;
+        left: 22px;
 
-        bottom: 15px;
+        bottom: 17px;
 
-        width: 58px;
+        width: 60px;
     }
 
 
     .welcome-section h2 {
-        font-size: 1.68rem;
+        font-size: 1.7rem;
     }
 
 
     .welcome-section p {
         max-width: 90%;
 
-        font-size: 0.86rem;
+        margin-top: 8px;
+
+        font-size: 0.88rem;
     }
 
 
-    /* Password card */
+    /* Cards */
 
-    .dashboard-card {
+    .dashboard-main > .dashboard-card {
+        margin-bottom: 16px;
+
         padding: 21px 18px;
 
         border-radius: var(--radius-lg);
     }
 
 
+    /* Header */
+
     .card-header {
-        margin-bottom: 21px;
+        align-items: flex-start;
+
+        gap: 12px;
+
+        margin-bottom: 18px;
     }
 
 
     .card-header h3 {
-        font-size: 1.08rem;
+        font-size: 1.05rem;
     }
 
 
-    .card-eyebrow {
-        font-size: 0.62rem;
+    .card-status {
+        min-height: 27px;
+
+        padding: 4px 9px;
+
+        font-size: 0.58rem;
     }
 
 
-    /* Form */
+    /* Information grid becomes one column */
 
-    .form-group {
-        margin-bottom: 17px;
+    .card-details {
+        grid-template-columns: 1fr;
+
+        gap: 1px;
+
+        border-radius: var(--radius);
     }
 
 
-    .form-group label {
-        margin-bottom: 7px;
+    .card-details > div {
+        min-height: 72px;
 
-        font-size: 0.8rem;
+        padding: 15px 16px;
     }
 
 
-    .form-group input {
-        min-height: 47px;
+    .card-details > div > span {
+        font-size: 0.63rem;
+    }
 
-        padding: 0 13px;
 
+    .card-details > div > strong {
         font-size: 0.86rem;
     }
 
 
-    /* Buttons */
+    /* Action card */
 
-    .form-actions {
-        flex-direction: column-reverse;
+    .dashboard-main > .dashboard-card > p {
+        margin-bottom: 17px;
 
-        align-items: stretch;
-
-        gap: 10px;
-
-        margin-top: 23px;
-
-        padding-top: 20px;
+        font-size: 0.82rem;
     }
 
 
-    .primary-button,
     .secondary-button {
         width: 100%;
 
-        min-height: 48px;
+        min-height: 47px;
     }
 }
 
 
 /* =========================================================
-   SMALL PHONES
+   VERY SMALL PHONES
 ========================================================= */
 
 @media (max-width: 380px) {
@@ -923,32 +794,28 @@ form {
     .dashboard-main {
         width: calc(100% - 18px);
 
-        /*
-           Extra-safe topbar clearance.
-        */
-
-        padding-top: 100px;
+        padding-top: 95px;
 
         padding-bottom: 35px;
     }
 
 
     .welcome-section {
-        padding: 23px 18px 28px;
+        padding: 23px 18px 29px;
     }
 
 
     .welcome-section h2 {
-        font-size: 1.52rem;
+        font-size: 1.55rem;
     }
 
 
     .welcome-section p {
-        font-size: 0.8rem;
+        font-size: 0.82rem;
     }
 
 
-    .dashboard-card {
+    .dashboard-main > .dashboard-card {
         padding: 18px 15px;
     }
 
@@ -958,18 +825,27 @@ form {
     }
 
 
-    .form-group input {
-        min-height: 45px;
+    .card-status {
+        padding: 4px 8px;
 
-        font-size: 0.83rem;
+        font-size: 0.55rem;
     }
 
 
-    .primary-button,
-    .secondary-button {
-        min-height: 46px;
+    .card-details > div {
+        min-height: 68px;
 
+        padding: 14px;
+    }
+
+
+    .card-details > div > strong {
         font-size: 0.82rem;
+    }
+
+
+    .dashboard-main > .dashboard-card > p {
+        font-size: 0.79rem;
     }
 }
 
@@ -980,8 +856,7 @@ form {
 
 @media (hover: none) {
 
-    .welcome-section:hover,
-    .dashboard-card:hover {
+    .welcome-section:hover {
         transform: none;
 
         border-color: var(--border);
@@ -990,7 +865,22 @@ form {
     }
 
 
-    .primary-button:hover,
+    .dashboard-main > .dashboard-card:hover {
+        transform: none;
+
+        border-color: var(--border);
+
+        box-shadow: var(--shadow-sm);
+    }
+
+
+    .card-details > div:hover {
+        transform: none;
+
+        background: var(--card-bg);
+    }
+
+
     .secondary-button:hover {
         transform: none;
 
@@ -1013,34 +903,33 @@ form {
 }
 
 
-[data-theme="dark"] .form-group input {
-    background: var(--background);
-
-    color: var(--text);
+[data-theme="dark"] .card-details {
+    background: var(--border);
 }
 
 
-[data-theme="dark"] .form-group input:focus {
+[data-theme="dark"] .card-details > div {
     background: var(--card-bg);
 }
 
 
-[data-theme="dark"] .secondary-button {
+[data-theme="dark"] .card-details > div:hover {
     background: var(--background);
-
-    color: var(--text-light);
 }
 
 
-[data-theme="dark"] .secondary-button:hover {
-    background: var(--primary-light);
-
+[data-theme="dark"] .secondary-button {
     color: var(--primary);
 }
 
 
+[data-theme="dark"] .secondary-button:hover {
+    color: var(--text-white);
+}
+
+
 /* =========================================================
-   REDUCED MOTION
+   ACCESSIBILITY
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1051,8 +940,7 @@ form {
 
 
     *,
-    *::before,
-    *::after {
+    *::before {
         transition-duration: 0.01ms !important;
 
         animation-duration: 0.01ms !important;

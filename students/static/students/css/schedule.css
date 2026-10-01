@@ -1,0 +1,976 @@
+/* =========================================================
+   SMARTMEAL — MEAL SCHEDULE
+   Modern • Responsive • Interactive • Dark Mode
+========================================================= */
+
+
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background: var(--background);
+    color: var(--text);
+
+    font-family: 'Times New Roman', Times, serif;
+
+    line-height: 1.5;
+
+    -webkit-font-smoothing: antialiased;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+button,
+input,
+a {
+    font: inherit;
+}
+
+
+/* =========================================================
+   APPLICATION BACKGROUND
+========================================================= */
+
+.student-app {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            var(--background-primary),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 0% 100%,
+            var(--background-secondary),
+            transparent 28%
+        ),
+        var(--background);
+
+    transition:
+        background 0.3s ease;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   TOPBAR SAFE AREA
+========================================================= */
+
+.dashboard-main {
+    width: min(100% - 48px, 1100px);
+
+    margin: 0 auto;
+
+    /*
+       Space reserved for fixed top navigation.
+    */
+    padding-top: 120px;
+    padding-bottom: 70px;
+}
+
+
+/* =========================================================
+   WELCOME SECTION
+========================================================= */
+
+.welcome-section {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 180px;
+
+    margin-bottom: 28px;
+
+    padding: 38px 42px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-xl);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--background-primary),
+            var(--card-bg)
+        );
+
+    box-shadow: var(--shadow-sm);
+
+    overflow: hidden;
+
+    isolation: isolate;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.welcome-section:hover {
+    border-color: var(--border-primary);
+    box-shadow: var(--shadow);
+}
+
+
+/* Decorative circle */
+
+.welcome-section::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    right: -70px;
+    top: -105px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    opacity: 0.08;
+
+    z-index: -1;
+
+    pointer-events: none;
+}
+
+
+/* Decorative accent */
+
+.welcome-section::before {
+    content: "";
+
+    position: absolute;
+
+    width: 75px;
+    height: 4px;
+
+    left: 42px;
+    bottom: 22px;
+
+    border-radius: var(--radius-pill);
+
+    background: var(--primary);
+
+    opacity: 0.75;
+}
+
+
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.eyebrow {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 9px;
+
+    color: var(--primary);
+
+    font-size: 0.72rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.15em;
+
+    text-transform: uppercase;
+}
+
+.eyebrow::before {
+    content: "";
+
+    width: 7px;
+    height: 7px;
+
+    flex: 0 0 7px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    box-shadow:
+        0 0 0 4px var(--primary-light);
+}
+
+
+/* =========================================================
+   PAGE TITLE
+========================================================= */
+
+.welcome-section h2 {
+    position: relative;
+
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: clamp(
+        1.8rem,
+        4vw,
+        2.55rem
+    );
+
+    font-weight: 750;
+
+    letter-spacing: -0.045em;
+
+    line-height: 1.1;
+}
+
+.welcome-section p {
+    position: relative;
+
+    margin: 10px 0 0;
+
+    max-width: 600px;
+
+    color: var(--text-light);
+
+    font-size: 0.98rem;
+}
+
+
+/* =========================================================
+   MEAL GRID
+========================================================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   MEAL CARD
+========================================================= */
+
+.dashboard-card {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-height: 205px;
+
+    padding: 28px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    background: var(--card-bg);
+
+    box-shadow: var(--shadow-sm);
+
+    overflow: hidden;
+
+    isolation: isolate;
+
+    transition:
+        transform 0.25s cubic-bezier(.4, 0, .2, 1),
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        background-color 0.3s ease;
+}
+
+
+/* Top accent */
+
+.dashboard-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            transparent 75%
+        );
+
+    opacity: 0.75;
+
+    transition:
+        opacity 0.25s ease;
+}
+
+
+/* Decorative glow */
+
+.dashboard-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    right: -55px;
+    bottom: -55px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    opacity: 0.035;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+
+/* Hover */
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+
+    border-color: var(--border-primary);
+
+    box-shadow: var(--shadow);
+}
+
+.dashboard-card:hover::before {
+    opacity: 1;
+}
+
+.dashboard-card:hover::after {
+    transform: scale(2);
+
+    opacity: 0.07;
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.card-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   MEAL TYPE
+========================================================= */
+
+.card-eyebrow {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--primary);
+
+    font-size: 0.68rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.13em;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   MEAL NAME
+========================================================= */
+
+.card-header h3 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 1.2rem;
+
+    font-weight: 700;
+
+    letter-spacing: -0.025em;
+
+    line-height: 1.3;
+
+    transition:
+        color 0.2s ease;
+}
+
+.dashboard-card:hover .card-header h3 {
+    color: var(--primary);
+}
+
+
+/* =========================================================
+   STATUS BADGE
+========================================================= */
+
+.card-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    min-height: 28px;
+
+    padding: 5px 10px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-pill);
+
+    background: var(--background);
+
+    color: var(--text-muted);
+
+    font-size: 0.62rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+/* AVAILABLE */
+
+.dashboard-card:has(.card-status:first-of-type) .card-status {
+    color: var(--success);
+
+    border-color: var(--border-secondary);
+
+    background: var(--success-light);
+}
+
+
+/*
+   If the card contains "INACTIVE", the generic badge
+   remains neutral.
+*/
+
+.dashboard-card .card-status {
+    position: relative;
+}
+
+
+/* =========================================================
+   MEAL DETAILS
+========================================================= */
+
+.card-details {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-top: auto;
+}
+
+
+/* Individual time box */
+
+.card-details > div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    padding: 14px 15px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    background: var(--background);
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* Hover time box */
+
+.dashboard-card:hover .card-details > div {
+    border-color: var(--border-primary);
+}
+
+
+/* Time label */
+
+.card-details span {
+    color: var(--text-muted);
+
+    font-size: 0.7rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.06em;
+
+    text-transform: uppercase;
+}
+
+
+/* Time */
+
+.card-details strong {
+    color: var(--text);
+
+    font-size: 1.05rem;
+
+    font-weight: 750;
+
+    letter-spacing: -0.02em;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-state {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 190px;
+
+    text-align: center;
+
+    padding: 25px;
+}
+
+
+/* Empty icon */
+
+.empty-icon {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 58px;
+    height: 58px;
+
+    margin-bottom: 14px;
+
+    border: 1px solid var(--border-primary);
+
+    border-radius: 50%;
+
+    background: var(--primary-light);
+
+    font-size: 1.5rem;
+
+    box-shadow:
+        0 8px 20px rgba(201, 90, 67, 0.10);
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.dashboard-card:hover .empty-icon {
+    transform:
+        translateY(-3px)
+        rotate(-4deg);
+}
+
+
+/* Empty heading */
+
+.empty-state h4 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 1.05rem;
+
+    font-weight: 700;
+}
+
+
+/* Empty description */
+
+.empty-state p {
+    margin: 6px 0 0;
+
+    color: var(--text-light);
+
+    font-size: 0.84rem;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .dashboard-main {
+        width: calc(100% - 32px);
+
+        padding-top: 110px;
+
+        padding-bottom: 55px;
+    }
+
+
+    .welcome-section {
+        min-height: 160px;
+
+        padding: 32px;
+    }
+
+
+    .welcome-section::before {
+        left: 32px;
+    }
+
+
+    .dashboard-grid {
+        gap: 18px;
+    }
+
+
+    .dashboard-card {
+        min-height: 190px;
+
+        padding: 25px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    /*
+       IMPORTANT:
+       The topbar is fixed/sticky.
+       Keep 100px clearance.
+    */
+
+    .dashboard-main {
+        width: calc(100% - 24px);
+
+        padding-top: 100px;
+
+        padding-bottom: 45px;
+    }
+
+
+    /* Header */
+
+    .welcome-section {
+        min-height: 150px;
+
+        margin-bottom: 18px;
+
+        padding: 27px 22px 32px;
+
+        border-radius: var(--radius-lg);
+    }
+
+
+    .welcome-section::after {
+        width: 160px;
+        height: 160px;
+
+        right: -55px;
+        top: -75px;
+    }
+
+
+    .welcome-section::before {
+        left: 22px;
+
+        bottom: 17px;
+
+        width: 60px;
+    }
+
+
+    .welcome-section h2 {
+        font-size: 1.7rem;
+    }
+
+
+    .welcome-section p {
+        max-width: 90%;
+
+        margin-top: 8px;
+
+        font-size: 0.88rem;
+
+        line-height: 1.55;
+    }
+
+
+    /* One meal card per row */
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+    }
+
+
+    .dashboard-card {
+        min-height: auto;
+
+        padding: 22px 19px;
+
+        border-radius: var(--radius-lg);
+    }
+
+
+    .card-header {
+        margin-bottom: 20px;
+
+        gap: 12px;
+    }
+
+
+    .card-header h3 {
+        font-size: 1.02rem;
+    }
+
+
+    .card-eyebrow {
+        font-size: 0.63rem;
+    }
+
+
+    .card-status {
+        min-height: 26px;
+
+        padding: 4px 8px;
+
+        font-size: 0.57rem;
+    }
+
+
+    .card-details {
+        gap: 10px;
+    }
+
+
+    .card-details > div {
+        padding: 12px;
+    }
+
+
+    .card-details strong {
+        font-size: 0.96rem;
+    }
+
+
+    .card-details span {
+        font-size: 0.64rem;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .dashboard-main {
+        width: calc(100% - 18px);
+
+        padding-top: 95px;
+
+        padding-bottom: 35px;
+    }
+
+
+    .welcome-section {
+        padding: 23px 18px 29px;
+    }
+
+
+    .welcome-section h2 {
+        font-size: 1.55rem;
+    }
+
+
+    .welcome-section p {
+        font-size: 0.82rem;
+    }
+
+
+    .dashboard-card {
+        padding: 19px 16px;
+    }
+
+
+    .card-header {
+        gap: 8px;
+    }
+
+
+    .card-header h3 {
+        font-size: 0.96rem;
+    }
+
+
+    .card-status {
+        font-size: 0.52rem;
+
+        padding: 4px 7px;
+    }
+
+
+    .card-details {
+        grid-template-columns: 1fr;
+    }
+
+
+    .card-details > div {
+        padding: 11px 12px;
+    }
+
+
+    .empty-state {
+        min-height: 170px;
+
+        padding: 20px 12px;
+    }
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) {
+
+    .dashboard-card:hover {
+        transform: none;
+
+        box-shadow: var(--shadow-sm);
+    }
+
+
+    .welcome-section:hover {
+        box-shadow: var(--shadow-sm);
+    }
+
+
+    .dashboard-card:active {
+        transform: scale(0.99);
+
+        border-color: var(--border-primary);
+    }
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+[data-theme="dark"] .dashboard-card:hover {
+    border-color: var(--border-primary);
+}
+
+
+[data-theme="dark"] .welcome-section:hover {
+    border-color: var(--border-primary);
+}
+
+
+[data-theme="dark"] .card-details > div {
+    background: var(--background);
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+    }
+}

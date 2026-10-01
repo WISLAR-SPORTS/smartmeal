@@ -53,6 +53,13 @@
     --radius-lg: 16px;
     --radius-xl: 24px;
     --radius-pill: 999px;
+
+    /*
+       TOP NAVIGATION HEIGHT
+       Change these only if your actual navbar
+       has a different height.
+    */
+    --topnav-height: 72px;
 }
 
 
@@ -103,7 +110,9 @@
    GLOBAL
    ========================================= */
 
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -165,12 +174,25 @@ a {
    MAIN CONTENT
    ========================================= */
 
+/*
+   FIX:
+   The top navbar is fixed, so the main content
+   must reserve space for it.
+*/
+
 .dashboard-main {
-    width: min(1200px, calc(100% - 48px));
+   width: min(100% - 48px, 1100px);
+
     margin: 0 auto;
 
-    padding: 42px 0 60px;
+    padding-top: 120px;
+    padding-bottom: 70px;
 }
+
+
+/* =========================================
+   MESSAGES
+   ========================================= */
 
 .messages {
     width: 100%;
@@ -215,6 +237,7 @@ a {
     background: var(--background-secondary);
     border: 1px solid var(--border-secondary);
 }
+
 
 /* =========================================
    WELCOME / PAGE HEADER
@@ -364,13 +387,13 @@ a {
 
 /* =========================================
    INPUTS
-   Works with Django-generated form widgets
    ========================================= */
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
+    max-width: 100%;
 
     min-height: 46px;
 
@@ -658,7 +681,7 @@ a {
 
 
 /* =========================================
-   DARK MODE OVERRIDES
+   DARK MODE
    ========================================= */
 
 [data-theme="dark"] .form-group input,
@@ -693,7 +716,11 @@ a {
     .dashboard-main {
         width: min(100% - 32px, 680px);
 
-        padding-top: 32px;
+        /*
+           Fixed navbar compensation.
+        */
+        padding-top: calc(var(--topnav-height) + 28px);
+
         padding-bottom: 45px;
     }
 
@@ -706,7 +733,6 @@ a {
 
         gap: 19px;
     }
-
 }
 
 
@@ -716,10 +742,17 @@ a {
 
 @media (max-width: 520px) {
 
+    /*
+       IMPORTANT:
+       Do NOT use padding-top: 24px here.
+       That was allowing the fixed navbar to cover
+       the welcome section.
+    */
+
     .dashboard-main {
         width: calc(100% - 24px);
 
-        padding-top: 24px;
+        padding-top: calc(var(--topnav-height) + 18px);
         padding-bottom: 35px;
     }
 
@@ -763,7 +796,24 @@ a {
     .secondary-button {
         width: 100%;
     }
+}
 
+
+/* =========================================
+   VERY SMALL PHONES
+   ========================================= */
+
+@media (max-width: 380px) {
+
+    .dashboard-main {
+        width: calc(100% - 18px);
+
+        padding-top: calc(var(--topnav-height) + 16px);
+    }
+
+    .dashboard-card {
+        padding: 18px 14px;
+    }
 }
 
 
@@ -782,7 +832,6 @@ a {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
     }
-
 }
 
 
@@ -805,5 +854,4 @@ a {
     .form-actions {
         display: none;
     }
-
 }
