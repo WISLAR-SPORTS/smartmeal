@@ -7,4 +7,3 @@ build/
 venv/
 .venv/
 staticfiles/
-media/
